@@ -38,6 +38,7 @@
     .main-content {
       width: 100%;
       max-width: 1100px;
+      /* Giới hạn chiều rộng trên mobile */
       margin: auto 0;
     }
 
@@ -74,6 +75,8 @@
       opacity: 0.95;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+
+
     }
 
     .content-wrapper {
@@ -85,8 +88,9 @@
 
     .links,
     .trust-section,
-    .school-website {
+    .data-card {
       flex: 1;
+      /* Cho phép các cột co giãn bằng nhau */
     }
 
     .link-card {
@@ -144,37 +148,7 @@
       opacity: 0.9;
     }
 
-    h3.install-title {
-      text-align: center;
-      font-size: 1.05em;
-      margin-top: 1.2em;
-      margin-bottom: 0.6em;
-    }
-
-    .install-links {
-      list-style: none;
-      padding-left: 0;
-      text-align: left;
-    }
-
-    .install-links li {
-      margin-bottom: 0.5em;
-    }
-
-    .install-links li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.9em;
-      opacity: 0.9;
-      transition: opacity 0.2s ease;
-    }
-
-    .install-links li a:hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
-
-    .school-website {
+    .data-card {
       background: rgba(255, 255, 255, 0.1);
       padding: 15px 20px;
       border-radius: 12px;
@@ -182,22 +156,22 @@
       text-align: left;
     }
 
-    .school-website h3 {
+    .data-card h3 {
       text-align: center;
       font-size: 1.1em;
       margin-bottom: 0.6em;
     }
 
-    .school-website ul {
+    .data-card ul {
       list-style: none;
       padding-left: 0;
     }
 
-    .school-website li {
+    .data-card li {
       margin-bottom: 0.5em;
     }
 
-    .school-website a {
+    .data-card a {
       color: #fff;
       text-decoration: none;
       opacity: 0.9;
@@ -205,136 +179,152 @@
       font-size: 0.9em;
     }
 
-    .school-website a:hover {
+    .data-card a:hover {
       opacity: 1;
       text-decoration: underline;
     }
 
-    /* THAY ĐỔI: Đã xóa background
-      và thêm user-select để chắc chắn không bôi đen được
-    */
+
     footer {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       padding: 8px 0;
-      /* background: rgba(0, 0, 0, 0.25); <-- ĐÃ XÓA DÒNG NÀY */
       font-size: 0.8em;
       opacity: 0.8;
       z-index: 100;
       text-align: center;
-
-      /* Thêm để chắc chắn không bôi đen được */
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
 
 
-    /* Quy tắc cho PC */
+    /* === QUY TẮC CHO PC (THAY ĐỔI LỚN) === */
     @media (min-width: 768px) {
 
       html,
       body {
         height: 100vh;
+        /* Giới hạn chiều cao */
         overflow: hidden;
+        /* Ẩn thanh cuộn */
         justify-content: center;
+        /* Căn giữa nội dung theo chiều dọc */
 
-        /* Thêm 50px đệm dưới cho footer */
-        padding: 10px 10px 50px 10px;
+        /* === THAY ĐỔI: Giảm lề trái/phải xuống 5px === */
+        padding: 10px 5px 50px 5px;
       }
 
       .main-content {
         margin: 0;
+        /* === THAY ĐỔI: Gỡ bỏ giới hạn chiều rộng === */
+        max-width: none;
       }
 
       .content-wrapper {
         flex-direction: row;
+        /* Chuyển 5 cột sang ngang */
         align-items: flex-start;
-        gap: 1.5em;
+        gap: 1em;
+        /* Giảm khoảng cách cột */
       }
 
-      /* Thu nhỏ nội dung cho PC */
+      /* === THU NHỎ HEADER === */
       h1 {
-        font-size: 1.7em;
-        margin-bottom: 0.2em;
+        font-size: 1.6em;
+        /* Giảm */
+        margin-bottom: 0.1em;
+        /* Giảm */
+      }
+
+      p {
+        font-size: 0.85em;
+        /* Thêm để thu nhỏ */
       }
 
       p.description {
-        margin-bottom: 0.5em;
-        font-size: 0.9em;
+        margin-bottom: 0.2em;
+        /* Giảm */
+        font-size: 0.85em;
+        /* Giảm */
       }
 
       p.join-instruction {
-        margin-bottom: 0.8em;
-        font-size: 0.85em;
+        margin-bottom: 1.5em;
+        /* Giảm */
+        font-size: 0.8em;
+        /* Giảm */
       }
 
+      /* === THU NHỎ CỘT 1: LINKS === */
       .link-card {
-        padding: 10px 14px;
-        margin-bottom: 0.5em;
+        padding: 10px 12px;
+        /* Giảm */
+        margin-bottom: 0.4em;
+        /* Giảm */
       }
 
       .link-title {
-        font-size: 1.05em;
+        font-size: 1em;
+        /* Giảm */
       }
 
       .link-desc {
-        font-size: 0.82em;
-        line-height: 1.4;
+        font-size: 0.8em;
+        /* Giảm */
+        line-height: 1.3;
+        /* Giảm */
       }
 
+      /* === THU NHỎ CỘT 2: TRUST SECTION === */
       .trust-section {
-        padding: 12px 16px;
+        padding: 10px 12px;
+        /* Giảm */
       }
 
       .trust-section h3 {
-        font-size: 1.1em;
-        margin-bottom: 0.5em;
+        font-size: 1.05em;
+        /* Giảm */
+        margin-bottom: 0.4em;
+        /* Giảm */
       }
 
       .trust-section p {
-        font-size: 0.82em;
-        line-height: 1.5;
+        font-size: 0.8em;
+        /* Giảm */
+        line-height: 1.4;
+        /* Giảm */
       }
 
-      h3.install-title {
-        font-size: 1em;
-        margin-top: 0.8em;
-        margin-bottom: 0.4em;
+      /* === THU NHỎ CỘT 3, 4, 5: .data-card === */
+      .data-card {
+        padding: 10px 12px;
+        /* Giảm */
       }
 
-      .install-links li {
-        margin-bottom: 0.3em;
-      }
-
-      .install-links li a {
-        font-size: 0.85em;
-      }
-
-      .school-website {
-        padding: 12px 16px;
-      }
-
-      .school-website h3 {
+      .data-card h3 {
         font-size: 1.05em;
-        margin-bottom: 0.5em;
-      }
-
-      .school-website li {
+        /* Giảm */
         margin-bottom: 0.4em;
+        /* Giảm */
       }
 
-      .school-website a {
-        font-size: 0.85em;
+      .data-card li {
+        margin-bottom: 0.3em;
+        /* Giảm */
       }
 
-      /* Giảm font footer một chút trên PC */
+      .data-card a {
+        font-size: 0.8em;
+        /* Giảm */
+      }
+
+      /* Giảm font footer */
       footer {
         font-size: 0.75em;
         background: none;
-        /* Đảm bảo không có nền */
       }
     }
   </style>
@@ -348,10 +338,11 @@
       <h1>🌸 Cộng đồng Đại học Duy Tân</h1>
       <p class="description">Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram!</p>
       <p>Nơi đây <strong>an toàn, bảo mật và nhanh chóng</strong> hơn hẳn Zalo/Facebook.</p>
-      <p class="join-instruction">👇 Chỉ cần nhấn vào các thẻ bên dưới để tham gia!</p>
+      <p class="join-instruction">👇 Chỉ cần nhấn vào các thẻ bên dưới phía trái để tham gia!</p>
     </div>
 
     <div class="content-wrapper">
+
       <div class="links">
         <a class="link-card" href="https://t.me/Dai_Hoc_Duy_Tan" target="_blank">
           <div class="link-title">» 📣 Tin tức & Hỗ trợ DTU</div>
@@ -359,24 +350,20 @@
             Kênh do admin hỗ trợ, cập nhật thông báo quan trọng, tin tức và giải đáp thắc mắc cho sinh viên.
           </div>
         </a>
-
         <a class="link-card" href="https://t.me/tai_lieu_DTU" target="_blank">
           <div class="link-title">» 📘 Kho Tài liệu DTU</div>
           <div class="link-desc">
             Gửi file giáo trình, slide, file ôn tập,... vào đây.
             <br><strong>Quy định:</strong> Đặt tên file <code>Mã môn + Tên tài liệu</code>
             <br><i>(Ví dụ: POS 301 Slide bài giảng)</i>
-            <br>Sai quy định sẽ bị gỡ file để tiện tìm kiếm. Cảm ơn mọi người!
           </div>
         </a>
-
         <a class="link-card" href="https://t.me/trochuyencungdtu" target="_blank">
           <div class="link-title">» 💬 Giao lưu & Hỏi đáp</div>
           <div class="link-desc">
             Ngôi nhà chung của sinh viên DTU! Cùng nhau giao lưu, "chém gió", hỏi đáp và chia sẻ kinh nghiệm.
           </div>
         </a>
-
         <a class="link-card" href="https://t.me/huongdandungtelegram" target="_blank">
           <div class="link-title">» 💡 Hướng dẫn sử dụng Telegram an toàn</div>
           <div class="link-desc">
@@ -397,22 +384,24 @@
           ✓ <strong>Bảo mật & Riêng tư:</strong> Có Chat Bí Mật tự hủy, ẩn số điện thoại, tìm kiếm bằng @username.<br>
           ✓ <strong>Đa nền tảng:</strong> Đồng bộ tức thì trên điện thoại, máy tính.
         </p>
+      </div>
 
-        <h3 class="install-title">Cài đặt & Hướng dẫn</h3>
+      <div class="data-card">
+        <h3>Cài đặt & Hướng dẫn telegram</h3>
         <ul class="install-links">
           <li><a href="https://t.me/babycuaaidangyeu" target="_blank">» Liên hệ admin</a></li>
-          <li><a href="https://telegram.org/dl/desktop/win64" target="_blank">» Tải về cho Windows (PC)</a></li>
-          <li><a href="https://web.telegram.org/a/" target="_blank">» Dùng bản Web (Không cần cài)</a></li>
+          <li><a href="https://telegram.org/dl/desktop/win64" target="_blank">» Tải telegram về cho Windows (PC)</a>
+          </li>
+          <li><a href="https://web.telegram.org/a/" target="_blank">» Dùng bản Website telegram</a></li>
           <li><a href="https://t.me/setlanguage/abcxyz" target="_blank">» Cài Tiếng Việt cho Telegram</a></li>
-          <li><a href="https://t.me/huongdandungtelegram" target="_blank">» Hướng dẫn dùng Telegram</a></li>
-          <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank">» Website chung</a></li>
+          <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank">» Website</a></li>
           <li><a
-              href="https://docs.google.com/spreadsheets/d/1XSEGx48YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing"
+              href="https://docs.google.com/spreadsheets/d/1XSEGx49YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing"
               target="_blank">» Nhận xét giảng viên</a></li>
         </ul>
       </div>
 
-      <div class="school-website">
+      <div class="data-card">
         <h3>🌐 Website</h3>
         <ul>
           <li><a href="https://duytan.edu.vn" target="_blank">» Trang chủ Đại học Duy Tân</a></li>
@@ -427,17 +416,30 @@
           <li><a href="https://courses.duytan.edu.vn/sites/Home_ChuongTrinhDaoTao.aspx?p=home_coursesearch"
               target="_blank">» Tìm kiếm môn học</a></li>
           <li><a href="https://realjobs.vn/" target="_blank">» Việc làm & Thực tập</a></li>
+        </ul>
+      </div>
 
-          <h3 style="font-family: Arial, sans-serif;">
-            <a style="text-decoration: none; color: #ffffff;">
-              <i class="fa-brands fa-facebook" style="color: #1877F2;"></i> Facebook</a>
-          </h3>
-          <li><a href="https://www.facebook.com/daihocduytan.dtu" target="_blank">» Đại học Duy Tân </a></li>
+      <div class="data-card">
+        <h3 style="font-family: Arial, sans-serif;">
+          <i class="fa-brands fa-facebook" style="color: #1877F2;"></i> Facebook
+        </h3>
+        <ul>
+          <li><a href="https://www.facebook.com/daihocduytan.dtu" target="_blank">» Đại học Tân </a></li>
           <li><a href="https://www.facebook.com/Duy.Tan.University" target="_blank">» Duy Tan University</a></li>
           <li><a href="https://www.facebook.com/tuyensinhDTU" target="_blank">» Tuyển sinh Đại học Duy Tân</a></li>
           <li><a href="https://www.facebook.com/ltcdtu" target="_blank">» LTC - Learning & Testing Center </a></li>
           <li><a href="https://www.facebook.com/tuoitreDTU" target="_blank">» Tuổi trẻ Đại học Duy Tân</a></li>
-          <li><a href="https://www.facebook.com/DTU.InternationalSchool" target="_blank">» DTU - Trường Đào tạo Quốc tế</a></li>
+          <li><a href="https://www.facebook.com/DTU.InternationalSchool" target="_blank">» Trường Đào tạo Quốc tế</a>
+          </li>
+          <li><a href="https://www.facebook.com/DuyTanHTi" target="_blank">» Trường Du Lịch</a></li>
+          <li><a href="https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan" target="_blank">» Khoa Khoa học
+              Xã hội và Nhân văn </a></li>
+          <li><a href="https://www.facebook.com/CNTT.DTU" target="_blank">» Tuổi Trẻ Trường Khoa Học Máy Tính</a></li>
+          <li><a href="https://www.facebook.com/KHOATRUNGDTU" target="_blank">» Khoa Tiếng Trung </a></li>
+          <li><a href="https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang" target="_blank">» Trung Tâm Ngoại
+              Ngữ Duy Tân </a></li>
+          <li><a href="https://www.facebook.com/groups/189204667249513" target="_blank">» Trung Tâm Tin Học Duy Tân</a>
+          </li>
         </ul>
       </div>
 
