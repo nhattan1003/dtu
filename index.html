@@ -2,312 +2,434 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyển sang telegram</title>
-    <style>
-        /* Reset & Thiết lập 1 màn hình */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuyển sang telegram</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
-        /* Mặc định (Mobile): Cho phép cuộn */
-        html,
-        body {
-            min-height: 100vh;
-            /* Cao tối thiểu bằng màn hình */
-            background: linear-gradient(135deg, #a02c2c, #2a2a2a);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 10px;
-            overflow-x: hidden;
-            /* Chỉ ẩn cuộn ngang */
-        }
+    html,
+    body {
+      /* Đây là thiết lập cho mobile (mặc định) */
+      min-height: 100vh;
+      background: linear-gradient(135deg, #a02c2c, #2a2a2a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      
+      /* Thêm 50px đệm dưới cho footer */
+      padding: 20px 10px 50px 10px; 
+      overflow-x: hidden;
 
-        /* Vùng nội dung chính */
-        .main-content {
-            width: 100%;
-            max-width: 900px;
-            margin: auto 0;
-        }
+      /* Chống bôi đen / copy */
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
-        .bg-logo {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60vmax;
-            max-width: 800px;
-            opacity: 0.05;
-            z-index: -1;
-            pointer-events: none;
-        }
+    .main-content {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto 0;
+    }
 
-        h1 {
-            font-size: 1.9em;
-            margin-bottom: 0.3em;
-        }
+    .bg-logo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vmax;
+      max-width: 800px;
+      opacity: 0.05;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-        p.description {
-            font-size: 0.95em;
-            opacity: 0.9;
-            margin-bottom: 0.8em;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    h1 {
+      font-size: 1.9em;
+      margin-bottom: 0.3em;
+    }
 
-        p.join-instruction {
-            font-size: 0.9em;
-            font-weight: 600;
-            margin-bottom: 1em;
-            opacity: 0.95;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+    p.description {
+      font-size: 0.95em;
+      opacity: 0.9;
+      margin-bottom: 0.8em;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        .content-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            width: 100%;
-        }
+    p.join-instruction {
+      font-size: 0.9em;
+      font-weight: 600;
+      margin-bottom: 1em;
+      opacity: 0.95;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.7em;
-            width: 100%;
-            z-index: 1;
-        }
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      width: 100%;
+    }
 
-        .link-card {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            padding: 14px 18px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: #fff;
-            backdrop-filter: blur(6px);
-            text-align: left;
-        }
+    .links,
+    .trust-section,
+    .school-website {
+      flex: 1;
+    }
 
-        .link-card:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.03);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
+    .link-card {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 14px 18px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+      backdrop-filter: blur(6px);
+      text-align: left;
+      display: block;
+      margin-bottom: 0.7em;
+    }
 
-        .link-title {
-            font-weight: 600;
-            font-size: 1.15em;
-        }
+    .link-card:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.03);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
 
-        .link-desc {
-            font-size: 0.87em;
-            opacity: 0.9;
-            margin-top: 4px;
-            line-height: 1.5;
-        }
+    .link-title {
+      font-weight: 600;
+      font-size: 1.15em;
+    }
 
-        code {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.95em;
-        }
+    .link-desc {
+      font-size: 0.87em;
+      opacity: 0.9;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
 
-        .trust-section {
-            background: rgba(0, 0, 0, 0.15);
-            padding: 15px 20px;
-            border-radius: 12px;
-            width: 100%;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1;
-        }
+    .trust-section {
+      background: rgba(0, 0, 0, 0.15);
+      padding: 15px 20px;
+      border-radius: 12px;
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
 
-        .trust-section h3 {
-            text-align: center;
-            margin-bottom: 0.8em;
-            font-size: 1.15em;
-        }
+    .trust-section h3 {
+      text-align: center;
+      margin-bottom: 0.8em;
+      font-size: 1.15em;
+    }
 
-        .trust-section p {
-            font-size: 0.87em;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
+    .trust-section p {
+      font-size: 0.87em;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
 
-        footer {
-            margin-top: 1em;
-            font-size: 0.8em;
-            opacity: 0.8;
-            z-index: 1;
-            width: 100%;
-        }
+    h3.install-title {
+      text-align: center;
+      font-size: 1.05em;
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
 
-        /* CSS CHO PHẦN LINK TẢI VỀ MỚI */
-        h3.install-title {
-            text-align: center;
-            font-size: 1.05em;
-            margin-top: 1.2em;
-            /* Tạo khoảng cách với phần lợi ích */
-            margin-bottom: 0.6em;
-        }
+    .install-links {
+      list-style: none;
+      padding-left: 0;
+      text-align: left;
+    }
 
-        .install-links {
-            list-style: none;
-            padding-left: 0;
-            text-align: left;
-        }
+    .install-links li {
+      margin-bottom: 0.5em;
+    }
 
-        .install-links li {
-            margin-bottom: 0.5em;
-            /* Khoảng cách giữa các link */
-        }
+    .install-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9em;
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
 
-        .install-links li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9em;
-            opacity: 0.9;
-            transition: opacity 0.2s ease;
-        }
+    .install-links li a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
 
-        .install-links li a:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
+    .school-website {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left;
+    }
 
-        /* 1. ÉP 1 MÀN HÌNH (PC) */
-        @media (min-width: 768px) and (min-height: 600px) {
+    .school-website h3 {
+      text-align: center;
+      font-size: 1.1em;
+      margin-bottom: 0.6em;
+    }
 
-            html,
-            body {
-                height: 100vh;
-                overflow: hidden;
-            }
+    .school-website ul {
+      list-style: none;
+      padding-left: 0;
+    }
 
-            .content-wrapper {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 1.5em;
-            }
+    .school-website li {
+      margin-bottom: 0.5em;
+    }
 
-            .links {
-                flex: 1;
-            }
+    .school-website a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: 0.2s;
+      font-size: 0.9em;
+    }
 
-            .trust-section {
-                flex: 1;
-                min-height: 100%;
-            }
-        }
-    </style>
+    .school-website a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+    
+    /* THAY ĐỔI: Đã xóa background
+      và thêm user-select để chắc chắn không bôi đen được
+    */
+    footer {
+      position: fixed; 
+      bottom: 0;       
+      left: 0;         
+      width: 100%;     
+      padding: 8px 0;  
+      /* background: rgba(0, 0, 0, 0.25); <-- ĐÃ XÓA DÒNG NÀY */
+      font-size: 0.8em;
+      opacity: 0.8;
+      z-index: 100;    
+      text-align: center; 
+      
+      /* Thêm để chắc chắn không bôi đen được */
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+
+    /* Quy tắc cho PC */
+    @media (min-width: 768px) {
+
+      html,
+      body {
+        height: 100vh;
+        overflow: hidden;
+        justify-content: center;
+        
+        /* Thêm 50px đệm dưới cho footer */
+        padding: 10px 10px 50px 10px; 
+      }
+      
+      .main-content {
+        margin: 0;
+      }
+
+      .content-wrapper {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.5em;
+      }
+
+      /* Thu nhỏ nội dung cho PC */
+      h1 {
+        font-size: 1.7em;
+        margin-bottom: 0.2em;
+      }
+      p.description {
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+      }
+      p.join-instruction {
+        margin-bottom: 0.8em;
+        font-size: 0.85em;
+      }
+
+      .link-card {
+        padding: 10px 14px;
+        margin-bottom: 0.5em;
+      }
+      .link-title {
+        font-size: 1.05em;
+      }
+      .link-desc {
+        font-size: 0.82em;
+        line-height: 1.4;
+      }
+
+      .trust-section {
+        padding: 12px 16px;
+      }
+      .trust-section h3 {
+        font-size: 1.1em;
+        margin-bottom: 0.5em;
+      }
+      .trust-section p {
+        font-size: 0.82em;
+        line-height: 1.5;
+      }
+
+      h3.install-title {
+        font-size: 1em;
+        margin-top: 0.8em;
+        margin-bottom: 0.4em;
+      }
+      .install-links li {
+        margin-bottom: 0.3em;
+      }
+      .install-links li a {
+        font-size: 0.85em;
+      }
+
+      .school-website {
+        padding: 12px 16px;
+      }
+      .school-website h3 {
+        font-size: 1.05em;
+        margin-bottom: 0.5em;
+      }
+      .school-website li {
+        margin-bottom: 0.4em;
+      }
+      .school-website a {
+        font-size: 0.85em;
+      }
+
+      /* Giảm font footer một chút trên PC */
+      footer {
+        font-size: 0.75em; 
+        background: none; /* Đảm bảo không có nền */
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <img src="image_0be191.png" class="bg-logo" alt="DTU Logo">
 
-    <img src="image_0be191.png" class="bg-logo" alt="DTU Logo">
-
-    <div class="main-content">
-        <div class="header-section">
-            <h1>🌸 Cộng đồng Đại học Duy Tân</h1>
-            <p class="description">
-                Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram!
-
-            </p>
-            <p>
-                Nơi đây <strong>an toàn, bảo mật và nhanh chóng</strong> hơn hẳn Zalo/Facebook.
-            </p>
-            <p class="join-instruction">👇 Chỉ cần nhấn vào các thẻ bên dưới để tham gia!</p>
-        </div>
-
-        <div class="content-wrapper">
-            <div class="links">
-
-                <a class="link-card" href="https://t.me/Dai_Hoc_Duy_Tan" target="_blank">
-                    <div class="link-title">» 📣 Tin tức & Hỗ trợ DTU</div>
-                    <div class="link-desc">
-                        Kênh do admin hỗ trợ, cập nhật thông báo quan trọng, tin tức và giải đáp thắc mắc cho sinh viên.
-                    </div>
-                </a>
-
-                <a class="link-card" href="https://t.me/tai_lieu_DTU" target="_blank">
-                    <div class="link-title">» 📘 Kho Tài liệu DTU</div>
-                    <div class="link-desc">
-                        Gửi file giáo trình, slide, file ôn tập,... vào đây.
-                        <br><strong>Quy định:</strong> Đặt tên file <code>Mã môn + Tên tài liệu</code>
-                        <br><i>(Ví dụ: POS 301 Slide bài giảng)</i>
-                        <br>Sai quy định sẽ bị gỡ file để tiện tìm kiếm. Cảm ơn mọi người!
-                    </div>
-                </a>
-
-                <a class="link-card" href="https://t.me/trochuyencungdtu" target="_blank">
-                    <div class="link-title">» 💬 Giao lưu & Hỏi đáp</div>
-                    <div class="link-desc">
-                        Ngôi nhà chung của sinh viên DTU! Cùng nhau giao lưu, "chém gió", hỏi đáp và chia sẻ mọi kinh
-                        nghiệm học tập, đời sống.
-                    </div>
-                </a>
-
-                <a class="link-card" href="https://t.me/huongdandungtelegram" target="_blank">
-                    <div class="link-title">» 💡 Hướng dẫn sử dụng Telegram an toàn</div>
-                    <div class="link-desc">
-                        Kênh hướng dẫn chi tiết cách sử dụng Telegram an toàn, bảo mật và hiệu quả cho mọi người dùng.
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="trust-section">
-                <h3>Tại sao nên dùng Telegram?</h3>
-                <p>
-                    ✓ <strong>Lưu trữ đám mây:</strong> Lưu file, ảnh vĩnh viễn, gửi file lớn, <strong>không tốn dung
-                        lượng máy</strong> & không cần backup thủ công như Zalo.
-                    <br>
-                    ✓ <strong>Cộng đồng lớn:</strong> Hỗ trợ nhóm tối đa 200.000 thành viên và kênh thông báo 1 chiều
-                    không giới hạn người theo dõi, giúp quản lý và truyền thông hiệu quả, chuyên nghiệp.
-                    <br>
-                    ✓ <strong>Nhanh & Sạch:</strong> Tốc độ cực nhanh, <strong>không quảng cáo</strong>, không "rác",
-                    không bị "bóp" tương tác như Facebook. Tìm lại tin nhắn, file cũ trong 1 nốt nhạc.
-                    <br>
-                    ✓ <strong>Bảo mật & Riêng tư:</strong> Có Chat Bí Mật tự hủy, có thể ẩn số điện thoại và tìm kiếm
-                    bằng @username.
-                    <br>
-                    ✓ <strong>Đa nền tảng:</strong> Đồng bộ tức thì trên điện thoại, máy tính.
-                </p>
-
-                <h3 class="install-title">Cài đặt & Hướng dẫn</h3>
-                <ul class="install-links">
-                    <li><a href="https://t.me/babycuaaidangyeu" target="_blank">» Liên hệ admin</a></li>
-                    <li><a href="https://telegram.org/dl/desktop/win64" target="_blank">» Tải về cho Windows (PC)</a></li>                 
-                    <li><a href="https://web.telegram.org/a/" target="_blank">» Dùng bản Web (Không cần cài)</a></li>
-                    <li><a href="https://t.me/setlanguage/abcxyz" target="_blank">» Cài Tiếng Việt cho Telegram</a></li>
-                    <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank">» Website chung</a></li>
-                    <li><a href="https://docs.google.com/spreadsheets/d/1XSEGx49YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing" target="_blank">» Nhận xét giảng viên</a></li>
-                </ul>
-            </div>
-
-        </div>
+  <div class="main-content">
+    <div class="header-section">
+      <h1>🌸 Cộng đồng Đại học Duy Tân</h1>
+      <p class="description">Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram!</p>
+      <p>Nơi đây <strong>an toàn, bảo mật và nhanh chóng</strong> hơn hẳn Zalo/Facebook.</p>
+      <p class="join-instruction">👇 Chỉ cần nhấn vào các thẻ bên dưới để tham gia!</p>
     </div>
-    <footer>
-        © 2022 - Cộng đồng Sinh viên Duy Tân 🦉
-    </footer>
+
+    <div class="content-wrapper">
+      <div class="links">
+        <a class="link-card" href="https://t.me/Dai_Hoc_Duy_Tan" target="_blank">
+          <div class="link-title">» 📣 Tin tức & Hỗ trợ DTU</div>
+          <div class="link-desc">
+            Kênh do admin hỗ trợ, cập nhật thông báo quan trọng, tin tức và giải đáp thắc mắc cho sinh viên.
+          </div>
+        </a>
+
+        <a class="link-card" href="https://t.me/tai_lieu_DTU" target="_blank">
+          <div class="link-title">» 📘 Kho Tài liệu DTU</div>
+          <div class="link-desc">
+            Gửi file giáo trình, slide, file ôn tập,... vào đây.
+            <br><strong>Quy định:</strong> Đặt tên file <code>Mã môn + Tên tài liệu</code>
+            <br><i>(Ví dụ: POS 301 Slide bài giảng)</i>
+            <br>Sai quy định sẽ bị gỡ file để tiện tìm kiếm. Cảm ơn mọi người!
+          </div>
+        </a>
+
+        <a class="link-card" href="https://t.me/trochuyencungdtu" target="_blank">
+          <div class="link-title">» 💬 Giao lưu & Hỏi đáp</div>
+          <div class="link-desc">
+            Ngôi nhà chung của sinh viên DTU! Cùng nhau giao lưu, "chém gió", hỏi đáp và chia sẻ kinh nghiệm.
+          </div>
+        </a>
+
+        <a class="link-card" href="https://t.me/huongdandungtelegram" target="_blank">
+          <div class="link-title">» 💡 Hướng dẫn sử dụng Telegram an toàn</div>
+          <div class="link-desc">
+            Hướng dẫn chi tiết cách sử dụng Telegram an toàn, bảo mật và hiệu quả cho mọi người dùng.
+          </div>
+        </a>
+      </div>
+
+      <div class="trust-section">
+        <h3>Tại sao nên dùng Telegram?</h3>
+        <p>
+          ✓ <strong>Lưu trữ đám mây:</strong> Lưu file, ảnh vĩnh viễn, gửi file lớn, <strong>không tốn dung lượng
+            máy</strong> & không cần backup thủ công như Zalo.<br>
+          ✓ <strong>Cộng đồng lớn:</strong> Hỗ trợ nhóm tối đa 200.000 thành viên và kênh thông báo 1 chiều không giới
+          hạn người theo dõi.<br>
+          ✓ <strong>Nhanh & Sạch:</strong> Tốc độ cực nhanh, <strong>không quảng cáo</strong>, không “rác”, không bị bóp
+          tương tác như Facebook.<br>
+          ✓ <strong>Bảo mật & Riêng tư:</strong> Có Chat Bí Mật tự hủy, ẩn số điện thoại, tìm kiếm bằng @username.<br>
+          ✓ <strong>Đa nền tảng:</strong> Đồng bộ tức thì trên điện thoại, máy tính.
+        </p>
+
+        <h3 class="install-title">Cài đặt & Hướng dẫn</h3>
+        <ul class="install-links">
+          <li><a href="https://t.me/babycuaaidangyeu" target="_blank">» Liên hệ admin</a></li>
+          <li><a href="https://telegram.org/dl/desktop/win64" target="_blank">» Tải về cho Windows (PC)</a></li>
+          <li><a href="https://web.telegram.org/a/" target="_blank">» Dùng bản Web (Không cần cài)</a></li>
+          <li><a href="https://t.me/setlanguage/abcxyz" target="_blank">» Cài Tiếng Việt cho Telegram</a></li>
+          <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank">» Website chung</a></li>
+          <li><a
+              href="https://docs.google.com/spreadsheets/d/1XSEGx48YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing"
+              target="_blank">» Nhận xét giảng viên</a></li>
+        </ul>
+      </div>
+
+      <div class="school-website">
+        <h3>🌐 Website DTU</h3>
+        <ul>
+          <li><a href="https://duytan.edu.vn" target="_blank">» Trang chủ Đại học Duy Tân</a></li>
+          <li><a href="https://mydtu.duytan.edu.vn" target="_blank">» Cổng thông tin sinh viên (MyDTU)</a></li>
+          <li><a href="https://learning.duytan.edu.vn" target="_blank">» Học trực tuyến (Learning)</a></li>
+          <li><a href="https://ctsv.duytan.edu.vn" target="_blank">» Công tác sinh viên (CTSV)</a></li>
+          <li><a href="https://dtu.jobs" target="_blank">» Việc làm & Thực tập</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>© 2022 - Cộng đồng Sinh viên Duy Tân 🦉</footer>
+
+  <script>
+    // Chống chuột phải
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Chống F12 và các phím tắt
+    document.onkeydown = function (e) {
+      if (e.keyCode == 123) { return false; }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
+      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
+      if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) { return false; }
+    };
+  </script>
 
 </body>
 
 </html>
-
-
