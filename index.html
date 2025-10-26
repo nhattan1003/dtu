@@ -19,13 +19,16 @@
       min-height: 100vh;
       background: linear-gradient(135deg, #a02c2c, #2a2a2a);
       color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
+      /* Tắt flex ở đây để cho phép cuộn */
+      /* display: flex; */
+      /* flex-direction: column; */
+      /* justify-content: flex-start; */
+      /* align-items: center; */
       text-align: center;
       padding: 20px 10px 50px 10px;
       overflow-x: hidden;
+      overflow-y: auto;
+      /* Cho phép cuộn ở màn hình nhỏ (4,3,2,1 cột) */
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
@@ -35,6 +38,9 @@
       width: 100%;
       max-width: 1100px;
       margin: auto 0;
+      /* Thêm margin auto để căn giữa khi tắt flex */
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .bg-logo {
@@ -72,11 +78,20 @@
     }
 
     .content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
+      display: block;
+      /* Dùng column-count cho 1-4 cột */
       width: 100%;
     }
+
+    .content-wrapper>.links,
+    .content-wrapper>.stacked-column,
+    .content-wrapper>.data-card {
+      break-inside: avoid;
+      /* Chống vỡ thẻ khi chia cột */
+      margin-bottom: 1em;
+      /* Khoảng cách dọc 1 cỡ */
+    }
+
 
     .links,
     .trust-section,
@@ -96,7 +111,8 @@
       backdrop-filter: blur(6px);
       text-align: left;
       display: block;
-      margin-bottom: 0.7em;
+      margin-bottom: 1em;
+      /* Khoảng cách 1 cỡ */
     }
 
     .link-card:hover {
@@ -141,7 +157,7 @@
 
     .trust-section ul.check-list li {
       display: flex;
-      align-items: flex-start; 
+      align-items: flex-start;
       margin-bottom: 0.6em;
       font-size: 0.87em;
       line-height: 1.6;
@@ -149,18 +165,16 @@
       text-align: left;
     }
 
-    /* === THAY ĐỔI: CSS CHO ICON MINH HỌA (CỘT 2) === */
     .trust-section ul.check-list i {
       margin-right: 10px;
-      color: #fff; /* Đổi thành màu trắng */
-      opacity: 0.9; /* Thêm độ mờ cho đồng bộ */
+      color: #fff;
+      opacity: 0.9;
       width: 20px;
       text-align: center;
       flex-shrink: 0;
-      margin-top: 5px; 
-      font-size: 1em; /* Cho icon to hơn 1 chút */
+      margin-top: 5px;
+      font-size: 1em;
     }
-    /* === KẾT THÚC THAY ĐỔI === */
 
     .data-card {
       background: rgba(255, 255, 255, 0.1);
@@ -208,7 +222,7 @@
       display: flex;
       align-items: center;
     }
-    
+
     .data-card ul.icon-list i {
       display: inline-block;
       margin-right: 12px;
@@ -217,16 +231,16 @@
       width: 20px;
       text-align: center;
     }
-    
+
     .data-card ul.icon-list i.fa-solid {
       font-size: 1em;
     }
-    
+
     .data-card ul.icon-list i.fa-brands {
       font-size: 1.1em;
       opacity: 0.9;
     }
-    
+
     .data-card ul.icon-list span.zalo-icon {
       margin-right: 12px;
       width: 20px;
@@ -237,8 +251,9 @@
     .data-card ul.icon-list a:hover i {
       opacity: 1;
     }
+
     .data-card ul.icon-list i.fa-facebook {
-       color: #1877F2;
+      color: #1877F2;
     }
 
     .stacked-column {
@@ -297,37 +312,39 @@
       text-align: center;
     }
 
+    /* === 2 CỘT (CÓ THANH CUỘN) === */
     @media (min-width: 768px) {
-      html,
-      body {
-        height: 100vh;
-        overflow: hidden;
-        justify-content: center;
-        padding: 10px 5px 50px 5px;
-      }
+      /* html, body { */
+      /* justify-content: flex-start; */
+      /* padding: 10px 5px 50px 5px; */
+      /* } */
 
       .main-content {
-        margin: 0;
+        margin: 0 auto;
+        /* Căn giữa nội dung */
         max-width: none;
       }
 
       .content-wrapper {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 1em;
+        display: block;
+        column-count: 2;
+        column-gap: 1em;
       }
 
       h1 {
         font-size: 1.6em;
         margin-bottom: 0.1em;
       }
+
       p {
         font-size: 0.85em;
       }
+
       p.description {
         margin-bottom: 0.2em;
         font-size: 0.85em;
       }
+
       p.join-instruction {
         margin-bottom: 1.5em;
         font-size: 0.9em;
@@ -335,11 +352,13 @@
 
       .link-card {
         padding: 10px 12px;
-        margin-bottom: 0.4em;
+        margin-bottom: 1em;
       }
+
       .link-title {
         font-size: 1em;
       }
+
       .link-desc {
         font-size: 0.8em;
         line-height: 1.3;
@@ -348,6 +367,7 @@
       .trust-section {
         padding: 10px 12px;
       }
+
       .trust-section h3 {
         font-size: 1.05em;
         margin-bottom: 0.4em;
@@ -358,25 +378,26 @@
         line-height: 1.4;
         margin-bottom: 0.4em;
       }
-      
-      /* === THAY ĐỔI: CSS Thu nhỏ cho icon minh họa (CỘT 2) === */
+
       .trust-section ul.check-list i {
         margin-right: 8px;
         margin-top: 3px;
-        font-size: 0.9em; /* Thu nhỏ icon */
+        font-size: 0.9em;
       }
-      /* === KẾT THÚC THAY ĐỔI === */
 
       .data-card {
         padding: 10px 12px;
       }
+
       .data-card h3 {
         font-size: 1.05em;
         margin-bottom: 0.4em;
       }
+
       .data-card li {
         margin-bottom: 0.3em;
       }
+
       .data-card a {
         font-size: 0.8em;
       }
@@ -390,18 +411,70 @@
         font-size: 0.75em;
         background: none;
       }
-      
+
       .data-card ul.icon-list li {
-        margin-bottom: 0.5em; 
+        margin-bottom: 0.5em;
       }
+
       .data-card ul.icon-list i {
         margin-right: 10px;
         font-size: 0.9em;
       }
-      
+
       .data-card ul.icon-list span.zalo-icon {
-         margin-right: 10px;
-         font-size: 0.8em;
+        margin-right: 10px;
+        font-size: 0.8em;
+      }
+    }
+
+    /* === 3 CỘT (CÓ THANH CUỘN) === */
+    @media (min-width: 992px) {
+      .content-wrapper {
+        column-count: 3;
+      }
+    }
+
+    /* === 4 CỘT (CÓ THANH CUỘN) === */
+    @media (min-width: 1200px) {
+      .content-wrapper {
+        column-count: 4;
+      }
+    }
+
+    /* === 5 CỘT (TOÀN MÀN HÌNH - KHÔNG CUỘN) === */
+    @media (min-width: 1400px) {
+
+      /* Bật lại flex để căn giữa và tắt cuộn */
+      html,
+      body {
+        height: 100vh;
+        overflow: hidden;
+        /* Tắt thanh cuộn */
+        display: flex;
+        /* Bật lại flex */
+        flex-direction: column;
+        justify-content: center;
+        /* Căn giữa */
+        align-items: center;
+        padding: 40px 10px 50px 10px;
+      }
+
+      .content-wrapper {
+        display: grid;
+        /* Chuyển sang Grid */
+        grid-template-columns: repeat(5, 1fr);
+        column-count: auto;
+        /* Tắt chế độ cân bằng cột */
+        gap: 1em;
+        align-items: start;
+        /* Dồn cột lên trên */
+      }
+
+      .content-wrapper>.links,
+      .content-wrapper>.stacked-column,
+      .content-wrapper>.data-card {
+        margin-bottom: 0;
+        /* Tắt margin-bottom khi dùng Grid */
       }
     }
   </style>
@@ -446,7 +519,7 @@
           </div>
         </a>
         <a class="link-card" href="https://t.me/huongdandungtelegram" target="_blank">
-          <div class="link-title">💡 Hướng dẫn sử dụng an toàn</div>
+          <div class="link-title">💡 Hướng dẫn sử dụng Telegram an toàn</div>
           <div class="link-desc">
             Hướng dẫn chi tiết cách sử dụng Telegram an toàn, bảo mật và hiệu quả cho mọi người dùng.
           </div>
@@ -457,22 +530,33 @@
         <div class="trust-section">
           <h3>❓ Tại sao nên dùng Telegram?</h3>
           <ul class="check-list">
-            <li><i class="fa-solid fa-cloud"></i><span><strong>Lưu trữ đám mây:</strong> Lưu file, ảnh vĩnh viễn, gửi file lớn, <strong>không tốn dung lượng máy</strong> & không cần backup thủ công như Zalo.</span></li>
-            <li><i class="fa-solid fa-users"></i><span><strong>Cộng đồng lớn:</strong> Hỗ trợ nhóm tối đa 200.000 thành viên và kênh thông báo 1 chiều không giới hạn người theo dõi.</span></li>
-            <li><i class="fa-solid fa-rocket"></i><span><strong>Nhanh & Sạch:</strong> Tốc độ cực nhanh, <strong>không quảng cáo</strong>, không “rác”, không bị bóp tương tác như Facebook.</span></li>
-            <li><i class="fa-solid fa-lock"></i><span><strong>Bảo mật & Riêng tư:</strong> Có Chat Bí Mật tự hủy, ẩn số điện thoại, tìm kiếm bằng @username.</span></li>
-            <li><i class="fa-solid fa-sync"></i><span><strong>Đa nền tảng:</strong> Đồng bộ tức thì trên điện thoại, máy tính.</span></li>
+            <li><i class="fa-solid fa-cloud"></i><span><strong>Lưu trữ đám mây:</strong> Lưu file, ảnh vĩnh viễn, gửi
+                file lớn, <strong>không tốn dung lượng máy</strong> & không cần backup thủ công như Zalo.</span></li>
+            <li><i class="fa-solid fa-users"></i><span><strong>Cộng đồng lớn:</strong> Hỗ trợ nhóm tối đa 200.000 thành
+                viên và kênh thông báo 1 chiều không giới hạn người theo dõi.</span></li>
+            <li><i class="fa-solid fa-rocket"></i><span><strong>Nhanh & Sạch:</strong> Tốc độ cực nhanh, <strong>không
+                  quảng cáo</strong>, không “rác”, không bị bóp tương tác như Facebook.</span></li>
+            <li><i class="fa-solid fa-lock"></i><span><strong>Bảo mật & Riêng tư:</strong> Có Chat Bí Mật tự hủy, ẩn số
+                điện thoại, tìm kiếm bằng @username.</span></li>
+            <li><i class="fa-solid fa-sync"></i><span><strong>Đa nền tảng:</strong> Đồng bộ tức thì trên điện thoại, máy
+                tính.</span></li>
           </ul>
-          </div>
+        </div>
 
         <div class="data-card">
-          <h3>📥 Cài đặt & Hướng dẫn</h3>
+          <h3>📥 Cài đặt & Hướng dẫn telegram</h3>
           <ul class="icon-list">
-            <li><a href="https://t.me/babycuaaidangyeu" target="_blank"><i class="fa-solid fa-user-shield"></i>Liên hệ admin</a></li>
-            <li><a href="https://telegram.org/dl/desktop/win64" target="_blank"><i class="fa-solid fa-download"></i>Tải telegram về cho Windows</a></li>
-            <li><a href="https://web.telegram.org/a/" target="_blank"><i class="fa-solid fa-globe"></i>Dùng bản Website telegram</a></li>
-            <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank"><i class="fa-solid fa-link"></i>Website</a></li>
-            <li><a href="https://docs.google.com/spreadsheets/d/1XSEGx49YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing" target="_blank"><i class="fa-solid fa-pen-to-square"></i>Nhận xét giảng viên</a></li>
+            <li><a href="https://t.me/babycuaaidangyeu" target="_blank"><i class="fa-solid fa-user-shield"></i>Liên hệ
+                admin</a></li>
+            <li><a href="https://telegram.org/dl/desktop/win64" target="_blank"><i class="fa-solid fa-download"></i>Tải
+                telegram về cho Windows (PC)</a></li>
+            <li><a href="https://web.telegram.org/a/" target="_blank"><i class="fa-solid fa-globe"></i>Dùng bản Website
+                telegram</a></li>
+            <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank"><i
+                  class="fa-solid fa-link"></i>Website</a></li>
+            <li><a
+                href="https://docs.google.com/spreadsheets/d/1XSEGx49YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing"
+                target="_blank"><i class="fa-solid fa-pen-to-square"></i>Nhận xét giảng viên</a></li>
           </ul>
         </div>
       </div>
@@ -482,23 +566,34 @@
         <div class="data-card">
           <h3>🎓 <span id="tuyen-sinh-nam">Tuyển sinh ???</span></h3>
           <ul class="icon-list">
-            <li><a href="https://duytan.edu.vn/tuyen-sinh/Page/Home.aspx" target="_blank"><i class="fa-solid fa-graduation-cap"></i>Chuyên trang tuyển sinh</a></li>
-            <li><a href="https://www.facebook.com/tuyensinhDTU" target="_blank"><i class="fa-brands fa-facebook"></i>Tuyển sinh Đại học Duy Tân</a></li>
+            <li><a href="httpsD://duytan.edu.vn/tuyen-sinh/Page/Home.aspx" target="_blank"><i
+                  class="fa-solid fa-graduation-cap"></i>Chuyên trang tuyển sinh</a></li>
+            <li><a href="https://www.facebook.com/tuyensinhDTU" target="_blank"><i
+                  class="fa-brands fa-facebook"></i>Tuyển sinh Đại học Duy Tân</a></li>
           </ul>
         </div>
 
         <div class="data-card">
           <h3><span class="zalo-icon">Z</span>Zalo Tuyển sinh</h3>
           <ul class="icon-list">
-            <li><a href=" https://zalo.me/g/kfhnwd118" target="_blank"><span class="zalo-icon">Z</span>Trường Khoa học Máy tính</a></li>
-            <li><a href="https://zalo.me/g/rgchfj749" target="_blank"><span class="zalo-icon">Z</span>Trường Công nghệ & Kỹ thuậ</a></li>
-            <li><a href="https://zalo.me/g/ejyzhc042" target="_blank"><span class="zalo-icon">Z</span>Trường Kinh tế & Kinh doanh</a></li>
-            <li><a href="https://zalo.me/g/fynbqt588" target="_blank"><span class="zalo-icon">Z</span>Trường Ngôn ngữ & XHNV</a></li>
-            <li><a href="https://zalo.me/g/mvyujq901" target="_blank"><span class="zalo-icon">Z</span>Trường Du lịch</a></li>
-            <li><a href=" https://zalo.me/g/sfadnd366" target="_blank"><span class="zalo-icon">Z</span>Khối ngành Y Dược</a></li>
-            <li><a href="https://zalo.me/g/oxxsck718" target="_blank"><span class="zalo-icon">Z</span>Khoa Đào tạo Quốc tế</a></li>
-            <li><a href="https://zalo.me/g/blxzaf771" target="_blank"><span class="zalo-icon">Z</span>Chương trình Tài năng (Viện QL Nam Khuê)</a></li>
-            <li><a href="https://zalo.me/g/cxpzwr696" target="_blank"><span class="zalo-icon">Z</span>Chương trình Việt Nhật</a></li>
+            <li><a href=" https://zalo.me/g/kfhnwd118" target="_blank"><span class="zalo-icon">Z</span>Trường Khoa học
+                Máy tính</a></li>
+            <li><a href="https://zalo.me/g/rgchfj749" target="_blank"><span class="zalo-icon">Z</span>Trường Công nghệ &
+                Kỹ thuậ</a></li>
+            <li><a href="https://zalo.me/g/ejyzhc042" target="_blank"><span class="zalo-icon">Z</span>Trường Kinh tế &
+                Kinh doanh</a></li>
+            <li><a href="https://zalo.me/g/fynbqt588" target="_blank"><span class="zalo-icon">Z</span>Trường Ngôn ngữ &
+                XHNV</a></li>
+            <li><a href="https://zalo.me/g/mvyujq901" target="_blank"><span class="zalo-icon">Z</span>Trường Du lịch</a>
+            </li>
+            <li><a href=" https://zalo.me/g/sfadnd366" target="_blank"><span class="zalo-icon">Z</span>Khối ngành Y
+                Dược</a></li>
+            <li><a href="https://zalo.me/g/oxxsck718" target="_blank"><span class="zalo-icon">Z</span>Khoa Đào tạo Quốc
+                tế</a></li>
+            <li><a href="https://zalo.me/g/blxzaf771" target="_blank"><span class="zalo-icon">Z</span>Chương trình Tài
+                năng (Viện QL Nam Khuê)</a></li>
+            <li><a href="https://zalo.me/g/cxpzwr696" target="_blank"><span class="zalo-icon">Z</span>Chương trình Việt
+                Nhật</a></li>
           </ul>
         </div>
       </div>
@@ -506,14 +601,22 @@
       <div class="data-card">
         <h3>🌐 Website</h3>
         <ul class="icon-list">
-          <li><a href="https://duytan.edu.vn" target="_blank"><i class="fa-solid fa-house"></i>Trang chủ Đại học Duy Tân</a></li>
-          <li><a href="https://mydtu.duytan.edu.vn" target="_blank"><i class="fa-solid fa-id-card"></i>Cổng thông tin sinh viên (MyDTU)</a></li>
-          <li><a href="https://hssv.duytan.edu.vn/" target="_blank"><i class="fa-solid fa-users"></i>Công tác sinh viên (CTSV)</a></li>
-          <li><a href="https://pdaotao.duytan.edu.vn/home/Default.aspx?lang=VN" target="_blank"><i class="fa-solid fa-book"></i>Phòng đào tạo (PĐT)</a></li>
-          <li><a href="https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN" target="_blank"><i class="fa-solid fa-calendar-days"></i>Danh sách thi</a></li>
-          <li><a href="https://gdtcqp.duytan.edu.vn/" target="_blank"><i class="fa-solid fa-shield-halved"></i>Trung tâm Giáo dục thể chất - Quốc phòng</a></li>
-          <li><a href="https://courses.duytan.edu.vn/sites/Home_ChuongTrinhDaoTao.aspx?p=home_coursesearch" target="_blank"><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm môn học</a></li>
-          <li><a href="https://realjobs.vn/" target="_blank"><i class="fa-solid fa-briefcase"></i>Việc làm & Thực tập</a></li>
+          <li><a href="https://duytan.edu.vn" target="_blank"><i class="fa-solid fa-house"></i>Trang chủ Đại học Duy
+              Tân</a></li>
+          <li><a href="https://mydtu.duytan.edu.vn" target="_blank"><i class="fa-solid fa-id-card"></i>Cổng thông tin
+              sinh viên (MyDTU)</a></li>
+          <li><a href="https://hssv.duytan.edu.vn/" target="_blank"><i class="fa-solid fa-users"></i>Công tác sinh viên
+              (CTSV)</a></li>
+          <li><a href="https://pdaotao.duytan.edu.vn/home/Default.aspx?lang=VN" target="_blank"><i
+                class="fa-solid fa-book"></i>Phòng đào tạo (PĐT)</a></li>
+          <li><a href="https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN" target="_blank"><i
+                class="fa-solid fa-calendar-days"></i>Danh sách thi</a></li>
+          <li><a href="https://gdtcqp.duytan.edu.vn/" target="_blank"><i class="fa-solid fa-shield-halved"></i>Trung tâm
+              Giáo dục thể chất - Quốc phòng</a></li>
+          <li><a href="https://courses.duytan.edu.vn/sites/Home_ChuongTrinhDaoTao.aspx?p=home_coursesearch"
+              target="_blank"><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm môn học</a></li>
+          <li><a href="https://realjobs.vn/" target="_blank"><i class="fa-solid fa-briefcase"></i>Việc làm & Thực
+              tập</a></li>
         </ul>
       </div>
 
@@ -522,24 +625,35 @@
           <i class="fa-brands fa-facebook" style="color: #1877F2;"></i> Facebook
         </h3>
         <ul class="icon-list">
-          <li><a href="https://www.facebook.com/daihocduytan.dtu" target="_blank"><i class="fa-brands fa-facebook"></i>Đại học Tân </a></li>
-          <li><a href="https://www.facebook.com/Duy.Tan.University" target="_blank"><i class="fa-brands fa-facebook"></i>Duy Tan University</a></li>
-          <li><a href="https://www.facebook.com/ltcdtu" target="_blank"><i class="fa-brands fa-facebook"></i>LTC - Learning & Testing Center </a></li>
-          <li><a href="https://www.facebook.com/tuoitreDTU" target="_blank"><i class="fa-brands fa-facebook"></i>Tuổi trẻ Đại học Duy Tân</a></li>
-          <li><a href="https://www.facebook.com/DTU.InternationalSchool" target="_blank"><i class="fa-brands fa-facebook"></i>Trường Đào tạo Quốc tế</a></li>
-          <li><a href="https://www.facebook.com/DuyTanHTi" target="_blank"><i class="fa-brands fa-facebook"></i>Trường Du Lịch</a></li>
-          <li><a href="https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan" target="_blank"><i class="fa-brands fa-facebook"></i>Khoa Khoa học Xã hội và Nhân văn </a></li>
-          <li><a href="https://www.facebook.com/CNTT.DTU" target="_blank"><i class="fa-brands fa-facebook"></i>Tuổi Trẻ Trường Khoa Học Máy Tính</a></li>
-          <li><a href="https://www.facebook.com/KHOATRUNGDTU" target="_blank"><i class="fa-brands fa-facebook"></i>Khoa Tiếng Trung </a></li>
-          <li><a href="https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang" target="_blank"><i class="fa-brands fa-facebook"></i>Trung Tâm Ngoại Ngữ Duy Tân </a></li>
-          <li><a href="https://www.facebook.com/groups/189204667249513" target="_blank"><i class="fa-brands fa-facebook"></i>Trung Tâm Tin Học Duy Tân</a></li>
+          <li><a href="https://www.facebook.com/daihocduytan.dtu" target="_blank"><i
+                class="fa-brands fa-facebook"></i>Đại học Tân </a></li>
+          <li><a href="https://www.facebook.com/Duy.Tan.University" target="_blank"><i
+                class="fa-brands fa-facebook"></i>Duy Tan University</a></li>
+          <li><a href="https://www.facebook.com/ltcdtu" target="_blank"><i class="fa-brands fa-facebook"></i>LTC -
+              Learning & Testing Center </a></li>
+          <li><a href="https://www.facebook.com/tuoitreDTU" target="_blank"><i class="fa-brands fa-facebook"></i>Tuổi
+              trẻ Đại học Duy Tân</a></li>
+          <li><a href="https://www.facebook.com/DTU.InternationalSchool" target="_blank"><i
+                class="fa-brands fa-facebook"></i>Trường Đào tạo Quốc tế</a></li>
+          <li><a href="https://www.facebook.com/DuyTanHTi" target="_blank"><i class="fa-brands fa-facebook"></i>Trường
+              Du Lịch</a></li>
+          <li><a href="https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan" target="_blank"><i
+                class="fa-brands fa-facebook"></i>Khoa Khoa học Xã hội và Nhân văn </a></li>
+          <li><a href="httpsD://www.facebook.com/CNTT.DTU" target="_blank"><i class="fa-brands fa-facebook"></i>Tuổi Trẻ
+              Trường Khoa Học Máy Tính</a></li>
+          <li><a href="https://www.facebook.com/KHOATRUNGDTU" target="_blank"><i class="fa-brands fa-facebook"></i>Khoa
+              Tiếng Trung </a></li>
+          <li><a href="https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang" target="_blank"><i
+                class="fa-brands fa-facebook"></i>Trung Tâm Ngoại Ngữ Duy Tân </a></li>
+          <li><a href="https://www.facebook.com/groups/189204667249513" target="_blank"><i
+                class="fa-brands fa-facebook"></i>Trung Tâm Tin Học Duy Tân</a></li>
         </ul>
       </div>
 
     </div>
   </div>
 
-  <footer>© 2022 - Cộng đồng Sinh viên Duy Tân 🦉</footer>
+ <!--- <footer>© 2022 - Cộng đồng Sinh viên Duy Tân 🦉</footer> -->
 
   <script>
     document.addEventListener('contextmenu', event => event.preventDefault());
@@ -558,9 +672,9 @@
         const now = new Date();
         const currentYear = now.getFullYear();
         const nextYear = currentYear + 1;
-        
+
         const yearString = `Tuyển sinh ${currentYear} - ${nextYear}`;
-        
+
         const titleElement = document.getElementById('tuyen-sinh-nam');
         if (titleElement) {
           titleElement.textContent = yearString;
@@ -575,7 +689,3 @@
 </body>
 
 </html>
-
-
-
-
