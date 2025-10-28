@@ -2,692 +2,644 @@
 <html lang="vi">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cộng đồng</title>
-  <link rel="icon" href="logo.png" type="image/png">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    html,
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #a02c2c, #2a2a2a);
-      color: #fff;
-      /* Tắt flex ở đây để cho phép cuộn */
-      /* display: flex; */
-      /* flex-direction: column; */
-      /* justify-content: flex-start; */
-      /* align-items: center; */
-      text-align: center;
-      padding: 20px 10px 50px 10px;
-      overflow-x: hidden;
-      overflow-y: auto;
-      /* Cho phép cuộn ở màn hình nhỏ (4,3,2,1 cột) */
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .main-content {
-      width: 100%;
-      max-width: 1100px;
-      margin: auto 0;
-      /* Thêm margin auto để căn giữa khi tắt flex */
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .bg-logo {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60vmax;
-      max-width: 800px;
-      opacity: 0.05;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    h1 {
-      font-size: 1.9em;
-      margin-bottom: 0.3em;
-    }
-
-    p.description {
-      font-size: 0.95em;
-      opacity: 0.9;
-      margin-bottom: 0.8em;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    p.join-instruction {
-      font-size: 1em;
-      font-weight: 500;
-      margin-bottom: 1em;
-      opacity: 0.95;
-      letter-spacing: 0.5px;
-    }
-
-    .content-wrapper {
-      display: block;
-      /* Dùng column-count cho 1-4 cột */
-      width: 100%;
-    }
-
-    .content-wrapper>.links,
-    .content-wrapper>.stacked-column,
-    .content-wrapper>.data-card {
-      break-inside: avoid;
-      /* Chống vỡ thẻ khi chia cột */
-      margin-bottom: 1em;
-      /* Khoảng cách dọc 1 cỡ */
-    }
-
-
-    .links,
-    .trust-section,
-    .data-card {
-      flex: 1;
-    }
-
-    .link-card {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      padding: 14px 18px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-      color: #fff;
-      backdrop-filter: blur(6px);
-      text-align: left;
-      display: block;
-      margin-bottom: 1em;
-      /* Khoảng cách 1 cỡ */
-    }
-
-    .link-card:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: scale(1.03);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .link-title {
-      font-weight: 600;
-      font-size: 1.15em;
-    }
-
-    .link-desc {
-      font-size: 0.87em;
-      opacity: 0.9;
-      margin-top: 4px;
-      line-height: 1.5;
-    }
-
-    .trust-section {
-      background: rgba(0, 0, 0, 0.15);
-      padding: 15px 20px;
-      border-radius: 12px;
-      width: 100%;
-      text-align: left;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      z-index: 1;
-    }
-
-    .trust-section h3 {
-      text-align: center;
-      margin-bottom: 0.8em;
-      font-size: 1.15em;
-    }
-
-    .trust-section ul.check-list {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 0;
-    }
-
-    .trust-section ul.check-list li {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 0.6em;
-      font-size: 0.87em;
-      line-height: 1.6;
-      opacity: 0.9;
-      text-align: left;
-    }
-
-    .trust-section ul.check-list i {
-      margin-right: 10px;
-      color: #fff;
-      opacity: 0.9;
-      width: 20px;
-      text-align: center;
-      flex-shrink: 0;
-      margin-top: 5px;
-      font-size: 1em;
-    }
-
-    .data-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: left;
-    }
-
-    .data-card h3 {
-      text-align: center;
-      font-size: 1.1em;
-      margin-bottom: 0.6em;
-    }
-
-    .data-card ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .data-card li {
-      margin-bottom: 0.5em;
-    }
-
-    .data-card a {
-      color: #fff;
-      text-decoration: none;
-      opacity: 0.9;
-      transition: 0.2s;
-      font-size: 0.9em;
-    }
-
-    .data-card a:hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
-
-    .data-card ul.icon-list li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.7em;
-    }
-
-    .data-card ul.icon-list a {
-      display: flex;
-      align-items: center;
-    }
-
-    .data-card ul.icon-list i {
-      display: inline-block;
-      margin-right: 12px;
-      color: #fff;
-      opacity: 0.8;
-      width: 20px;
-      text-align: center;
-    }
-
-    .data-card ul.icon-list i.fa-solid {
-      font-size: 1em;
-    }
-
-    .data-card ul.icon-list i.fa-brands {
-      font-size: 1.1em;
-      opacity: 0.9;
-    }
-
-    .data-card ul.icon-list span.zalo-icon {
-      margin-right: 12px;
-      width: 20px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .data-card ul.icon-list a:hover i {
-      opacity: 1;
-    }
-
-    .data-card ul.icon-list i.fa-facebook {
-      color: #1877F2;
-    }
-
-    .stacked-column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-    }
-
-    .stacked-column .trust-section,
-    .stacked-column .data-card {
-      flex: none;
-      width: 100%;
-    }
-
-    .zalo-icon {
-      display: inline-block;
-      width: 1.2em;
-      height: 1.2em;
-      line-height: 1.2em;
-      text-align: center;
-      font-weight: bold;
-      background-color: #0068FF;
-      color: #FFFFFF;
-      border-radius: 4px;
-      margin-right: 6px;
-      font-family: Arial, sans-serif;
-      vertical-align: middle;
-      font-size: 0.9em;
-    }
-
-    .column-title {
-      text-align: center;
-      font-size: 1.15em;
-      margin-bottom: 0.7em;
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .column-title .fa-telegram {
-      color: #0088cc;
-      margin-right: 6px;
-      vertical-align: middle;
-      font-size: 1.2em;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 8px 0;
-      font-size: 0.8em;
-      opacity: 0.8;
-      z-index: 100;
-      text-align: center;
-    }
-
-    /* === 2 CỘT (CÓ THANH CUỘN) === */
-    @media (min-width: 768px) {
-      /* html, body { */
-      /* justify-content: flex-start; */
-      /* padding: 10px 5px 50px 5px; */
-      /* } */
-
-      .main-content {
-        margin: 0 auto;
-        /* Căn giữa nội dung */
-        max-width: none;
-      }
-
-      .content-wrapper {
-        display: block;
-        column-count: 2;
-        column-gap: 1em;
-      }
-
-      h1 {
-        font-size: 1.6em;
-        margin-bottom: 0.1em;
-      }
-
-      p {
-        font-size: 0.85em;
-      }
-
-      p.description {
-        margin-bottom: 0.2em;
-        font-size: 0.85em;
-      }
-
-      p.join-instruction {
-        margin-bottom: 1.5em;
-        font-size: 0.9em;
-      }
-
-      .link-card {
-        padding: 10px 12px;
-        margin-bottom: 1em;
-      }
-
-      .link-title {
-        font-size: 1em;
-      }
-
-      .link-desc {
-        font-size: 0.8em;
-        line-height: 1.3;
-      }
-
-      .trust-section {
-        padding: 10px 12px;
-      }
-
-      .trust-section h3 {
-        font-size: 1.05em;
-        margin-bottom: 0.4em;
-      }
-
-      .trust-section ul.check-list li {
-        font-size: 0.8em;
-        line-height: 1.4;
-        margin-bottom: 0.4em;
-      }
-
-      .trust-section ul.check-list i {
-        margin-right: 8px;
-        margin-top: 3px;
-        font-size: 0.9em;
-      }
-
-      .data-card {
-        padding: 10px 12px;
-      }
-
-      .data-card h3 {
-        font-size: 1.05em;
-        margin-bottom: 0.4em;
-      }
-
-      .data-card li {
-        margin-bottom: 0.3em;
-      }
-
-      .data-card a {
-        font-size: 0.8em;
-      }
-
-      .column-title {
-        font-size: 1.05em;
-        margin-bottom: 0.5em;
-      }
-
-      footer {
-        font-size: 0.75em;
-        background: none;
-      }
-
-      .data-card ul.icon-list li {
-        margin-bottom: 0.5em;
-      }
-
-      .data-card ul.icon-list i {
-        margin-right: 10px;
-        font-size: 0.9em;
-      }
-
-      .data-card ul.icon-list span.zalo-icon {
-        margin-right: 10px;
-        font-size: 0.8em;
-      }
-    }
-
-    /* === 3 CỘT (CÓ THANH CUỘN) === */
-    @media (min-width: 992px) {
-      .content-wrapper {
-        column-count: 3;
-      }
-    }
-
-    /* === 4 CỘT (CÓ THANH CUỘN) === */
-    @media (min-width: 1200px) {
-      .content-wrapper {
-        column-count: 4;
-      }
-    }
-
-    /* === 5 CỘT (TOÀN MÀN HÌNH - KHÔNG CUỘN) === */
-    @media (min-width: 1400px) {
-
-      /* Bật lại flex để căn giữa và tắt cuộn */
-      html,
-      body {
-        height: 100vh;
-        overflow: hidden;
-        /* Tắt thanh cuộn */
-        display: flex;
-        /* Bật lại flex */
-        flex-direction: column;
-        justify-content: center;
-        /* Căn giữa */
-        align-items: center;
-        padding: 40px 10px 50px 10px;
-      }
-
-      .content-wrapper {
-        display: grid;
-        /* Chuyển sang Grid */
-        grid-template-columns: repeat(5, 1fr);
-        column-count: auto;
-        /* Tắt chế độ cân bằng cột */
-        gap: 1em;
-        align-items: start;
-        /* Dồn cột lên trên */
-      }
-
-      .content-wrapper>.links,
-      .content-wrapper>.stacked-column,
-      .content-wrapper>.data-card {
-        margin-bottom: 0;
-        /* Tắt margin-bottom khi dùng Grid */
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cộng đồng</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html,
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #a02c2c, #2a2a2a);
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px 50px 10px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bg-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vmax;
+            max-width: 800px;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 1.9em;
+            margin-bottom: 0.3em;
+        }
+
+        p.description {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 0.8em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        p.join-instruction {
+            font-size: 1em;
+            font-weight: 500;
+            margin-bottom: 1em;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .content-wrapper {
+            display: block;
+            width: 100%;
+        }
+
+        .content-wrapper>.links,
+        .content-wrapper>.stacked-column,
+        .content-wrapper>.data-card {
+            break-inside: avoid;
+            margin-bottom: 1em;
+        }
+
+
+        .links,
+        .trust-section,
+        .data-card {
+            flex: 1;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            backdrop-filter: blur(6px);
+            text-align: left;
+            display: block;
+            margin-bottom: 1em;
+        }
+
+        .link-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-title {
+            font-weight: 600;
+            font-size: 1.15em;
+        }
+
+        .link-desc {
+            font-size: 0.87em;
+            opacity: 0.9;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        .trust-section {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 15px 20px;
+            border-radius: 12px;
+            width: 100%;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .trust-section h3 {
+            text-align: center;
+            margin-bottom: 0.8em;
+            font-size: 1.15em;
+        }
+
+        .trust-section ul.check-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0;
+        }
+
+        .trust-section ul.check-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.6em;
+            font-size: 0.87em;
+            line-height: 1.6;
+            opacity: 0.9;
+            text-align: left;
+        }
+
+        .trust-section ul.check-list i {
+            margin-right: 10px;
+            color: #fff;
+            opacity: 0.9;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 5px;
+            font-size: 1em;
+        }
+
+        .data-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+
+        .data-card h3 {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 0.6em;
+        }
+
+        .data-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .data-card li {
+            margin-bottom: 0.5em;
+        }
+
+        .data-card a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: 0.2s;
+            font-size: 0.9em;
+        }
+
+        .data-card a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .data-card ul.icon-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.7em;
+        }
+
+        .data-card ul.icon-list a {
+            display: flex;
+            align-items: center;
+        }
+
+        .data-card ul.icon-list i {
+            display: inline-block;
+            margin-right: 12px;
+            color: #fff;
+            opacity: 0.8;
+            width: 20px;
+            text-align: center;
+        }
+
+        .data-card ul.icon-list i.fa-solid {
+            font-size: 1em;
+        }
+
+        .data-card ul.icon-list i.fa-brands {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .data-card ul.icon-list span.zalo-icon {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .data-card ul.icon-list a:hover i {
+            opacity: 1;
+        }
+
+        .data-card ul.icon-list i.fa-facebook {
+            color: #1877F2;
+        }
+
+        .stacked-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .stacked-column .trust-section,
+        .stacked-column .data-card {
+            flex: none;
+            width: 100%;
+        }
+
+        .zalo-icon {
+            display: inline-block;
+            width: 1.2em;
+            height: 1.2em;
+            line-height: 1.2em;
+            text-align: center;
+            font-weight: bold;
+            background-color: #0068FF;
+            color: #FFFFFF;
+            border-radius: 4px;
+            margin-right: 6px;
+            font-family: Arial, sans-serif;
+            vertical-align: middle;
+            font-size: 0.9em;
+        }
+
+        .column-title {
+            text-align: center;
+            font-size: 1.15em;
+            margin-bottom: 0.7em;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .column-title .fa-telegram {
+            color: #0088cc;
+            margin-right: 6px;
+            vertical-align: middle;
+            font-size: 1.2em;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 0.8em;
+            opacity: 0.8;
+            z-index: 100;
+            text-align: center;
+        }
+
+        /* === 2 CỘT (CÓ THANH CUỘN) === */
+        @media (min-width: 768px) {
+            .main-content {
+                margin: 0 auto;
+                max-width: none;
+            }
+
+            .content-wrapper {
+                display: block;
+                column-count: 2;
+                column-gap: 1em;
+            }
+
+            h1 {
+                font-size: 1.6em;
+                margin-bottom: 0.1em;
+            }
+
+            p {
+                font-size: 0.85em;
+            }
+
+            p.description {
+                margin-bottom: 0.2em;
+                font-size: 0.85em;
+            }
+
+            p.join-instruction {
+                margin-bottom: 1.5em;
+                font-size: 0.9em;
+            }
+
+            .link-card {
+                padding: 10px 12px;
+                margin-bottom: 1em;
+            }
+
+            .link-title {
+                font-size: 1em;
+            }
+
+            .link-desc {
+                font-size: 0.8em;
+                line-height: 1.3;
+            }
+
+            .trust-section {
+                padding: 10px 12px;
+            }
+
+            .trust-section h3 {
+                font-size: 1.05em;
+                margin-bottom: 0.4em;
+            }
+
+            .trust-section ul.check-list li {
+                font-size: 0.8em;
+                line-height: 1.4;
+                margin-bottom: 0.4em;
+            }
+
+            .trust-section ul.check-list i {
+                margin-right: 8px;
+                margin-top: 3px;
+                font-size: 0.9em;
+            }
+
+            .data-card {
+                padding: 10px 12px;
+            }
+
+            .data-card h3 {
+                font-size: 1.05em;
+                margin-bottom: 0.4em;
+            }
+
+            .data-card li {
+                margin-bottom: 0.3em;
+            }
+
+            .data-card a {
+                font-size: 0.8em;
+            }
+
+            .column-title {
+                font-size: 1.05em;
+                margin-bottom: 0.5em;
+            }
+
+            footer {
+                font-size: 0.75em;
+                background: none;
+            }
+
+            .data-card ul.icon-list li {
+                margin-bottom: 0.5em;
+            }
+
+            .data-card ul.icon-list i {
+                margin-right: 10px;
+                font-size: 0.9em;
+            }
+
+            .data-card ul.icon-list span.zalo-icon {
+                margin-right: 10px;
+                font-size: 0.8em;
+            }
+        }
+
+        /* === 3 CỘT (CÓ THANH CUỘN) === */
+        @media (min-width: 992px) {
+            .content-wrapper {
+                column-count: 3;
+            }
+        }
+
+        /* SỬA LỖI 1: 
+      - XÓA QUY TẮC 5 CỘT (1400px)
+      - GỘP QUY TẮC GRID (KHÔNG CUỘN) VÀO 4 CỘT (1200px)
+    */
+
+        /* === 4 CỘT (TOÀN MÀN HÌNH - KHÔNG CUỘN) === */
+        @media (min-width: 1200px) {
+
+            /* Bật lại flex để căn giữa và tắt cuộn */
+            html,
+            body {
+                height: 100vh;
+                overflow: hidden;
+                /* Tắt thanh cuộn */
+                display: flex;
+                /* Bật lại flex */
+                flex-direction: column;
+                justify-content: center;
+                /* Căn giữa */
+                align-items: center;
+                padding: 40px 10px 50px 10px;
+            }
+
+            .content-wrapper {
+                display: grid;
+                /* Chuyển sang Grid */
+                grid-template-columns: repeat(4, 1fr);
+                /* <-- SỬA TỪ 5 THÀNH 4 */
+                column-count: auto;
+                /* Tắt chế độ cân bằng cột */
+                gap: 1em;
+                align-items: start;
+                /* Dồn cột lên trên */
+            }
+
+            .content-wrapper>.links,
+            .content-wrapper>.stacked-column,
+            .content-wrapper>.data-card {
+                margin-bottom: 0;
+                /* Tắt margin-bottom khi dùng Grid */
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <img src="image_0be191.png" class="bg-logo" alt="DTU Logo">
+    <img src="image_0be191.png" class="bg-logo" alt="DTU Logo">
 
-  <div class="main-content">
-    <div class="header-section">
-      <h1>🌸 Cộng đồng Đại học Duy Tân</h1>
-      <p class="description">Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram!</p>
-      <p>Nơi đây <strong>an toàn, bảo mật và nhanh chóng</strong> hơn hẳn Zalo/Facebook.</p>
-      <p class="join-instruction">👇 Chọn một mục bạn quan tâm bên dưới.</p>
+    <div class="main-content">
+        <div class="header-section">
+            <h1>🌸 Cộng đồng Đại học Duy Tân</h1>
+            <p class="description">Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram!</p>
+            <p>Nơi đây <strong>an toàn, bảo mật và nhanh chóng</strong> hơn hẳn Zalo/Facebook.</p>
+            <p class="join-instruction">👇 Chọn một mục bạn quan tâm bên dưới.</p>
+        </div>
+
+        <div class="content-wrapper">
+
+            <div class="links">
+                <h3 class="column-title">
+                    <i class="fa-brands fa-telegram"></i>
+                    Telegram
+                </h3>
+                <a class="link-card" href="https://t.me/Dai_Hoc_Duy_Tan" target="_blank">
+                    <div class="link-title">📣 Tin tức & Hỗ trợ DTU</div>
+                    <div class="link-desc">
+                        Kênh do admin hỗ trợ, cập nhật thông báo quan trọng, tin tức và giải đáp thắc mắc cho sinh viên.
+                    </div>
+                </a>
+                <a class="link-card" href="https://t.me/tai_lieu_DTU" target="_blank">
+                    <div class="link-title">📘 Kho Tài liệu DTU</div>
+                    <div class="link-desc">
+                        Gửi file giáo trình, slide, file ôn tập,... vào đây.
+                        <br><strong>Quy định:</strong> Đặt tên file <code>Mã môn + Tên tài liệu</code>
+                        <br><i>(Ví dụ: POS 301 Slide bài giảng)</i>
+                    </div>
+                </a>
+                <a class="link-card" href="https://t.me/trochuyencungdtu" target="_blank">
+                    <div class="link-title">💬 Giao lưu & Hỏi đáp</div>
+                    <div class="link-desc">
+                        Ngôi nhà chung của sinh viên DTU! Cùng nhau giao lưu, "chém gió", hỏi đáp và chia sẻ kinh
+                        nghiệm.
+                    </div>
+                </a>
+                <a class="link-card" href="https://t.me/huongdandungtelegram" target="_blank">
+                    <div class="link-title">💡 Hướng dẫn sử dụng Telegram an toàn</div>
+                    <div class="link-desc">
+                        Hướng dẫn chi tiết cách sử dụng Telegram an toàn, bảo mật và hiệu quả cho mọi người dùng.
+                    </div>
+                </a>
+            </div>
+
+            <div class="stacked-column">
+                <div class="trust-section">
+                    <h3>❓ Tại sao nên dùng Telegram?</h3>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-cloud"></i><span><strong>Lưu trữ đám mây:</strong> Lưu file, ảnh vĩnh
+                                viễn, gửi
+                                file lớn, <strong>không tốn dung lượng máy</strong> & không cần backup thủ công như
+                                Zalo.</span></li>
+                        <li><i class="fa-solid fa-users"></i><span><strong>Cộng đồng lớn:</strong> Hỗ trợ nhóm tối đa
+                                200.000 thành
+                                viên và kênh thông báo 1 chiều không giới hạn người theo dõi.</span></li>
+                        <li><i class="fa-solid fa-rocket"></i><span><strong>Nhanh & Sạch:</strong> Tốc độ cực nhanh,
+                                <strong>không
+                                    quảng cáo</strong>, không “rác”, không bị bóp tương tác như Facebook.</span></li>
+                        <li><i class="fa-solid fa-lock"></i><span><strong>Bảo mật & Riêng tư:</strong> Có Chat Bí Mật tự
+                                hủy, ẩn số
+                                điện thoại, tìm kiếm bằng @username.</span></li>
+                        <li><i class="fa-solid fa-sync"></i><span><strong>Đa nền tảng:</strong> Đồng bộ tức thì trên
+                                điện thoại, máy
+                                tính.</span></li>
+                    </ul>
+                </div>
+
+                <div class="data-card">
+                    <h3>📥 Cài đặt & Hướng dẫn telegram</h3>
+                    <ul class="icon-list">
+                        <li><a href="https://t.me/babyhaituoi" target="_blank"><i
+                                    class="fa-solid fa-user-shield"></i>Liên hệ
+                                admin</a></li>
+                        <li><a href="https://telegram.org/dl/desktop/win64" target="_blank"><i
+                                    class="fa-solid fa-download"></i>Tải
+                                telegram về cho Windows (PC)</a></li>
+                        <li><a href="https://web.telegram.org/a/" target="_blank"><i class="fa-solid fa-globe"></i>Dùng
+                                bản Website
+                                telegram</a></li>
+                        <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank"><i
+                                    class="fa-solid fa-link"></i>Website</a></li>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1XSEGx49YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing"
+                                target="_blank"><i class="fa-solid fa-pen-to-square"></i>Nhận xét giảng viên</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stacked-column">
+                <div class="data-card">
+                    <h3>🎓 <span id="tuyen-sinh-nam">Tuyển sinh</span></h3>
+                    <ul class="icon-list">
+                        <li><a href="https://duytan.edu.vn/tuyen-sinh/Page/Home.aspx" target="_blank"><i
+                                    class="fa-solid fa-graduation-cap"></i>Chuyên trang tuyển sinh</a></li>
+                        <li><a href="https://www.facebook.com/tuyensinhDTU" target="_blank"><i
+                                    class="fa-brands fa-facebook"></i>Tuyển sinh Đại học Duy Tân</a></li>
+
+                        <li>
+                            <a href="zalotuyensinh.html">
+                                <span class="zalo-icon"
+                                    style="margin-right: 12px; width: 20px; text-align: center; opacity: 0.9;">Z</span>
+                                Zalo Tuyển sinh
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stacked-column">
+                <div class="data-card">
+                    <h3>🌐 Website</h3>
+                    <ul class="icon-list">
+
+                        <li>
+                            <a href="facebookdtu.html">
+                                <i class="fa-brands fa-facebook" style="color: #1877F2;"></i>
+                                Facebook
+                            </a>
+                        </li>
+
+                        <li><a href="https://duytan.edu.vn" target="_blank"><i class="fa-solid fa-house"></i>Trang chủ
+                                Đại học Duy
+                                Tân</a></li>
+                        <li><a href="https://mydtu.duytan.edu.vn" target="_blank"><i
+                                    class="fa-solid fa-id-card"></i>Cổng thông tin
+                                sinh viên (MyDTU)</a></li>
+                        <li><a href="https://hssv.duytan.edu.vn/" target="_blank"><i class="fa-solid fa-users"></i>Công
+                                tác sinh viên
+                                (CTSV)</a></li>
+                        <li><a href="https://pdaotao.duytan.edu.vn/home/Default.aspx?lang=VN" target="_blank"><i
+                                    class="fa-solid fa-book"></i>Phòng đào tạo (PĐT)</a></li>
+                        <li><a href="https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN" target="_blank"><i
+                                    class="fa-solid fa-calendar-days"></i>Danh sách thi</a></li>
+                        <li><a href="https://gdtcqp.duytan.edu.vn/" target="_blank"><i
+                                    class="fa-solid fa-shield-halved"></i>Trung tâm
+                                Giáo dục thể chất - Quốc phòng</a></li>
+                        <li><a href="https://courses.duytan.edu.vn/sites/Home_ChuongTrinhDaoTao.aspx?p=home_coursesearch"
+                                target="_blank"><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm môn học</a></li>
+                        <li><a href="https://realjobs.vn/" target="_blank"><i class="fa-solid fa-briefcase"></i>Việc làm
+                                & Thực
+                                tập</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
     </div>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
 
-    <div class="content-wrapper">
-
-      <div class="links">
-        <h3 class="column-title">
-          <i class="fa-brands fa-telegram"></i>
-          Telegram
-        </h3>
-        <a class="link-card" href="https://t.me/Dai_Hoc_Duy_Tan" target="_blank">
-          <div class="link-title">📣 Tin tức & Hỗ trợ DTU</div>
-          <div class="link-desc">
-            Kênh do admin hỗ trợ, cập nhật thông báo quan trọng, tin tức và giải đáp thắc mắc cho sinh viên.
-          </div>
-        </a>
-        <a class="link-card" href="https://t.me/tai_lieu_DTU" target="_blank">
-          <div class="link-title">📘 Kho Tài liệu DTU</div>
-          <div class="link-desc">
-            Gửi file giáo trình, slide, file ôn tập,... vào đây.
-            <br><strong>Quy định:</strong> Đặt tên file <code>Mã môn + Tên tài liệu</code>
-            <br><i>(Ví dụ: POS 301 Slide bài giảng)</i>
-          </div>
-        </a>
-        <a class="link-card" href="https://t.me/trochuyencungdtu" target="_blank">
-          <div class="link-title">💬 Giao lưu & Hỏi đáp</div>
-          <div class="link-desc">
-            Ngôi nhà chung của sinh viên DTU! Cùng nhau giao lưu, "chém gió", hỏi đáp và chia sẻ kinh nghiệm.
-          </div>
-        </a>
-        <a class="link-card" href="https://t.me/huongdandungtelegram" target="_blank">
-          <div class="link-title">💡 Hướng dẫn sử dụng Telegram an toàn</div>
-          <div class="link-desc">
-            Hướng dẫn chi tiết cách sử dụng Telegram an toàn, bảo mật và hiệu quả cho mọi người dùng.
-          </div>
-        </a>
-      </div>
-
-      <div class="stacked-column">
-        <div class="trust-section">
-          <h3>❓ Tại sao nên dùng Telegram?</h3>
-          <ul class="check-list">
-            <li><i class="fa-solid fa-cloud"></i><span><strong>Lưu trữ đám mây:</strong> Lưu file, ảnh vĩnh viễn, gửi
-                file lớn, <strong>không tốn dung lượng máy</strong> & không cần backup thủ công như Zalo.</span></li>
-            <li><i class="fa-solid fa-users"></i><span><strong>Cộng đồng lớn:</strong> Hỗ trợ nhóm tối đa 200.000 thành
-                viên và kênh thông báo 1 chiều không giới hạn người theo dõi.</span></li>
-            <li><i class="fa-solid fa-rocket"></i><span><strong>Nhanh & Sạch:</strong> Tốc độ cực nhanh, <strong>không
-                  quảng cáo</strong>, không “rác”, không bị bóp tương tác như Facebook.</span></li>
-            <li><i class="fa-solid fa-lock"></i><span><strong>Bảo mật & Riêng tư:</strong> Có Chat Bí Mật tự hủy, ẩn số
-                điện thoại, tìm kiếm bằng @username.</span></li>
-            <li><i class="fa-solid fa-sync"></i><span><strong>Đa nền tảng:</strong> Đồng bộ tức thì trên điện thoại, máy
-                tính.</span></li>
-          </ul>
-        </div>
-
-        <div class="data-card">
-          <h3>📥 Cài đặt & Hướng dẫn telegram</h3>
-          <ul class="icon-list">
-            <li><a href="https://t.me/babyhaituoi" target="_blank"><i class="fa-solid fa-user-shield"></i>Liên hệ
-                admin</a></li>
-            <li><a href="https://telegram.org/dl/desktop/win64" target="_blank"><i class="fa-solid fa-download"></i>Tải
-                telegram về cho Windows (PC)</a></li>
-            <li><a href="https://web.telegram.org/a/" target="_blank"><i class="fa-solid fa-globe"></i>Dùng bản Website
-                telegram</a></li>
-            <li><a href="https://nhattan28.github.io/daihocduytan" target="_blank"><i
-                  class="fa-solid fa-link"></i>Website</a></li>
-            <li><a
-                href="https://docs.google.com/spreadsheets/d/1XSEGx49YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing"
-                target="_blank"><i class="fa-solid fa-pen-to-square"></i>Nhận xét giảng viên</a></li>
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="stacked-column">
-        <div class="data-card">
-          <h3>🎓 <span id="tuyen-sinh-nam">Tuyển sinh ???</span></h3>
-          <ul class="icon-list">
-            <li><a href="https://duytan.edu.vn/tuyen-sinh/Page/Home.aspx" target="_blank"><i
-                  class="fa-solid fa-graduation-cap"></i>Chuyên trang tuyển sinh</a></li>
-            <li><a href="https://www.facebook.com/tuyensinhDTU" target="_blank"><i
-                  class="fa-brands fa-facebook"></i>Tuyển sinh Đại học Duy Tân</a></li>
-          </ul>
-        </div>
-
-        <div class="data-card">
-          <h3><span class="zalo-icon">Z</span>Zalo Tuyển sinh</h3>
-          <ul class="icon-list">
-            <li><a href=" https://zalo.me/g/kfhnwd118" target="_blank"><span class="zalo-icon">Z</span>Trường Khoa học
-                Máy tính</a></li>
-            <li><a href="https://zalo.me/g/rgchfj749" target="_blank"><span class="zalo-icon">Z</span>Trường Công nghệ &
-                Kỹ thuậ</a></li>
-            <li><a href="https://zalo.me/g/ejyzhc042" target="_blank"><span class="zalo-icon">Z</span>Trường Kinh tế &
-                Kinh doanh</a></li>
-            <li><a href="https://zalo.me/g/fynbqt588" target="_blank"><span class="zalo-icon">Z</span>Trường Ngôn ngữ &
-                XHNV</a></li>
-            <li><a href="https://zalo.me/g/mvyujq901" target="_blank"><span class="zalo-icon">Z</span>Trường Du lịch</a>
-            </li>
-            <li><a href=" https://zalo.me/g/sfadnd366" target="_blank"><span class="zalo-icon">Z</span>Khối ngành Y
-                Dược</a></li>
-            <li><a href="https://zalo.me/g/oxxsck718" target="_blank"><span class="zalo-icon">Z</span>Khoa Đào tạo Quốc
-                tế</a></li>
-            <li><a href="https://zalo.me/g/blxzaf771" target="_blank"><span class="zalo-icon">Z</span>Chương trình Tài
-                năng (Viện QL Nam Khuê)</a></li>
-            <li><a href="https://zalo.me/g/cxpzwr696" target="_blank"><span class="zalo-icon">Z</span>Chương trình Việt
-                Nhật</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="data-card">
-        <h3>🌐 Website</h3>
-        <ul class="icon-list">
-          <li><a href="https://duytan.edu.vn" target="_blank"><i class="fa-solid fa-house"></i>Trang chủ Đại học Duy
-              Tân</a></li>
-          <li><a href="https://mydtu.duytan.edu.vn" target="_blank"><i class="fa-solid fa-id-card"></i>Cổng thông tin
-              sinh viên (MyDTU)</a></li>
-          <li><a href="https://hssv.duytan.edu.vn/" target="_blank"><i class="fa-solid fa-users"></i>Công tác sinh viên
-              (CTSV)</a></li>
-          <li><a href="https://pdaotao.duytan.edu.vn/home/Default.aspx?lang=VN" target="_blank"><i
-                class="fa-solid fa-book"></i>Phòng đào tạo (PĐT)</a></li>
-          <li><a href="https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN" target="_blank"><i
-                class="fa-solid fa-calendar-days"></i>Danh sách thi</a></li>
-          <li><a href="https://gdtcqp.duytan.edu.vn/" target="_blank"><i class="fa-solid fa-shield-halved"></i>Trung tâm
-              Giáo dục thể chất - Quốc phòng</a></li>
-          <li><a href="https://courses.duytan.edu.vn/sites/Home_ChuongTrinhDaoTao.aspx?p=home_coursesearch"
-              target="_blank"><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm môn học</a></li>
-          <li><a href="https://realjobs.vn/" target="_blank"><i class="fa-solid fa-briefcase"></i>Việc làm & Thực
-              tập</a></li>
-        </ul>
-      </div>
-
-      <div class="data-card">
-        <h3 style="font-family: Arial, sans-serif;">
-          <i class="fa-brands fa-facebook" style="color: #1877F2;"></i> Facebook
-        </h3>
-        <ul class="icon-list">
-          <li><a href="https://www.facebook.com/daihocduytan.dtu" target="_blank"><i
-                class="fa-brands fa-facebook"></i>Đại học Tân </a></li>
-          <li><a href="https://www.facebook.com/Duy.Tan.University" target="_blank"><i
-                class="fa-brands fa-facebook"></i>Duy Tan University</a></li>
-          <li><a href="https://www.facebook.com/ltcdtu" target="_blank"><i class="fa-brands fa-facebook"></i>LTC -
-              Learning & Testing Center </a></li>
-          <li><a href="https://www.facebook.com/tuoitreDTU" target="_blank"><i class="fa-brands fa-facebook"></i>Tuổi
-              trẻ Đại học Duy Tân</a></li>
-          <li><a href="https://www.facebook.com/DTU.InternationalSchool" target="_blank"><i
-                class="fa-brands fa-facebook"></i>Trường Đào tạo Quốc tế</a></li>
-          <li><a href="https://www.facebook.com/DuyTanHTi" target="_blank"><i class="fa-brands fa-facebook"></i>Trường
-              Du Lịch</a></li>
-          <li><a href="https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan" target="_blank"><i
-                class="fa-brands fa-facebook"></i>Khoa Khoa học Xã hội và Nhân văn </a></li>
-          <li><a href="https://www.facebook.com/CNTT.DTU" target="_blank"><i class="fa-brands fa-facebook"></i>Tuổi Trẻ
-              Trường Khoa Học Máy Tính</a></li>
-          <li><a href="https://www.facebook.com/KHOATRUNGDTU" target="_blank"><i class="fa-brands fa-facebook"></i>Khoa
-              Tiếng Trung </a></li>
-          <li><a href="https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang" target="_blank"><i
-                class="fa-brands fa-facebook"></i>Trung Tâm Ngoại Ngữ Duy Tân </a></li>
-          <li><a href="https://www.facebook.com/groups/189204667249513" target="_blank"><i
-                class="fa-brands fa-facebook"></i>Trung Tâm Tin Học Duy Tân</a></li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
- <!--- <footer>© 2022 - Cộng đồng Sinh viên Duy Tân 🦉</footer> -->
-
-  <script>
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    document.onkeydown = function (e) {
-      if (e.keyCode == 123) { return false; }
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; }
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
-      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
-      if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) { return false; }
-    };
-
-    (function () {
-      try {
-        const now = new Date();
-        const currentYear = now.getFullYear();
-        const nextYear = currentYear + 1;
-
-        const yearString = `Tuyển sinh ${currentYear} - ${nextYear}`;
-
-        const titleElement = document.getElementById('tuyen-sinh-nam');
-        if (titleElement) {
-          titleElement.textContent = yearString;
-        }
-      } catch (error) {
-        console.error("Lỗi cập nhật năm tuyển sinh:", error);
-      }
-    })();
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) { return false; }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
+            if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) { return false; }
+        };
+        (function () {
+            try {
+                const now = new Date();
+                const currentYear = now.getFullYear();
+                const nextYear = currentYear + 1;
+                const yearString = `Tuyển sinh ${currentYear} - ${nextYear}`;
+                const titleElement = document.getElementById('tuyen-sinh-nam');
+                if (titleElement) {
+                    titleElement.textContent = yearString;
+                }
+            } catch (error) {
+                console.error("Lỗi cập nhật năm tuyển sinh:", error);
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </body>
 
 </html>
-
-
