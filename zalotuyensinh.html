@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zalo DTU</title>
+    <link rel="icon" href="logo.png" type="image/png">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Ẩn thanh cuộn trên PC */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffebee;
+            /* <--- MÀU ĐỎ NHẠT ĐÂY */
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d32f2f;
+            /* Đổi màu tiêu đề cho hợp nền đỏ */
+            border-bottom: 2px solid #ffcdd2;
+            /* Đổi màu gạch chân */
+            padding-bottom: 10px;
+            margin: 0 0 15px 0;
+            flex-shrink: 0;
+        }
+
+        .zalo-qr-grid {
+            display: grid;
+            flex-grow: 1;
+            overflow: hidden;
+            align-content: center;
+            justify-content: center;
+            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+        }
+
+        .zalo-card {
+            border: 1px solid #ff0000;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+
+        .zalo-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .zalo-card img {
+            width: 140px;
+            height: 140px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .zalo-card .zalo-name {
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+            min-height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .zalo-card .zalo-link {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #0068FF;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+
+        .zalo-card .zalo-link:hover {
+            background-color: #005ae0;
+        }
+
+        /* PHÂN TRANG */
+        .pagination-controls {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            padding: 5px;
+            flex-shrink: 0;
+        }
+
+        .pagination-button {
+            background-color: #c62828;
+            /* Đổi màu nút cho hợp nền */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .pagination-button:hover:not(:disabled) {
+            background-color: #e53935;
+        }
+
+        .pagination-button:disabled {
+            background-color: #c0c0c0;
+        }
+
+        #page-status {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+
+            html,
+            body {
+                height: auto;
+                overflow: auto;
+            }
+
+            .container {
+                height: auto;
+            }
+
+            .zalo-qr-grid {
+                overflow: visible;
+                align-content: normal;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Zalo Tuyển Sinh Đại Học Duy Tân</h1>
+
+        <div class="zalo-qr-grid">
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/kfhnwd118"
+                    alt="QR Zalo Trường Khoa học Máy tính">
+                <h3 class="zalo-name">Trường Khoa học Máy tính</h3>
+                <a href="https://zalo.me/g/kfhnwd118" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/rgchfj749"
+                    alt="QR Zalo Trường Công nghệ & Kỹ thuật">
+                <h3 class="zalo-name">Trường Công nghệ & Kỹ thuật</h3>
+                <a href="https://zalo.me/g/rgchfj749" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/ejyzhc042"
+                    alt="QR Zalo Trường Kinh tế & Kinh doanh">
+                <h3 class="zalo-name">Trường Kinh tế & Kinh doanh</h3>
+                <a href="https://zalo.me/g/ejyzhc042" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/fynbqt588"
+                    alt="QR Zalo Trường Ngôn ngữ & XHNV">
+                <h3 class="zalo-name">Trường Ngôn ngữ & XHNV</h3>
+                <a href="https://zalo.me/g/fynbqt588" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/mvyujq901"
+                    alt="QR Zalo Trường Du lịch">
+                <h3 class="zalo-name">Trường Du lịch</h3>
+                <a href="https://zalo.me/g/mvyujq901" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/sfadnd366"
+                    alt="QR Zalo Khối ngành Y Dược">
+                <h3 class="zalo-name">Khối ngành Y Dược</h3>
+                <a href="https://zalo.me/g/sfadnd366" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/oxxsck718"
+                    alt="QR Zalo Khoa Đào tạo Quốc tế">
+                <h3 class="zalo-name">Khoa Đào tạo Quốc tế</h3>
+                <a href="https://zalo.me/g/oxxsck718" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/blxzaf771"
+                    alt="QR Zalo Chương trình Tài năng">
+                <h3 class="zalo-name">Chương trình Tài năng (Viện QL Nam Khuê)</h3>
+                <a href="https://zalo.me/g/blxzaf771" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+
+            <div class="zalo-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://zalo.me/g/cxpzwr696"
+                    alt="QR Zalo Chương trình Việt Nhật">
+                <h3 class="zalo-name">Chương trình Việt Nhật</h3>
+                <a href="https://zalo.me/g/cxpzwr696" target="_blank" class="zalo-link">Vào Zalo</a>
+            </div>
+        </div>
+        <div class="pagination-controls">
+            <button id="prev-page" class="pagination-button">&lt; Trước</button>
+            <span id="page-status">Trang 1 / 1</span>
+            <button id="next-page" class="pagination-button">Sau &gt;</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ITEMS_PER_PAGE = 8;
+            let currentPage = 1;
+            const cards = document.querySelectorAll('.zalo-card');
+            const totalCards = cards.length;
+            const totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE);
+
+            const prevButton = document.getElementById('prev-page');
+            const nextButton = document.getElementById('next-page');
+            const pageStatus = document.getElementById('page-status');
+            const paginationControls = document.querySelector('.pagination-controls');
+
+            function showPage(pageNumber) {
+                const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+                const endIndex = pageNumber * ITEMS_PER_PAGE;
+
+                cards.forEach((card) => {
+                    card.style.display = 'none';
+                });
+
+                for (let i = startIndex; i < endIndex && i < totalCards; i++) {
+                    cards[i].style.display = 'flex';
+                }
+
+                updatePagination();
+            }
+
+            function updatePagination() {
+                pageStatus.textContent = `Trang ${currentPage} / ${totalPages}`;
+                prevButton.disabled = (currentPage === 1);
+                nextButton.disabled = (currentPage === totalPages);
+
+                if (totalPages <= 1) {
+                    paginationControls.style.display = 'none';
+                } else {
+                    paginationControls.style.display = 'flex';
+                }
+            }
+
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+
+            showPage(1);
+        });
+
+        // Chặn sự kiện nhấp chuột phải
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        // Chặn các phím tắt
+        document.addEventListener('keydown', function (e) {
+            // Chặn F12
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+            }
+
+            // Chặn Ctrl+Shift+I (Windows/Linux)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+            }
+
+            // Chặn Ctrl+Shift+J (Windows/Linux)
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+                e.preventDefault();
+            }
+
+            // Chặn Ctrl+Shift+C (Windows/Linux)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+            }
+
+            // Chặn Cmd+Opt+I (Mac)
+            if (e.metaKey && e.altKey && e.key === 'I') {
+                e.preventDefault();
+            }
+
+            // Chặn Cmd+Opt+J (Mac)
+            if (e.metaKey && e.altKey && e.key === 'J') {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
