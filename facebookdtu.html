@@ -2,532 +2,551 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook DTU</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook DTU</title>
 
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            /* Ẩn thanh cuộn trên PC */
-        }
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      /* Ẩn thanh cuộn trên PC */
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #ffebee;
-            /* Màu đỏ nhạt */
-            box-sizing: border-box;
-            color: #333;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #ffebee;
+      /* Màu đỏ nhạt */
+      box-sizing: border-box;
+      color: #333;
 
-            /* Chống bôi đen (chọn văn bản) */
-            -webkit-user-select: none;
-            /* Safari */
-            -moz-user-select: none;
-            /* Firefox */
-            -ms-user-select: none;
-            /* IE/Edge */
-            user-select: none;
-            /* Standard */
-        }
+      /* Chống bôi đen (chọn văn bản) */
+      -webkit-user-select: none;
+      /* Safari */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* IE/Edge */
+      user-select: none;
+      /* Standard */
+    }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            padding: 15px;
-            box-sizing: border-box;
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 15px;
+      box-sizing: border-box;
+    }
 
-        /* THAY ĐỔI MỚI: Thêm container cho thanh tìm kiếm */
-        .search-container {
-            position: relative;
-            width: 100%;
-            flex-shrink: 0;
-            margin-bottom: 15px;
-        }
+    /* THAY ĐỔI MỚI: Thêm container cho thanh tìm kiếm */
+    .search-container {
+      position: relative;
+      width: 100%;
+      flex-shrink: 0;
+      margin-bottom: 15px;
+    }
 
-        /* CSS CHO THANH TÌM KIẾM */
-        #search-bar {
-            width: 100%;
-            padding: 12px;
-            /* THAY ĐỔI MỚI: Thêm padding bên phải để chừa chỗ cho nút X */
-            padding-right: 40px;
-            font-size: 1.1em;
-            /* margin: 0 0 15px 0; (Đã chuyển margin ra container) */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            flex-shrink: 0;
-            background-color: white;
-            color: #333;
+    /* CSS CHO THANH TÌM KIẾM */
+    #search-bar {
+      width: 100%;
+      padding: 12px;
+      /* THAY ĐỔI MỚI: Thêm padding bên phải để chừa chỗ cho nút X */
+      padding-right: 40px;
+      font-size: 1.1em;
+      /* margin: 0 0 15px 0; (Đã chuyển margin ra container) */
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      background-color: white;
+      color: #333;
 
-            /* Cho phép bôi đen lại chỉ trong ô input */
-            -webkit-user-select: auto;
-            -moz-user-select: auto;
-            -ms-user-select: auto;
-            user-select: auto;
-        }
+      /* Cho phép bôi đen lại chỉ trong ô input */
+      -webkit-user-select: auto;
+      -moz-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+    }
 
-        #search-bar:focus {
-            outline: none;
-            border-color: #1877F2;
-            box-shadow: 0 0 5px rgba(24, 119, 242, 0.5);
-        }
+    #search-bar:focus {
+      outline: none;
+      border-color: #1877F2;
+      box-shadow: 0 0 5px rgba(24, 119, 242, 0.5);
+    }
 
-        /* THAY ĐỔI MỚI: CSS cho nút xóa */
-        #clear-search-btn {
-            position: absolute;
-            right: 1px;
-            /* Đặt bên phải */
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: transparent;
-            font-size: 1.6em;
-            /* Kích thước dấu 'X' */
-            color: #999;
-            cursor: pointer;
-            padding: 0 10px;
-            display: none;
-            /* Ẩn theo mặc định */
-        }
+    /* THAY ĐỔI MỚI: CSS cho nút xóa */
+    #clear-search-btn {
+      position: absolute;
+      right: 1px;
+      /* Đặt bên phải */
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      font-size: 1.6em;
+      /* Kích thước dấu 'X' */
+      color: #999;
+      cursor: pointer;
+      padding: 0 10px;
+      display: none;
+      /* Ẩn theo mặc định */
+    }
 
-        #clear-search-btn:hover {
-            color: #333;
-        }
+    #clear-search-btn:hover {
+      color: #333;
+    }
 
 
-        /* Đổi tên class cho chung chung hơn */
-        .link-grid {
-            display: grid;
-            flex-grow: 1;
-            overflow: hidden;
-            align-content: center;
-            justify-content: center;
-            gap: 15px;
-            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-        }
+    /* Đổi tên class cho chung chung hơn */
+    .link-grid {
+      display: grid;
+      flex-grow: 1;
+      overflow: hidden;
+      align-content: center;
+      justify-content: center;
+      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    }
 
-        .link-card {
-            border: 1px solid #f70606;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            display: none;
-            /* JS sẽ điều khiển */
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            transition: transform 0.2s;
-        }
+    .link-card {
+      border: 1px solid #f70606;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      display: none;
+      /* JS sẽ điều khiển */
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform 0.2s;
+    }
 
-        .link-card:hover {
-            transform: translateY(-4px);
-        }
+    .link-card:hover {
+      transform: translateY(-4px);
+    }
 
-        .link-card img {
-            width: 140px;
-            height: 140px;
-            border: 1px solid white;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
+    .link-card img {
+      width: 140px;
+      height: 140px;
+      border: 1px solid white;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
 
-        .link-card .card-name {
-            font-size: 1em;
-            font-weight: 600;
-            color: black;
-            margin: 0;
-            min-height: 40px;
-            margin-bottom: 10px;
-        }
+    .link-card .card-name {
+      font-size: 1em;
+      font-weight: 600;
+      color: black;
+      margin: 0;
+      min-height: 40px;
+      margin-bottom: 10px;
+    }
 
-        .link-card .card-link {
-            display: inline-block;
-            text-decoration: none;
-            background-color: #1877F2;
-            /* Màu xanh Facebook */
-            color: white;
-            padding: 8px 16px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: background-color 0.2s;
-        }
+    .link-card .card-link {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #1877F2;
+      /* Màu xanh Facebook */
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 0.9em;
+      transition: background-color 0.2s;
+    }
 
-        .link-card .card-link:hover {
-            background-color: #166fe5;
-            /* Màu hover */
-        }
+    .link-card .card-link:hover {
+      background-color: #166fe5;
+      /* Màu hover */
+    }
 
-        /* PHÂN TRANG */
-        .pagination-controls {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            margin-top: 15px;
-            padding: 5px;
-            flex-shrink: 0;
-        }
+    /* PHÂN TRANG */
+    .pagination-controls {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      margin-top: 15px;
+      padding: 5px;
+      flex-shrink: 0;
+    }
 
-        .pagination-button {
-            background-color: #1877F2;
-            /* Màu xanh Facebook */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 0 10px;
-        }
+    .pagination-button {
+      background-color: #1877F2;
+      /* Màu xanh Facebook */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 0 10px;
+    }
 
-        .pagination-button:hover:not(:disabled) {
-            background-color: #166fe5;
-        }
+    .pagination-button:hover:not(:disabled) {
+      background-color: #166fe5;
+    }
 
-        .pagination-button:disabled {
-            background-color: #c0c0c0;
-        }
+    .pagination-button:disabled {
+      background-color: #c0c0c0;
+    }
 
-        #page-status {
-            font-size: 1.1em;
-            font-weight: 600;
-        }
+    #page-status {
+      font-size: 1.1em;
+      font-weight: 600;
+    }
 
-        /* Responsive cho điện thoại */
-        @media (max-width: 768px) {
+    /* Responsive cho điện thoại */
+    @media (max-width: 768px) {
 
-            html,
-            body {
-                height: auto;
-                overflow: auto;
-            }
+      html,
+      body {
+        height: auto;
+        overflow: auto;
+      }
 
-            .container {
-                height: auto;
-            }
+      .container {
+        height: auto;
+      }
 
-            .link-grid {
-                overflow: visible;
-                align-content: normal;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-        }
-    </style>
+      .link-grid {
+        overflow: visible;
+        align-content: normal;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="container">
+  <div class="container">
 
-        <div class="search-container">
-            <input type="text" id="search-bar" placeholder="Tìm kiếm trang Facebook..." autofocus>
-            <button id="clear-search-btn">&times;</button>
-        </div>
-
-
-        <div class="link-grid">
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/daihocduytan.dtu"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Đại học Duy Tân</h3> <a href="https://www.facebook.com/daihocduytan.dtu"
-                    target="_blank" class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/Duy.Tan.University"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Duy Tan University</h3>
-                <a href="https://www.facebook.com/Duy.Tan.University" target="_blank" class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/ltcdtu"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">LTC - Learning & Testing Center</h3>
-                <a href="https://www.facebook.com/ltcdtu" target="_blank" class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/tuoitreDTU"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Tuổi trẻ Đại học Duy Tân</h3>
-                <a href="https://www.facebook.com/tuoitreDTU" target="_blank" class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/DTU.InternationalSchool"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Trường Đào tạo Quốc tế</h3>
-                <a href="https://www.facebook.com/DTU.InternationalSchool" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/DuyTanHTi"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Trường Du Lịch</h3>
-                <a href="https://www.facebook.com/DuyTanHTi" target="_blank" class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Khoa Khoa học Xã hội và Nhân văn</h3>
-                <a href="https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan" target="_blank"
-                    class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/CNTT.DTU"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Tuổi Trẻ Trường Khoa Học Máy Tính</h3>
-                <a href="https://www.facebook.com/CNTT.DTU" target="_blank" class="card-link">Vào Facebook</a>
-            </div>
-
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/KHOATRUNGDTU"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Khoa Tiếng Trung</h3>
-                <a href="https://www.facebook.com/KHOATRUNGDTU" target="_blank" class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Trung Tâm Ngoại Ngữ Duy Tân</h3>
-                <a href="https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang" target="_blank"
-                    class="card-link">Vào Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/groups/189204667249513"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Trung Tâm Tin Học Duy Tân</h3>
-                <a href="https://www.facebook.com/groups/189204667249513" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/QuanlykinhteVietMyPSU"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Khoa Quản lý kinh tế Việt Mỹ- PSU</h3>
-                <a href="https://www.facebook.com/QuanlykinhteVietMyPSU" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/DOANKHOAYDHDUYTAN"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Tuổi trẻ Khoa Y ĐH Duy Tân</h3>
-                <a href="https://www.facebook.com/DOANKHOAYDHDUYTAN" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/CLBTiengAnhDuyTan"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">CLB Tiếng Anh Duy Tân DEC</h3>
-                <a href="https://www.facebook.com/CLBTiengAnhDuyTan" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/profile.php?id=61577509090321"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Khoa Tiếng Anh</h3>
-                <a href="https://www.facebook.com/profile.php?id=61577509090321" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/truongkhoahocmaytinh"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Trường Khoa học Máy tính - School of Computer Science</h3>
-                <a href="https://www.facebook.com/truongkhoahocmaytinh" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/dtkt.dtu"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Tuổi trẻ Trường Kinh Tế</h3>
-                <a href="https://www.facebook.com/dtkt.dtu" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-            <div class="link-card">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/doankhoaduocdtu"
-                    alt="QR Code Facebook">
-                <h3 class="card-name">Tuổi Trẻ Khoa Dược</h3>
-                <a href="https://www.facebook.com/doankhoaduocdtu" target="_blank" class="card-link">Vào
-                    Facebook</a>
-            </div>
-        </div>
-        <div class="pagination-controls">
-            <button id="prev-page" class="pagination-button">&lt; Trước</button>
-            <span id="page-status">Trang 1 / 1</span>
-            <button id="next-page" class="pagination-button">Sau &gt;</button>
-        </div>
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Tìm kiếm trang Facebook..." autofocus>
+      <button id="clear-search-btn">&times;</button>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const ITEMS_PER_PAGE = 8;
-            let currentPage = 1;
 
-            // Lấy tất cả các thẻ MỘT LẦN và chuyển thành Array
-            const allCards = Array.from(document.querySelectorAll('.link-card'));
-            let filteredCards = allCards; // Ban đầu, danh sách lọc là tất cả
-            let totalPages = 1;
+    <div class="link-grid">
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/daihocduytan.dtu"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Đại học Duy Tân</h3> <a href="https://www.facebook.com/daihocduytan.dtu" target="_blank"
+          class="card-link">Vào Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/Duy.Tan.University"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Duy Tan University</h3>
+        <a href="https://www.facebook.com/Duy.Tan.University" target="_blank" class="card-link">Vào Facebook</a>
+      </div>
+      <div class="link-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/ltcdtu"
+          alt="QR Code Facebook">
+        <h3 class="card-name">LTC - Learning & Testing Center</h3>
+        <a href="https://www.facebook.com/ltcdtu" target="_blank" class="card-link">Vào Facebook</a>
+      </div>
+      <div class="link-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/tuoitreDTU"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Tuổi trẻ Đại học Duy Tân</h3>
+        <a href="https://www.facebook.com/tuoitreDTU" target="_blank" class="card-link">Vào Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/DTU.InternationalSchool"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Trường Đào tạo Quốc tế</h3>
+        <a href="https://www.facebook.com/DTU.InternationalSchool" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/DuyTanHTi"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Trường Du Lịch</h3>
+        <a href="https://www.facebook.com/DuyTanHTi" target="_blank" class="card-link">Vào Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Khoa Khoa học Xã hội và Nhân văn</h3>
+        <a href="https://www.facebook.com/KhoaKhoaHocXaHoiVaNhanVanDaiHocDuyTan" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/CNTT.DTU"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Tuổi Trẻ Trường Khoa Học Máy Tính</h3>
+        <a href="https://www.facebook.com/CNTT.DTU" target="_blank" class="card-link">Vào Facebook</a>
+      </div>
 
-            // Lấy các element điều khiển
-            const searchBar = document.getElementById('search-bar');
-            // THAY ĐỔI MỚI: Lấy nút xóa
-            const clearSearchBtn = document.getElementById('clear-search-btn');
-            const prevButton = document.getElementById('prev-page');
-            const nextButton = document.getElementById('next-page');
-            const pageStatus = document.getElementById('page-status');
-            const paginationControls = document.querySelector('.pagination-controls');
+      <div class="link-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/KHOATRUNGDTU"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Khoa Tiếng Trung</h3>
+        <a href="https://www.facebook.com/KHOATRUNGDTU" target="_blank" class="card-link">Vào Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Trung Tâm Ngoại Ngữ Duy Tân</h3>
+        <a href="https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/groups/189204667249513"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Trung Tâm Tin Học Duy Tân</h3>
+        <a href="https://www.facebook.com/groups/189204667249513" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/QuanlykinhteVietMyPSU"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Khoa Quản lý kinh tế Việt Mỹ- PSU</h3>
+        <a href="https://www.facebook.com/QuanlykinhteVietMyPSU" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/DOANKHOAYDHDUYTAN"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Tuổi trẻ Khoa Y ĐH Duy Tân</h3>
+        <a href="https://www.facebook.com/DOANKHOAYDHDUYTAN" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/CLBTiengAnhDuyTan"
+          alt="QR Code Facebook">
+        <h3 class="card-name">CLB Tiếng Anh Duy Tân DEC</h3>
+        <a href="https://www.facebook.com/CLBTiengAnhDuyTan" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/profile.php?id=61577509090321"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Khoa Tiếng Anh</h3>
+        <a href="https://www.facebook.com/profile.php?id=61577509090321" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/truongkhoahocmaytinh"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Trường Khoa học Máy tính - School of Computer Science</h3>
+        <a href="https://www.facebook.com/truongkhoahocmaytinh" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/dtkt.dtu"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Tuổi trẻ Trường Kinh Tế</h3>
+        <a href="https://www.facebook.com/dtkt.dtu" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/doankhoaduocdtu"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Tuổi Trẻ Khoa Dược</h3>
+        <a href="https://www.facebook.com/doankhoaduocdtu" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+      <div class="link-card">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/covanhoctapDTU"
+          alt="QR Code Facebook">
+        <h3 class="card-name">Cố vấn học tập - Trường Du lịch DTU </h3>
+        <a href="https://www.facebook.com/covanhoctapDTU" target="_blank" class="card-link">Vào
+          Facebook</a>
+      </div>
+    </div>
+    <div class="pagination-controls">
+      <button id="prev-page" class="pagination-button">&lt; Trước</button>
+      <span id="page-status">Trang 1 / 1</span>
+      <button id="next-page" class="pagination-button">Sau &gt;</button>
+    </div>
+  </div>
 
-            /**
-             * Hàm này chỉ có nhiệm vụ HIỂN THỊ các thẻ
-             * dựa trên mảng 'filteredCards' và 'currentPage'
-             */
-            function showPage() {
-                // 1. Ẩn TẤT CẢ các thẻ
-                allCards.forEach((card) => {
-                    card.style.display = 'none';
-                });
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ITEMS_PER_PAGE = 8;
+      let currentPage = 1;
 
-                // 2. Tính toán vị trí thẻ cần hiển thị từ mảng ĐÃ LỌC
-                const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-                const endIndex = currentPage * ITEMS_PER_PAGE;
+      // Lấy tất cả các thẻ MỘT LẦN và chuyển thành Array
+      const allCards = Array.from(document.querySelectorAll('.link-card'));
+      let filteredCards = allCards; // Ban đầu, danh sách lọc là tất cả
+      let totalPages = 1;
 
-                // 3. Lấy các thẻ trong trang hiện tại và hiển thị
-                const cardsToShow = filteredCards.slice(startIndex, endIndex);
-                cardsToShow.forEach((card) => {
-                    card.style.display = 'flex';
-                });
+      // Lấy các element điều khiển
+      const searchBar = document.getElementById('search-bar');
+      // THAY ĐỔI MỚI: Lấy nút xóa
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      const prevButton = document.getElementById('prev-page');
+      const nextButton = document.getElementById('next-page');
+      const pageStatus = document.getElementById('page-status');
+      const paginationControls = document.querySelector('.pagination-controls');
 
-                // 4. Cập nhật giao diện phân trang
-                updatePaginationUI();
-            }
-
-            /**
-             * Hàm này chỉ cập nhật GIAO DIỆN các nút và text phân trang
-             */
-            function updatePaginationUI() {
-                pageStatus.textContent = `Trang ${currentPage} / ${totalPages}`;
-                prevButton.disabled = (currentPage === 1);
-                nextButton.disabled = (currentPage === totalPages);
-
-                // Ẩn/hiện toàn bộ thanh phân trang
-                if (totalPages <= 1) {
-                    paginationControls.style.display = 'none';
-                } else {
-                    paginationControls.style.display = 'flex';
-                }
-            }
-
-            /**
-             * Hàm này LỌC danh sách thẻ và TÍNH TOÁN LẠI số trang
-             * Nó sẽ được gọi khi tìm kiếm hoặc tải trang
-             */
-            function runFilterAndPagination() {
-                const searchText = searchBar.value.toLowerCase().trim();
-
-                // 1. Lọc
-                filteredCards = allCards.filter(card => {
-                    const cardName = card.querySelector('.card-name').textContent.toLowerCase();
-                    return cardName.includes(searchText);
-                });
-
-                // 2. Tính toán lại tổng số trang
-                const totalCards = filteredCards.length;
-                // (|| 1) để đảm bảo không bao giờ là 0 trang
-                totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE) || 1;
-
-                // 3. Reset về trang 1 nếu trang hiện tại vượt quá tổng số trang mới
-                if (currentPage > totalPages) {
-                    currentPage = 1;
-                }
-
-                // 4. Hiển thị trang
-                showPage();
-            }
-
-            // --- GẮN CÁC SỰ KIỆN ---
-
-            // 1. Khi gõ vào thanh tìm kiếm
-            searchBar.addEventListener('input', () => {
-                currentPage = 1; // Luôn quay về trang 1 khi tìm kiếm
-                runFilterAndPagination();
-
-                // THAY ĐỔI MỚI: Hiển thị hoặc ẩn nút X
-                if (searchBar.value.length > 0) {
-                    clearSearchBtn.style.display = 'block';
-                } else {
-                    clearSearchBtn.style.display = 'none';
-                }
-            });
-
-            // 2. THAY ĐỔI MỚI: Khi nhấn nút X
-            clearSearchBtn.addEventListener('click', () => {
-                searchBar.value = ''; // Xóa nội dung
-                currentPage = 1;
-                runFilterAndPagination(); // Chạy lại bộ lọc
-                clearSearchBtn.style.display = 'none'; // Ẩn nút X
-                searchBar.focus(); // Trỏ chuột lại vào ô tìm kiếm
-            });
-
-
-            // 3. Khi nhấn nút 'Trước'
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    showPage(); // Chỉ cần hiển thị lại, không cần lọc
-                }
-            });
-
-            // 4. Khi nhấn nút 'Sau'
-            nextButton.addEventListener('click', () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    showPage(); // Chỉ cần hiển thị lại, không cần lọc
-                }
-            });
-
-            // --- KHỞI CHẠY LẦN ĐẦU ---
-            // Lọc và hiển thị trang 1 khi tải trang
-            runFilterAndPagination();
+      /**
+       * Hàm này chỉ có nhiệm vụ HIỂN THỊ các thẻ
+       * dựa trên mảng 'filteredCards' và 'currentPage'
+       */
+      function showPage() {
+        // 1. Ẩn TẤT CẢ các thẻ
+        allCards.forEach((card) => {
+          card.style.display = 'none';
         });
-    </script>
 
-    <script>
-        // Chặn sự kiện nhấp chuột phải
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
+        // 2. Tính toán vị trí thẻ cần hiển thị từ mảng ĐÃ LỌC
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = currentPage * ITEMS_PER_PAGE;
+
+        // 3. Lấy các thẻ trong trang hiện tại và hiển thị
+        const cardsToShow = filteredCards.slice(startIndex, endIndex);
+        cardsToShow.forEach((card) => {
+          card.style.display = 'flex';
         });
 
-        // Chặn các phím tắt
-        document.addEventListener('keydown', function (e) {
-            // Chặn F12
-            if (e.key === 'F12' || e.keyCode === 123) {
-                e.preventDefault();
-            }
-            // Chặn Ctrl+Shift+I (Windows/Linux)
-            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-                e.preventDefault();
-            }
-            // Chặn Ctrl+Shift+J (Windows/Linux)
-            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-                e.preventDefault();
-            }
-            // Chặn Ctrl+Shift+C (Windows/Linux)
-            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-                e.preventDefault();
-            }
-            // Chặn Cmd+Opt+I (Mac)
-            if (e.metaKey && e.altKey && e.key === 'I') {
-                e.preventDefault();
-            }
-            // Chặn Cmd+Opt+J (Mac)
-            if (e.metaKey && e.altKey && e.key === 'J') {
-                e.preventDefault();
-            }
+        // 4. Cập nhật giao diện phân trang
+        updatePaginationUI();
+      }
+
+      /**
+       * Hàm này chỉ cập nhật GIAO DIỆN các nút và text phân trang
+       */
+      function updatePaginationUI() {
+        pageStatus.textContent = `Trang ${currentPage} / ${totalPages}`;
+        prevButton.disabled = (currentPage === 1);
+        nextButton.disabled = (currentPage === totalPages);
+
+        // Ẩn/hiện toàn bộ thanh phân trang
+        if (totalPages <= 1) {
+          paginationControls.style.display = 'none';
+        } else {
+          paginationControls.style.display = 'flex';
+        }
+      }
+
+      /**
+       * Hàm này LỌC danh sách thẻ và TÍNH TOÁN LẠI số trang
+       * Nó sẽ được gọi khi tìm kiếm hoặc tải trang
+       */
+      function runFilterAndPagination() {
+        const searchText = searchBar.value.toLowerCase().trim();
+
+        // 1. Lọc
+        filteredCards = allCards.filter(card => {
+          const cardName = card.querySelector('.card-name').textContent.toLowerCase();
+          return cardName.includes(searchText);
         });
-    </script>
+
+        // 2. Tính toán lại tổng số trang
+        const totalCards = filteredCards.length;
+        // (|| 1) để đảm bảo không bao giờ là 0 trang
+        totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE) || 1;
+
+        // 3. Reset về trang 1 nếu trang hiện tại vượt quá tổng số trang mới
+        if (currentPage > totalPages) {
+          currentPage = 1;
+        }
+
+        // 4. Hiển thị trang
+        showPage();
+      }
+
+      // --- GẮN CÁC SỰ KIỆN ---
+
+      // 1. Khi gõ vào thanh tìm kiếm
+      searchBar.addEventListener('input', () => {
+        currentPage = 1; // Luôn quay về trang 1 khi tìm kiếm
+        runFilterAndPagination();
+
+        // THAY ĐỔI MỚI: Hiển thị hoặc ẩn nút X
+        if (searchBar.value.length > 0) {
+          clearSearchBtn.style.display = 'block';
+        } else {
+          clearSearchBtn.style.display = 'none';
+        }
+      });
+
+      // 2. THAY ĐỔI MỚI: Khi nhấn nút X
+      clearSearchBtn.addEventListener('click', () => {
+        searchBar.value = ''; // Xóa nội dung
+        currentPage = 1;
+        runFilterAndPagination(); // Chạy lại bộ lọc
+        clearSearchBtn.style.display = 'none'; // Ẩn nút X
+        searchBar.focus(); // Trỏ chuột lại vào ô tìm kiếm
+      });
+
+
+      // 3. Khi nhấn nút 'Trước'
+      prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          showPage(); // Chỉ cần hiển thị lại, không cần lọc
+        }
+      });
+
+      // 4. Khi nhấn nút 'Sau'
+      nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          showPage(); // Chỉ cần hiển thị lại, không cần lọc
+        }
+      });
+
+      // --- KHỞI CHẠY LẦN ĐẦU ---
+      // Lọc và hiển thị trang 1 khi tải trang
+      runFilterAndPagination();
+    });
+  </script>
+
+  <script>
+    // Chặn sự kiện nhấp chuột phải
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+
+    // Chặn các phím tắt
+    document.addEventListener('keydown', function (e) {
+      // Chặn F12
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+      }
+      // Chặn Ctrl+Shift+I (Windows/Linux)
+      if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+      }
+      // Chặn Ctrl+Shift+J (Windows/Linux)
+      if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+        e.preventDefault();
+      }
+      // Chặn Ctrl+Shift+C (Windows/Linux)
+      if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+      }
+      // Chặn Cmd+Opt+I (Mac)
+      if (e.metaKey && e.altKey && e.key === 'I') {
+        e.preventDefault();
+      }
+      // Chặn Cmd+Opt+J (Mac)
+      if (e.metaKey && e.altKey && e.key === 'J') {
+        e.preventDefault();
+      }
+    });
+  </script>
 
 </body>
 
