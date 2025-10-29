@@ -454,6 +454,51 @@
                 /* Tắt margin-bottom khi dùng Grid */
             }
         }
+
+        /* Hiệu ứng chạy chữ quanh*/
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            padding: 8px 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            align-items: center;
+            gap: 50px;
+            animation: marquee-scroll 28s linear infinite;
+            will-change: transform;
+        }
+
+        .marquee-item {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track {
+                animation: none;
+            }
+        }
+
+        @keyframes marquee-scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
     </style>
 </head>
 
@@ -462,10 +507,23 @@
 
     <div class="main-content">
         <div class="header-section">
-            <h1>🌸 Cộng đồng Đại học Duy Tân</h1>
-            <p class="description">Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram!</p>
-            <p>Nơi đây <strong>an toàn, bảo mật và nhanh chóng</strong> hơn hẳn Zalo/Facebook.</p>
-            <p class="join-instruction">👇 Chọn một mục bạn quan tâm bên dưới.</p>
+            <h1>Cộng đồng Đại học Duy Tân</h1>
+            <div class="marquee-container" aria-label="Thông báo chạy">
+                <div class="marquee-track" role="marquee">
+                    <div class="marquee-item">
+                        ✌️ Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram! 💡 Hỗ trợ miễn phí cho tất cả
+                        sinh viên – minh bạch, rõ ràng, không điều kiện. ⚠️ Vui lòng sử dụng tên Telegram lịch sự, không
+                        vi phạm văn hoá giao tiếp. ✅ Telegram an toàn, bảo mật và nhanh chóng hơn hẳn mạng xã hội khác.
+                    </div>
+                    <!-- bản sao để tạo vòng lặp liền mạch -->
+                    <div class="marquee-item">
+                        ✌️ Chào mừng bạn đến với cộng đồng sinh viên DTU trên Telegram! 💡 Hỗ trợ miễn phí cho tất cả
+                        sinh viên – minh bạch, rõ ràng, không điều kiện. ⚠️ Vui lòng sử dụng tên Telegram lịch sự, không
+                        vi phạm văn hoá giao tiếp. ✅ Telegram an toàn, bảo mật và nhanh chóng hơn hẳn mạng xã hội khác.
+                    </div>
+                </div>
+            </div>
+            <p class="join-instruction">👇Chọn mục bạn quan tâm bên dưới👇</p>
         </div>
 
         <div class="content-wrapper">
