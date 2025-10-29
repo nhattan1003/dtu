@@ -22,6 +22,16 @@
             /* Màu đỏ nhạt */
             box-sizing: border-box;
             color: #333;
+
+            /* Chống bôi đen (chọn văn bản) */
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE/Edge */
+            user-select: none;
+            /* Standard */
         }
 
         .container {
@@ -32,16 +42,64 @@
             box-sizing: border-box;
         }
 
-        h1 {
-            text-align: center;
-            color: #1877F2;
-            /* Màu xanh Facebook */
-            border-bottom: 2px solid #d0e1ff;
-            /* Viền xanh nhạt */
-            padding-bottom: 10px;
-            margin: 0 0 15px 0;
+        /* THAY ĐỔI MỚI: Thêm container cho thanh tìm kiếm */
+        .search-container {
+            position: relative;
+            width: 100%;
             flex-shrink: 0;
+            margin-bottom: 15px;
         }
+
+        /* CSS CHO THANH TÌM KIẾM */
+        #search-bar {
+            width: 100%;
+            padding: 12px;
+            /* THAY ĐỔI MỚI: Thêm padding bên phải để chừa chỗ cho nút X */
+            padding-right: 40px;
+            font-size: 1.1em;
+            /* margin: 0 0 15px 0; (Đã chuyển margin ra container) */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            background-color: white;
+            color: #333;
+
+            /* Cho phép bôi đen lại chỉ trong ô input */
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+        }
+
+        #search-bar:focus {
+            outline: none;
+            border-color: #1877F2;
+            box-shadow: 0 0 5px rgba(24, 119, 242, 0.5);
+        }
+
+        /* THAY ĐỔI MỚI: CSS cho nút xóa */
+        #clear-search-btn {
+            position: absolute;
+            right: 1px;
+            /* Đặt bên phải */
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            font-size: 1.6em;
+            /* Kích thước dấu 'X' */
+            color: #999;
+            cursor: pointer;
+            padding: 0 10px;
+            display: none;
+            /* Ẩn theo mặc định */
+        }
+
+        #clear-search-btn:hover {
+            color: #333;
+        }
+
 
         /* Đổi tên class cho chung chung hơn */
         .link-grid {
@@ -167,7 +225,12 @@
 <body>
 
     <div class="container">
-        <h1>Facebook Đại Học Duy Tân</h1>
+
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Tìm kiếm trang Facebook..." autofocus>
+            <button id="clear-search-btn">&times;</button>
+        </div>
+
 
         <div class="link-grid">
             <div class="link-card">
@@ -241,6 +304,20 @@
                 <a href="https://www.facebook.com/groups/189204667249513" target="_blank" class="card-link">Vào
                     Facebook</a>
             </div>
+            <div class="link-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/QuanlykinhteVietMyPSU"
+                    alt="QR Code Facebook">
+                <h3 class="card-name">Khoa Quản lý kinh tế Việt Mỹ- PSU</h3>
+                <a href="https://www.facebook.com/QuanlykinhteVietMyPSU" target="_blank" class="card-link">Vào
+                    Facebook</a>
+            </div>
+            <div class="link-card">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.facebook.com/DOANKHOAYDHDUYTAN"
+                    alt="QR Code Facebook">
+                <h3 class="card-name">Tuổi trẻ Khoa Y ĐH Duy Tân</h3>
+                <a href="https://www.facebook.com/DOANKHOAYDHDUYTAN" target="_blank" class="card-link">Vào
+                    Facebook</a>
+            </div>
 
         </div>
         <div class="pagination-controls">
@@ -249,40 +326,59 @@
             <button id="next-page" class="pagination-button">Sau &gt;</button>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const ITEMS_PER_PAGE = 8;
             let currentPage = 1;
-            // Cập nhật tên class để chọn đúng thẻ
-            const cards = document.querySelectorAll('.link-card');
-            const totalCards = cards.length;
-            const totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE);
 
+            // Lấy tất cả các thẻ MỘT LẦN và chuyển thành Array
+            const allCards = Array.from(document.querySelectorAll('.link-card'));
+            let filteredCards = allCards; // Ban đầu, danh sách lọc là tất cả
+            let totalPages = 1;
+
+            // Lấy các element điều khiển
+            const searchBar = document.getElementById('search-bar');
+            // THAY ĐỔI MỚI: Lấy nút xóa
+            const clearSearchBtn = document.getElementById('clear-search-btn');
             const prevButton = document.getElementById('prev-page');
             const nextButton = document.getElementById('next-page');
             const pageStatus = document.getElementById('page-status');
             const paginationControls = document.querySelector('.pagination-controls');
 
-            function showPage(pageNumber) {
-                const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
-                const endIndex = pageNumber * ITEMS_PER_PAGE;
-
-                cards.forEach((card) => {
+            /**
+             * Hàm này chỉ có nhiệm vụ HIỂN THỊ các thẻ
+             * dựa trên mảng 'filteredCards' và 'currentPage'
+             */
+            function showPage() {
+                // 1. Ẩn TẤT CẢ các thẻ
+                allCards.forEach((card) => {
                     card.style.display = 'none';
                 });
 
-                for (let i = startIndex; i < endIndex && i < totalCards; i++) {
-                    cards[i].style.display = 'flex';
-                }
+                // 2. Tính toán vị trí thẻ cần hiển thị từ mảng ĐÃ LỌC
+                const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+                const endIndex = currentPage * ITEMS_PER_PAGE;
 
-                updatePagination();
+                // 3. Lấy các thẻ trong trang hiện tại và hiển thị
+                const cardsToShow = filteredCards.slice(startIndex, endIndex);
+                cardsToShow.forEach((card) => {
+                    card.style.display = 'flex';
+                });
+
+                // 4. Cập nhật giao diện phân trang
+                updatePaginationUI();
             }
 
-            function updatePagination() {
+            /**
+             * Hàm này chỉ cập nhật GIAO DIỆN các nút và text phân trang
+             */
+            function updatePaginationUI() {
                 pageStatus.textContent = `Trang ${currentPage} / ${totalPages}`;
                 prevButton.disabled = (currentPage === 1);
                 nextButton.disabled = (currentPage === totalPages);
 
+                // Ẩn/hiện toàn bộ thanh phân trang
                 if (totalPages <= 1) {
                     paginationControls.style.display = 'none';
                 } else {
@@ -290,21 +386,77 @@
                 }
             }
 
+            /**
+             * Hàm này LỌC danh sách thẻ và TÍNH TOÁN LẠI số trang
+             * Nó sẽ được gọi khi tìm kiếm hoặc tải trang
+             */
+            function runFilterAndPagination() {
+                const searchText = searchBar.value.toLowerCase().trim();
+
+                // 1. Lọc
+                filteredCards = allCards.filter(card => {
+                    const cardName = card.querySelector('.card-name').textContent.toLowerCase();
+                    return cardName.includes(searchText);
+                });
+
+                // 2. Tính toán lại tổng số trang
+                const totalCards = filteredCards.length;
+                // (|| 1) để đảm bảo không bao giờ là 0 trang
+                totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE) || 1;
+
+                // 3. Reset về trang 1 nếu trang hiện tại vượt quá tổng số trang mới
+                if (currentPage > totalPages) {
+                    currentPage = 1;
+                }
+
+                // 4. Hiển thị trang
+                showPage();
+            }
+
+            // --- GẮN CÁC SỰ KIỆN ---
+
+            // 1. Khi gõ vào thanh tìm kiếm
+            searchBar.addEventListener('input', () => {
+                currentPage = 1; // Luôn quay về trang 1 khi tìm kiếm
+                runFilterAndPagination();
+
+                // THAY ĐỔI MỚI: Hiển thị hoặc ẩn nút X
+                if (searchBar.value.length > 0) {
+                    clearSearchBtn.style.display = 'block';
+                } else {
+                    clearSearchBtn.style.display = 'none';
+                }
+            });
+
+            // 2. THAY ĐỔI MỚI: Khi nhấn nút X
+            clearSearchBtn.addEventListener('click', () => {
+                searchBar.value = ''; // Xóa nội dung
+                currentPage = 1;
+                runFilterAndPagination(); // Chạy lại bộ lọc
+                clearSearchBtn.style.display = 'none'; // Ẩn nút X
+                searchBar.focus(); // Trỏ chuột lại vào ô tìm kiếm
+            });
+
+
+            // 3. Khi nhấn nút 'Trước'
             prevButton.addEventListener('click', () => {
                 if (currentPage > 1) {
                     currentPage--;
-                    showPage(currentPage);
+                    showPage(); // Chỉ cần hiển thị lại, không cần lọc
                 }
             });
 
+            // 4. Khi nhấn nút 'Sau'
             nextButton.addEventListener('click', () => {
                 if (currentPage < totalPages) {
                     currentPage++;
-                    showPage(currentPage);
+                    showPage(); // Chỉ cần hiển thị lại, không cần lọc
                 }
             });
 
-            showPage(1);
+            // --- KHỞI CHẠY LẦN ĐẦU ---
+            // Lọc và hiển thị trang 1 khi tải trang
+            runFilterAndPagination();
         });
     </script>
 
