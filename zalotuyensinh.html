@@ -20,9 +20,19 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #ffebee;
-            /* <--- MÀU ĐỎ NHẠT ĐÂY */
+            /* Màu đỏ nhạt */
             box-sizing: border-box;
             color: #333;
+
+            /* THAY ĐỔI MỚI: Chống bôi đen (chọn văn bản) */
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE/Edge */
+            user-select: none;
+            /* Standard */
         }
 
         .container {
@@ -33,16 +43,63 @@
             box-sizing: border-box;
         }
 
-        h1 {
-            text-align: center;
-            color: #d32f2f;
-            /* Đổi màu tiêu đề cho hợp nền đỏ */
-            border-bottom: 2px solid #ffcdd2;
-            /* Đổi màu gạch chân */
-            padding-bottom: 10px;
-            margin: 0 0 15px 0;
+        /* Đã xóa CSS cho H1 */
+
+        /* THAY ĐỔI MỚI: Thêm container cho thanh tìm kiếm */
+        .search-container {
+            position: relative;
+            width: 100%;
             flex-shrink: 0;
+            margin-bottom: 15px;
         }
+
+        /* THAY ĐỔI MỚI: CSS CHO THANH TÌM KIẾM */
+        #search-bar {
+            width: 100%;
+            padding: 12px;
+            padding-right: 40px;
+            /* Chừa chỗ cho nút X */
+            font-size: 1.1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: white;
+            color: #333;
+
+            /* Cho phép bôi đen lại chỉ trong ô input */
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+        }
+
+        #search-bar:focus {
+            outline: none;
+            border-color: #c62828;
+            /* Màu đỏ cho hợp theme */
+            box-shadow: 0 0 5px rgba(198, 40, 40, 0.5);
+        }
+
+        /* THAY ĐỔI MỚI: CSS cho nút xóa */
+        #clear-search-btn {
+            position: absolute;
+            right: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            font-size: 1.6em;
+            color: #999;
+            cursor: pointer;
+            padding: 0 10px;
+            display: none;
+            /* Ẩn theo mặc định */
+        }
+
+        #clear-search-btn:hover {
+            color: #333;
+        }
+
 
         .zalo-qr-grid {
             display: grid;
@@ -61,6 +118,7 @@
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             display: none;
+            /* JS sẽ điều khiển */
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
@@ -116,7 +174,7 @@
 
         .pagination-button {
             background-color: #c62828;
-            /* Đổi màu nút cho hợp nền */
+            /* Màu nút hợp nền */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -165,7 +223,11 @@
 <body>
 
     <div class="container">
-        <h1>Zalo Tuyển Sinh Đại Học Duy Tân</h1>
+
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Tìm kiếm nhóm Zalo..." autofocus>
+            <button id="clear-search-btn">&times;</button>
+        </div>
 
         <div class="zalo-qr-grid">
             <div class="zalo-card">
@@ -223,6 +285,7 @@
                 <h3 class="zalo-name">Chương trình Việt Nhật</h3>
                 <a href="https://zalo.me/g/cxpzwr696" target="_blank" class="zalo-link">Vào Zalo</a>
             </div>
+
         </div>
         <div class="pagination-controls">
             <button id="prev-page" class="pagination-button">&lt; Trước</button>
@@ -230,39 +293,59 @@
             <button id="next-page" class="pagination-button">Sau &gt;</button>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const ITEMS_PER_PAGE = 8;
             let currentPage = 1;
-            const cards = document.querySelectorAll('.zalo-card');
-            const totalCards = cards.length;
-            const totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE);
 
+            // Lấy tất cả các thẻ MỘT LẦN và chuyển thành Array
+            // Đã đổi thành .zalo-card
+            const allCards = Array.from(document.querySelectorAll('.zalo-card'));
+            let filteredCards = allCards; // Ban đầu, danh sách lọc là tất cả
+            let totalPages = 1;
+
+            // Lấy các element điều khiển
+            const searchBar = document.getElementById('search-bar');
+            const clearSearchBtn = document.getElementById('clear-search-btn');
             const prevButton = document.getElementById('prev-page');
             const nextButton = document.getElementById('next-page');
             const pageStatus = document.getElementById('page-status');
             const paginationControls = document.querySelector('.pagination-controls');
 
-            function showPage(pageNumber) {
-                const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
-                const endIndex = pageNumber * ITEMS_PER_PAGE;
-
-                cards.forEach((card) => {
+            /**
+             * Hàm này chỉ có nhiệm vụ HIỂN THỊ các thẻ
+             * dựa trên mảng 'filteredCards' và 'currentPage'
+             */
+            function showPage() {
+                // 1. Ẩn TẤT CẢ các thẻ
+                allCards.forEach((card) => {
                     card.style.display = 'none';
                 });
 
-                for (let i = startIndex; i < endIndex && i < totalCards; i++) {
-                    cards[i].style.display = 'flex';
-                }
+                // 2. Tính toán vị trí thẻ cần hiển thị từ mảng ĐÃ LỌC
+                const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+                const endIndex = currentPage * ITEMS_PER_PAGE;
 
-                updatePagination();
+                // 3. Lấy các thẻ trong trang hiện tại và hiển thị
+                const cardsToShow = filteredCards.slice(startIndex, endIndex);
+                cardsToShow.forEach((card) => {
+                    card.style.display = 'flex';
+                });
+
+                // 4. Cập nhật giao diện phân trang
+                updatePaginationUI();
             }
 
-            function updatePagination() {
+            /**
+             * Hàm này chỉ cập nhật GIAO DIỆN các nút và text phân trang
+             */
+            function updatePaginationUI() {
                 pageStatus.textContent = `Trang ${currentPage} / ${totalPages}`;
                 prevButton.disabled = (currentPage === 1);
                 nextButton.disabled = (currentPage === totalPages);
 
+                // Ẩn/hiện toàn bộ thanh phân trang
                 if (totalPages <= 1) {
                     paginationControls.style.display = 'none';
                 } else {
@@ -270,21 +353,78 @@
                 }
             }
 
+            /**
+             * Hàm này LỌC danh sách thẻ và TÍNH TOÁN LẠI số trang
+             * Nó sẽ được gọi khi tìm kiếm hoặc tải trang
+             */
+            function runFilterAndPagination() {
+                const searchText = searchBar.value.toLowerCase().trim();
+
+                // 1. Lọc
+                filteredCards = allCards.filter(card => {
+                    // Đã đổi thành .zalo-name
+                    const cardName = card.querySelector('.zalo-name').textContent.toLowerCase();
+                    return cardName.includes(searchText);
+                });
+
+                // 2. Tính toán lại tổng số trang
+                const totalCards = filteredCards.length;
+                // (|| 1) để đảm bảo không bao giờ là 0 trang
+                totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE) || 1;
+
+                // 3. Reset về trang 1 nếu trang hiện tại vượt quá tổng số trang mới
+                if (currentPage > totalPages) {
+                    currentPage = 1;
+                }
+
+                // 4. Hiển thị trang
+                showPage();
+            }
+
+            // --- GẮN CÁC SỰ KIỆN ---
+
+            // 1. Khi gõ vào thanh tìm kiếm
+            searchBar.addEventListener('input', () => {
+                currentPage = 1; // Luôn quay về trang 1 khi tìm kiếm
+                runFilterAndPagination();
+
+                // Hiển thị hoặc ẩn nút X
+                if (searchBar.value.length > 0) {
+                    clearSearchBtn.style.display = 'block';
+                } else {
+                    clearSearchBtn.style.display = 'none';
+                }
+            });
+
+            // 2. Khi nhấn nút X
+            clearSearchBtn.addEventListener('click', () => {
+                searchBar.value = ''; // Xóa nội dung
+                currentPage = 1;
+                runFilterAndPagination(); // Chạy lại bộ lọc
+                clearSearchBtn.style.display = 'none'; // Ẩn nút X
+                searchBar.focus(); // Trỏ chuột lại vào ô tìm kiếm
+            });
+
+
+            // 3. Khi nhấn nút 'Trước'
             prevButton.addEventListener('click', () => {
                 if (currentPage > 1) {
                     currentPage--;
-                    showPage(currentPage);
+                    showPage(); // Chỉ cần hiển thị lại, không cần lọc
                 }
             });
 
+            // 4. Khi nhấn nút 'Sau'
             nextButton.addEventListener('click', () => {
                 if (currentPage < totalPages) {
                     currentPage++;
-                    showPage(currentPage);
+                    showPage(); // Chỉ cần hiển thị lại, không cần lọc
                 }
             });
 
-            showPage(1);
+            // --- KHỞI CHẠY LẦN ĐẦU ---
+            // Lọc và hiển thị trang 1 khi tải trang
+            runFilterAndPagination();
         });
 
         // Chặn sự kiện nhấp chuột phải
