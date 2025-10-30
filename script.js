@@ -1,11 +1,19 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
+    // --- MỚI: TỔNG HỢP DỮ LIỆU TỪ TẤT CẢ CÁC MẢNG ---
+    const allQaData = [
+        ...generalInfo,
+        ...dtuWebsites,
+        ...fbLinks,
+        ...zaloLinks,
+        ...telegramLinks,
+        ...externalLinks
+    ];
+    // --- KẾT THÚC PHẦN MỚI ---
 
     let searchTimer;
-    const noResultTimeout = 100;
-    const noDataMessage = "Vui lòng liên hệ: <a href='https://t.me/babyhaituoi' target='_blank'>https://t.me/babyhaituoi</a>, <a href='https://t.me/Dai_Hoc_Duy_Tan' target='_blank'>https://t.me/Dai_Hoc_Duy_Tan</a>";
-    const welcomeMessage = ""; // Trống
+    const noResultTimeout = 1;
+    const noDataMessage = "Vui lòng liên hệ: <a href='https://t.me/babyhaituoi' target='_blank'>Telegram</a>, <a href='https://t.me/Dai_Hoc_Duy_Tan' target='_blank'>Bản Tin Đại học Duy Tân</a>";
+    const welcomeMessage = "Nhật Tân chào bạn"; // Trống
 
     const searchInput = document.getElementById("searchInput");
     const resultDisplay = document.getElementById("resultDisplay");
@@ -82,7 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (query === "") return null;
         let matches = [];
         let maxScore = 0;
-        for (const item of qaData) {
+        // *** THAY ĐỔI TẠI ĐÂY ***
+        for (const item of allQaData) { // Đã thay qaData bằng allQaData
             let bestScoreForItem = 0;
             for (const keyword of item.keywords) {
                 const normalizedKeyword = normalizeText(keyword);
@@ -110,7 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function findSuggestions(normalizedQuery) {
         const suggestions = new Set();
         if (normalizedQuery.length < 1) return [];
-        for (const item of qaData) {
+        // *** THAY ĐỔI TẠI ĐÂY ***
+        for (const item of allQaData) { // Đã thay qaData bằng allQaData
             for (const keyword of item.keywords) {
                 const normalizedKeyword = normalizeText(keyword);
                 if (normalizedKeyword.includes(normalizedQuery)) {
@@ -208,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // --- 8. XỬ LÝ CLICK TỪ KHÓA LIÊN QUAN VÀ NÚT COPY (CẬP NHẬT) ---
+    // --- 8. XỬ LÝ CLICK TỪ KHÓA LIÊN QUAN VÀ NÚT COPY ---
     resultDisplay.addEventListener('click', function (event) {
         const target = event.target;
 
@@ -221,34 +231,56 @@ document.addEventListener("DOMContentLoaded", function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // B. Xử lý click nút sao chép (MỚI)
+        // B. Xử lý click nút sao chép
         if (target.classList.contains('copy-card-btn')) {
             handleCopyCard(target);
         }
     });
 
-    // --- 9. HÀM MỚI: XỬ LÝ SAO CHÉP ẢNH THẺ (ĐÃ CẬP NHẬT) ---
+    // --- 9. HÀM MỚI: XỬ LÝ SAO CHÉP ẢNH THẺ (ĐÃ SỬA LỖI LẦN 3) ---
     function handleCopyCard(button) {
-        // === THAY ĐỔI: Tìm thẻ .result-answer, KHÔNG phải .result-item ===
         const card = button.closest('.result-item');
         const answerDivToCapture = card.querySelector('.result-answer');
 
-        if (!answerDivToCapture) return; // Không tìm thấy thẻ answer
-        // === KẾT THÚC THAY ĐỔI ===
+        if (!answerDivToCapture) return;
 
         const originalButtonContent = button.innerHTML;
 
-        // Không cần ẩn nút vì nút nằm ngoài khu vực chụp
-
         // Dùng html2canvas
-        html2canvas(answerDivToCapture, { // <-- THAY ĐỔI: Chụp thẻ answer
+        html2canvas(answerDivToCapture, {
             useCORS: true,
             logging: false,
             scale: 2,
-            backgroundColor: '#ffffff' // THÊM: Đảm bảo ảnh có nền trắng
-        }).then(canvas => {
+            backgroundColor: '#ffffff', // Đảm bảo ảnh có nền trắng
 
-            // Không cần hiện lại nút
+            // === SỬA LỖI TẠI ĐÂY ===
+            onclone: (clonedDocument) => {
+                // 'clonedDocument.body' LÀ 'answerDivToCapture' đã được clone.
+
+                // 1. Lấy tất cả nội dung HTML gốc
+                const originalContentHTML = clonedDocument.body.innerHTML;
+
+                // 2. Tạo một div để GÓI nội dung đó lại
+                const contentWrapper = clonedDocument.createElement('div');
+                contentWrapper.innerHTML = originalContentHTML;
+                // Thêm style để đảm bảo nó hoạt động như một khối
+                contentWrapper.style.position = 'relative';
+                contentWrapper.style.zIndex = '1';
+
+                // 3. Tạo watermark
+                const watermark = clonedDocument.createElement('div');
+                watermark.className = 'watermark-overlay'; // Dùng CSS đã định nghĩa
+                watermark.innerText = 'Bản quyền của Tân';
+                // (CSS 'z-index: 9999' sẽ tự động được áp dụng)
+
+                // 4. Xóa nội dung "hỗn hợp" cũ và chèn cấu trúc mới
+                clonedDocument.body.innerHTML = ''; // Xóa sạch
+                clonedDocument.body.appendChild(contentWrapper); // Thêm gói nội dung
+                clonedDocument.body.appendChild(watermark); // Thêm watermark (đè lên trên)
+            }
+            // === KẾT THÚC SỬA LỖI ===
+
+        }).then(canvas => {
 
             // Chuyển canvas sang Blob (dạng file ảnh)
             canvas.toBlob(function (blob) {
