@@ -168,7 +168,7 @@ const qaData = [
     },
     {
         keywords: ["lịch thi google sheet"],
-        answer: "<strong>Lịch thi (Google Sheet):</strong><br><br><a href='https://docs.google.com/spreadsheets/d/e/2PACX-1vR82IjSr1ilXkONrDOZQ3FkXtaJ0b5n1dfBWs3iWZjKjStL13jXP0QpywwEjonUt8SDFmoBlkelgq3Y/pubhtml' target='_blank'>Xem Google Sheet</a>"
+        answer: "<strong>Lịch thi (Google Sheet):</strong><br><br><a href='httpshttps://docs.google.com/spreadsheets/d/e/2PACX-1vR82IjSr1ilXkONrDOZQ3FkXtaJ0b5n1dfBWs3iWZjKjStL13jXP0QpywwEjonUt8SDFmoBlkelgq3Y/pubhtml' target='_blank'>Xem Google Sheet</a>"
     },
     {
         keywords: ["tra môn học", "tìm môn học", "môn học", "đăng ký tín chỉ", "tìm kiếm môn học"],
@@ -284,7 +284,7 @@ const qaData = [
     },
     {
         keywords: ["gửi file", "transfer.it", "gửi file lớn"],
-        answer: "<strong>Gửi file (Transfer.it):</strong><br><br><a href='https://transfer.it/start' target='_blank'>https://transfer.it/start</a>"
+        answer: "<strong>Gửi file (Transfer.it):</strong><br><br><a href='httpshttps://transfer.it/start' target='_blank'>https://transfer.it/start</a>"
     },
     {
         keywords: ["code", "onecompiler", "lập trình online", "compiler"],
@@ -354,7 +354,7 @@ const qaData = [
     },
     {
         keywords: ["fb tuổi trẻ trường khoa học máy tính", "facebook tuoi tre scs", "cntt.dtu"],
-        answer: "<strong>Facebook Tuổi Trẻ Trường Khoa Học Máy Tính:</strong><br><br><a href='https://www.facebook.com/CNTT.DTU' target='_blank'>https://www.facebook.com/CNTT.DTU</a>"
+        answer: "<strong>Facebook Tuổi Trẻ Trường Khoa Học Máy Tính:</strong><br><br><a href='httpswww.facebook.com/CNTT.DTU' target='_blank'>https://www.facebook.com/CNTT.DTU</a>"
     },
     {
         keywords: ["fb khoa tiếng trung", "facebook khoa tieng trung"],
@@ -362,15 +362,15 @@ const qaData = [
     },
     {
         keywords: ["fb trung tâm ngoại ngữ", "facebook trung tam ngoai ngu"],
-        answer: "<strong>Facebook Trung Tâm Ngoại Ngữ Duy Tân:</strong><br><br><a href='https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang' target='_blank'>https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang</a>"
+        answer: "<strong>Facebook Trung Tâm Ngoại Ngữ Duy Tân:</strong><br><br><a href='httpshttps://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang' target='_blank'>https://www.facebook.com/duytan.luyenthi.toeic.toefl.Danang</a>"
     },
     {
         keywords: ["fb trung tâm tin học", "facebook trung tam tin hoc"],
-        answer: "<strong>Facebook Trung Tâm Tin Học Duy Tân (Group):</strong><br><br><a href='https://www.facebook.com/groups/189204667249513' target='_blank'>https://www.facebook.com/groups/189204667249513</a>"
+        answer: "<strong>Facebook Trung Tâm Tin Học Duy Tân (Group):</strong><br><br><a href='httpshttps://www.facebook.com/groups/189204667249513' target='_blank'>https://www.facebook.com/groups/189204667249513</a>"
     },
     {
         keywords: ["fb khoa quản lý kinh tế việt mỹ psu", "facebook psu"],
-        answer: "<strong>Facebook Khoa Quản lý kinh tế Việt Mỹ- PSU:</strong><br><br><a href='https://www.facebook.com/QuanlykinhteVietMyPSU' target='_blank'>https://www.facebook.com/QuanlykinhteVietMyPSU</a>"
+        answer: "<strong>Facebook Khoa Quản lý kinh tế Việt Mỹ- PSU:</strong><br><br><a href='httpshttps://www.facebook.com/QuanlykinhteVietMyPSU' target='_blank'>https://www.facebook.com/QuanlykinhteVietMyPSU</a>"
     },
     {
         keywords: ["fb tuổi trẻ khoa y", "facebook tuoi tre khoa y"],
@@ -442,8 +442,98 @@ const qaData = [
         keywords: ["zalo chương trình tài năng", "zalo vien ql nam khue"],
         answer: "<strong>Zalo Chương trình Tài năng (Viện QL Nam Khuê):</strong><br><br><a href='https://zalo.me/g/blxzaf771' target='_blank'>https://zalo.me/g/blxzaf771</a>"
     },
+
     {
         keywords: ["zalo chương trình việt nhật", "zalo viet nhat"],
-        answer: "<strong>Zalo Chương trình Việt Nhật:</strong><br><br><a href='https://zalo.me/g/cxpzwr696' target='_blank'>https://zalo.me/g/cxpzwr696</a>"
+        answer: "<strong>Zalo Chương trình Việt Nhật:</strong><br><br><a href='httpshttps://zalo.me/g/cxpzwr696' target='_blank'>https://zalo.me/g/cxpzwr696</a>"
+    },
+
+    {
+        keywords: ["xếp loại học lực", "xếp loại tốt nghiệp", "hạng tốt nghiệp", "loại xuất sắc", "loại giỏi", "loại khá", "trung bình chung tích lũy", "gpa tốt nghiệp"],
+        answer: "<strong>Hạng tốt nghiệp (xếp loại học lực) theo điểm TBCTL (thang 4):</strong><br><br>" +
+            "- Loại xuất sắc: Điểm TBCTL từ 3,6 đến 4<br><br>" +
+            "- Loại giỏi: Điểm TBCTL từ 3,2 đến 3,59<br><br>" +
+            "- Loại khá: Điểm TBCTL từ 2,5 đến 3,19<br><br>" +
+            "- Loại trung bình: Điểm TBCTL từ 2 đến 2,49<br><br>" +
+            "<strong>Lưu ý:</strong> Hạng tốt nghiệp (Xuất sắc, Giỏi) sẽ bị giảm 1 mức nếu:<br>" +
+            "- Khối lượng học phần thi lại/học lại vượt quá 5% tổng tín chỉ.<br>" +
+            "- Bị kỷ luật từ mức cảnh cáo trở lên."
+    },
+    {
+        keywords: ["lưu ý đăng ký học phần", "hướng dẫn đăng ký tín chỉ", "môn tiên quyết", "học cải thiện", "học vượt", "khung chương trình", "cách đăng ký môn"],
+        answer: "<strong>Những điểm cần chú ý khi Đăng ký Học phần:</strong><br><br>" +
+            "- Ưu tiên đăng ký <strong>học phần bắt buộc (môn tiên quyết)</strong> trước.<br><br>" +
+            "- Được phép đăng ký học phần tự chọn, học lại (cải thiện), hoặc học vượt (với khóa trước) nếu không trùng lịch.<br><br>" +
+            "- Nên đăng ký theo <strong>Chương trình học</strong> của mình (xem trên myDTU).<br><br>" +
+            "- Nên tham khảo chức năng <strong>Tìm kiếm Môn học</strong> (<a href='http://courses.duytan.edu.vn' target='_blank'>http://courses.duytan.edu.vn</a>) để sắp xếp lịch dự kiến trước khi đăng ký chính thức trên myDTU.<br><br>" +
+            "- Theo dõi thông báo đăng ký chính thức tại mục Tin tức & Thông báo trên myDTU."
+    },
+    {
+        keywords: ["lỗi đăng ký học phần", "thông báo đăng ký tín chỉ", "đăng ký trùng giờ", "thiếu môn tiên quyết", "điều kiện chặt", "điều kiện lỏng", "không tồn tại lớp học", "không được phép đăng ký", "đăng ký 2 lớp"],
+        answer: "<strong>Các thông báo thường gặp khi đăng ký học phần:</strong><br><br>" +
+            "- <strong>Bạn không được phép đăng ký Lớp...:</strong> Sinh viên chưa được cấp quyền đăng ký.<br><br>" +
+            "- <strong>Bạn không thể đăng ký 2 lớp trong cùng một môn:</strong> Đã đăng ký 1 lớp (LEC, LAB...) của môn đó rồi.<br><br>" +
+            "- <strong>Đăng ký trùng giờ:</strong> Lỗi trùng Tuần học, Thứ học, hoặc Giờ học.<br><br>" +
+            "- <strong>Bạn không thể đăng ký vượt quá X tín chỉ:</strong> Đã đăng ký quá số tín chỉ quy định của học kỳ.<br><br>" +
+            "- <strong>Thiếu môn tiên quyết XYZ:</strong> Phải học môn XYZ trước.<br><br>" +
+            "- <strong>Điều kiện chặt:</strong> Môn tiên quyết phải có điểm ĐẬU.<br><br>" +
+            "- <strong>Điều kiện lỏng:</strong> Môn tiên quyết đang học/chưa có điểm vẫn cho đăng ký.<br><br>" +
+            "- <strong>Không tồn tại Lớp học...:</strong> Nhập sai Mã đăng ký lớp."
+    },
+    {
+        keywords: ["tín chỉ là gì", "khái niệm tín chỉ", "đơn vị tín chỉ", "tín chỉ tích lũy", "tổng số tín chỉ", "1 tín chỉ bao nhiêu giờ", "1 giờ lên lớp"],
+        answer: "<strong>Các khái niệm về Tín chỉ:</strong><br><br>" +
+            "- <strong>Tín chỉ:</strong> Con số thể hiện tầm quan trọng của học phần.<br><br>" +
+            "- <strong>Đơn vị Tín chỉ:</strong> 1 tín chỉ = 1 giờ lên lớp x 15 (tuần) + 1 giờ ôn tập x 1 (tuần) + 1~2 giờ thi cử.<br><br>" +
+            "- <strong>1 giờ lên lớp:</strong> = 50 phút lên lớp + 5~10 phút thảo luận = 60 phút. Đòi hỏi 2-3 giờ chuẩn bị bài ở nhà.<br><br>" +
+            "- <strong>Tín chỉ Tích luỹ:</strong> Tổng số tín chỉ của các học phần Đạt (tính từ đầu khoá) cộng với tín chỉ được công nhận chuyển tiếp.<br><br>" +
+            "- <strong>Tổng số Tín chỉ (CTĐT Đại học):</strong> Ít nhất 120 tín chỉ tích lũy, đào tạo trong 4-5 năm."
+    },
+    {
+        keywords: ["nợ môn", "điểm f", "khi nào rớt môn", "điểm thi kết thúc", "điểm tổng kết", "học lại", "cách tính điểm học phần", "điểm qua môn"],
+        answer: "<strong>Quy định về Điểm và Học lại:</strong><br><br>" +
+            "- Trường hợp Điểm thi kết thúc học phần <strong>dưới 1.0</strong> sẽ bị tính là <strong>nợ môn</strong>.<br><br>" +
+            "- Tổng điểm kết thúc học phần phải <strong>trên 40% (tức 4.0 điểm 10)</strong> thì mới được tính qua môn.<br><br>" +
+            "- Sinh viên nhận <strong>điểm F</strong> nếu:<br>" +
+            "  1. Không tham gia thi kết thúc học phần.<br>" +
+            "  2. Bị kỷ luật đình chỉ thi.<br>" +
+            "  3. Điểm học phần dưới 4.0 (Thang điểm 10).<br><br>" +
+            "- Sinh viên có điểm F (không đạt) <strong>phải đăng ký học lại</strong> học phần đó (hoặc môn tương đương/thay thế) ở các học kỳ sau.<br><br>" +
+            "- Cách tính điểm cho học phần Thực hành, Đồ án, Thực tập không thay đổi."
+    },
+    {
+        keywords: ["mã môn học", "mã số môn", "học kỳ fall", "học kỳ spring", "ý nghĩa mã môn", "mã đăng ký lớp"],
+        answer: "<strong>Ý nghĩa Mã số (Môn) học:</strong><br><br>" +
+            "Thông thường, hai chữ số cuối của Mã số (Môn) thể hiện học kỳ nên học:<br>" +
+            "- Từ <strong>00 đến 49</strong>: Nên học trong Học kỳ I (Fall).<br>" +
+            "- Từ <strong>50 đến 99</strong>: Nên học trong Học kỳ II (Spring).<br><br>" +
+            "Ví dụ: MKT 251 nghĩa là nên học trong Học kỳ II năm thứ 2.<br>" +
+            "<i>Lưu ý: Điều này không bắt buộc và không phải luôn đúng.</i>"
+    },
+    {
+        keywords: ["mã hình thức lớp", "hình thức lớp", "clc là gì", "lec là gì", "lab là gì", "prj là gì", "ý nghĩa mã lớp học", "số giờ học", "số giờ ôn tập", "dis", "fld", "grp", "ind", "int", "rea", "rec", "sem", "ses", "slf", "std", "sup", "tut", "vol", "wor", "col", "con", "dem"],
+        answer: "<strong>Giải thích các Mã Hình Thức Lớp (dựa trên Phụ lục B):</strong><br><br>" +
+            "<strong>CLC - Lâm Sàng:</strong><br>- Mô tả: Thực tập/thực hành trực tiếp với bệnh nhân.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>COL - Hội Thảo Chuyên Đề:</strong><br>- Mô tả: Hội họp với sự góp mặt của nhiều người có nhiều kinh nghiệm thực tế.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>CON - Đối Thoại:</strong><br>- Mô tả: Thực hành đối thoại ngôn ngữ/ngoại ngữ.<br>- Chi tiết: 30 giờ học, 2 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>DEM - Biểu Diễn:</strong><br>- Mô tả: Học qua quan sát biểu diễn hay mô phỏng của giảng viên.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>DIS - Thảo Luận:</strong><br>- Mô tả: Hỏi đáp giữa sinh viên/học viên với giảng viên.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>FLD - Dã Ngoại:</strong><br>- Mô tả: Học qua tham quan/dã ngoại ngoài lớp học.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>GRP - Học Nhóm:</strong><br>- Mô tả: Học nhóm theo hướng dẫn của giảng viên.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>IND - Tự Nghiên Cứu:</strong><br>- Mô tả: Tự nghiên cứu và phát triển.<br>- Chi tiết: 36 giờ học (không có giờ ôn tập/thi).<br><br>" +
+            "<strong>INT - Thực Tập:</strong><br>- Mô tả: Làm việc ở các doanh nghiệp, cơ quan, tổ chức thực tế.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>LAB - Thực Hành \\ Thí Nghiệm:</strong><br>- Mô tả: Thực hành trong phòng thí nghiệm.<br>- Chi tiết: 30 giờ học, 2 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>LEC - Giảng Lý Thuyết:</strong><br>- Mô tả: Nghe giảng lý thuyết.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>PRJ - Đồ Án:</strong><br>- Mô tả: Học qua việc làm đồ án/dự án.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>REA - Đọc:</strong><br>- Mô tả: Học qua tự đọc hay đọc theo hướng dẫn.<br>- Chi tiết: 48 giờ học (không có giờ ôn tập/thi).<br><br>" +
+            "<strong>REC - Ôn Tập:</strong><br>- Mô tả: Ôn tập lại những kiến thức đã học trong các hình thức lớp khác (thường là lý thuyết).<br>- Chi tiết: 16 giờ học (không có giờ ôn tập/thi).<br><br>" +
+            "<strong>SEM - Seminar:</strong><br>- Mô tả: Hội họp.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>SES - Trình Bày \\ Thảo Luận:</strong><br>- Mô tả: Trình bày nội dung và ngay sau đó, thảo luận về nội dung đó.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>SLF - Tự Học:</strong><br>- Mô tả: Tự học theo những yêu cầu cụ thể (ví dụ qua việc làm danh sách bài học).<br>- Chi tiết: 32 giờ học (không có giờ ôn tập/thi).<br><br>" +
+            "<strong>STD - Studio:</strong><br>- Mô tả: Thực hành hoặc làm đồ án trong Studio(s).<br>- Chi tiết: 30 giờ học, 2 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>SUP - Bổ Trợ:</strong><br>- Mô tả: Học thêm hoặc ôn tập thêm.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>TUT - Phụ Đạo:</strong><br>- Mô tả: Một người phụ đạo cho một hoặc một số người khác.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>VOL - Tình Nguyện:</strong><br>- Mô tả: Tự nguyện tham gia.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
+            "<strong>WOR - Workshop:</strong><br>- Mô tả: Thực hành qua việc trực tiếp làm một việc gì đó, với sự góp mặt của nhiều người khác.<br>- Chi tiết: 30 giờ học, 2 giờ ôn tập, 1-2 giờ thi."
     }
 ];
