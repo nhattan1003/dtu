@@ -1,3 +1,5 @@
+// script.js (ĐÃ CẬP NHẬT HOÀN CHỈNH VỚI BỘ ĐẾM)
+
 document.addEventListener("DOMContentLoaded", function () {
     // --- MỚI: TỔNG HỢP DỮ LIỆU TỪ TẤT CẢ CÁC MẢNG ---
     const allQaData = [
@@ -7,13 +9,19 @@ document.addEventListener("DOMContentLoaded", function () {
         ...zaloLinks,
         ...telegramLinks,
         ...externalLinks
+        // (Nếu bạn thêm mảng mới, chỉ cần thêm vào đây)
     ];
     // --- KẾT THÚC PHẦN MỚI ---
+
+    // --- BỔ SUNG: BIẾN CHO BỘ ĐẾM ---
+    const totalCount = allQaData.length; // Tự động đếm tổng số lượng
+    const counterDisplay = document.getElementById("resultCounter"); // Lấy thẻ đếm
+    // --- KẾT THÚC BỔ SUNG ---
 
     let searchTimer;
     const noResultTimeout = 1;
     const noDataMessage = "Vui lòng liên hệ: <a href='https://t.me/babyhaituoi' target='_blank'>Telegram</a>, <a href='https://t.me/Dai_Hoc_Duy_Tan' target='_blank'>Bản Tin Đại học Duy Tân</a>";
-    const welcomeMessage = "Nhật Tân chào bạn"; // Trống
+    const welcomeMessage = "Nhật Tân chào bạn";
 
     const searchInput = document.getElementById("searchInput");
     const resultDisplay = document.getElementById("resultDisplay");
@@ -21,6 +29,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const suggestionsWrapper = document.getElementById("suggestionsWrapper");
 
     let suggestionActiveIndex = -1;
+
+    // --- BỔ SUNG: HÀM CẬP NHẬT BỘ ĐẾM ---
+    /**
+     * Cập nhật văn bản của bộ đếm.
+     * @param {number | null} count - Số lượng hiển thị. Nếu là null, sẽ dùng totalCount.
+     */
+    function updateCounter(count) {
+        if (count !== null) {
+            counterDisplay.textContent = `${count} kết quả`;
+        } else {
+            // Mặc định (hoặc khi xóa trống), hiển thị tổng
+            counterDisplay.textContent = `Tổng: ${totalCount}`;
+        }
+    }
+    // Đặt giá trị ban đầu khi tải trang
+    updateCounter(null);
+    // --- KẾT THÚC BỔ SUNG ---
 
     // --- 1. CHỨC NĂNG NÚT X ---
     clearButton.addEventListener("click", function () {
@@ -31,6 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
         suggestionsWrapper.style.display = "none";
         suggestionActiveIndex = -1;
         clearTimeout(searchTimer);
+
+        // --- BỔ SUNG ---
+        updateCounter(null); // Reset về tổng
+        // --- KẾT THÚC BỔ SUNG ---
     });
 
     // --- 2. TÌM KIẾM TỰ ĐỘNG VÀ GỢI Ý ---
@@ -59,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         .map(kw => `<span class='related-keyword-tag'>${kw}</span>`)
                         .join('');
 
-                    // Thêm nút sao chép vào HTML của thẻ (Không thay đổi)
                     return `
                         <div class="result-item">
                             <button class="copy-card-btn" title="Chụp ảnh thẻ này">📋</button>
@@ -72,15 +100,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }).join('');
                 resultDisplay.innerHTML = formattedAnswer;
+
+                // --- BỔ SUNG ---
+                updateCounter(bestMatches.length); // Cập nhật số lượng tìm thấy
+                // --- KẾT THÚC BỔ SUNG ---
+
             } else {
                 resultDisplay.innerHTML = "Xin lỗi, tôi không tìm thấy thông tin cho từ khóa: '<strong>" + query + "</strong>'. Vui lòng thử lại.";
                 searchTimer = setTimeout(() => {
                     resultDisplay.innerHTML = noDataMessage;
                 }, noResultTimeout);
+
+                // --- BỔ SUNG ---
+                updateCounter(0); // Cập nhật là 0
+                // --- KẾT THÚC BỔ SUNG ---
             }
         } else {
             clearButton.style.display = "none";
             resultDisplay.innerHTML = welcomeMessage;
+
+            // --- BỔ SUNG ---
+            updateCounter(null); // Reset về tổng
+            // --- KẾT THÚC BỔ SUNG ---
         }
     });
 
@@ -90,8 +131,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (query === "") return null;
         let matches = [];
         let maxScore = 0;
-        // *** THAY ĐỔI TẠI ĐÂY ***
-        for (const item of allQaData) { // Đã thay qaData bằng allQaData
+
+        for (const item of allQaData) {
             let bestScoreForItem = 0;
             for (const keyword of item.keywords) {
                 const normalizedKeyword = normalizeText(keyword);
@@ -119,8 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function findSuggestions(normalizedQuery) {
         const suggestions = new Set();
         if (normalizedQuery.length < 1) return [];
-        // *** THAY ĐỔI TẠI ĐÂY ***
-        for (const item of allQaData) { // Đã thay qaData bằng allQaData
+
+        for (const item of allQaData) {
             for (const keyword of item.keywords) {
                 const normalizedKeyword = normalizeText(keyword);
                 if (normalizedKeyword.includes(normalizedQuery)) {
@@ -130,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return Array.from(suggestions).slice(0, 10);
     }
+
     function displaySuggestions(suggestions, query) {
         suggestionsWrapper.innerHTML = "";
         if (suggestions.length === 0) {
@@ -152,6 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         suggestionsWrapper.style.display = "block";
     }
+
     function selectSuggestion(keyword) {
         searchInput.value = keyword;
         suggestionsWrapper.style.display = "none";
@@ -159,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         searchInput.focus();
     }
+
     function updateSuggestionHighlight() {
         const items = suggestionsWrapper.querySelectorAll('.suggestion-item');
         items.forEach((item, index) => {
@@ -253,32 +297,19 @@ document.addEventListener("DOMContentLoaded", function () {
             scale: 2,
             backgroundColor: '#ffffff', // Đảm bảo ảnh có nền trắng
 
-            // === SỬA LỖI TẠI ĐÂY ===
             onclone: (clonedDocument) => {
-                // 'clonedDocument.body' LÀ 'answerDivToCapture' đã được clone.
-
-                // 1. Lấy tất cả nội dung HTML gốc
                 const originalContentHTML = clonedDocument.body.innerHTML;
-
-                // 2. Tạo một div để GÓI nội dung đó lại
                 const contentWrapper = clonedDocument.createElement('div');
                 contentWrapper.innerHTML = originalContentHTML;
-                // Thêm style để đảm bảo nó hoạt động như một khối
                 contentWrapper.style.position = 'relative';
                 contentWrapper.style.zIndex = '1';
-
-                // 3. Tạo watermark
                 const watermark = clonedDocument.createElement('div');
                 watermark.className = 'watermark-overlay'; // Dùng CSS đã định nghĩa
                 watermark.innerText = 'Bản quyền của Tân';
-                // (CSS 'z-index: 9999' sẽ tự động được áp dụng)
-
-                // 4. Xóa nội dung "hỗn hợp" cũ và chèn cấu trúc mới
                 clonedDocument.body.innerHTML = ''; // Xóa sạch
                 clonedDocument.body.appendChild(contentWrapper); // Thêm gói nội dung
                 clonedDocument.body.appendChild(watermark); // Thêm watermark (đè lên trên)
             }
-            // === KẾT THÚC SỬA LỖI ===
 
         }).then(canvas => {
 
@@ -319,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
             button.innerHTML = '❌';
             setTimeout(() => {
                 button.innerHTML = originalButtonContent;
-            }, 2000);
+            }, S000);
         });
     }
 
