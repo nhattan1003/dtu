@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nhật Tân</title>
+    <title>Tư vấn</title>
     <link rel="icon" href="logo.png" type="image/png">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -63,7 +63,8 @@
         #searchInput {
             width: 100%;
             padding: 12px 15px;
-            padding-right: 40px;
+            padding-right: 130px;
+            /* CŨ: 40px */
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 6px;
@@ -149,8 +150,6 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-
-            /* THÊM POSITION RELATIVE (Vẫn giữ) */
             position: relative;
         }
 
@@ -165,7 +164,8 @@
             line-height: 1.7;
             flex-grow: 1;
             overflow-wrap: break-word;
-            hyphens: auto;
+            /* === LỖI ĐÃ ĐƯỢC SỬA: ĐÃ XÓA DÒNG 'hyphens: auto;' === */
+            position: relative;
         }
 
         .result-answer a {
@@ -270,12 +270,10 @@
             opacity: 0.5;
             transition: opacity 0.2s, background-color 0.2s, transform 0.1s;
             z-index: 10;
-            /* Nằm trên */
         }
 
         .result-item:hover .copy-card-btn {
             opacity: 1;
-            /* Hiện rõ khi hover thẻ */
         }
 
         .copy-card-btn:hover {
@@ -284,10 +282,45 @@
 
         .copy-card-btn:active {
             transform: scale(0.9);
-            /* Hiệu ứng nhấn */
         }
 
-        /* === THAY ĐỔI: Đã xóa lớp .hide-for-capture vì không cần nữa === */
+        /* === THÊM MỚI: CSS CHO LỚP WATERMARK === */
+        /* Lớp này sẽ được JS thêm vào phần tử CLONE, không ảnh hưởng trang web */
+        .watermark-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            /* Xoay chéo */
+            color: #000;
+            font-size: 24px;
+            /* Kích cỡ chữ */
+            font-weight: 700;
+            /* Đậm */
+            opacity: 0.15;
+            /* Độ mờ */
+            pointer-events: none;
+            /* Không thể click */
+            white-space: nowrap;
+            /* Không xuống dòng */
+            z-index: 9999;
+        }
+
+        /* CSS CHO BỘ ĐẾM MỚI */
+        #resultCounter {
+            position: absolute;
+            right: 45px;
+            /* Vị trí bên trái nút X (5px + 30px + 10px) */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 0.9em;
+            font-weight: 500;
+            pointer-events: none;
+            /* Cho phép click xuyên qua */
+            white-space: nowrap;
+            /* Đảm bảo không bị xuống dòng */
+        }
     </style>
 </head>
 
@@ -300,6 +333,7 @@
             <div class="input-wrapper">
                 <input type="text" id="searchInput" placeholder="Vui lòng nhập từ khóa bạn muốn tìm:..."
                     autocomplete="off" autofocus>
+                <span id="resultCounter"></span>
                 <button id="clearButton" title="Xóa">×</button>
                 <div id="suggestionsWrapper"></div>
             </div>
@@ -315,4 +349,3 @@
 </body>
 
 </html>
-
