@@ -230,27 +230,27 @@ const qaData = [
     // --- CÁC MỤC TELEGRAM (ĐÃ CẬP NHẬT TỪ INDEX.HTML) ---
 
     {
-        keywords: ["bản tin", "tin tức", "bản tin đại học duy tân", "thông báo", "tin tức dtu"],
+        keywords: ["bản tin", "tin tức", "bản tin đại học duy tân", "thông báo", "tin tức dtu", "telegram"],
         answer: "<strong>📣 Tin tức DTU (Telegram):</strong><br><br>" +
             "<a href='https://t.me/Dai_Hoc_Duy_Tan' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["tài liệu dtu", "tài liệu môn học dtu", "tai lieu dtu"],
+        keywords: ["tài liệu dtu", "tài liệu môn học dtu", "tai lieu dtu", "telegram"],
         answer: "<strong>📘 Tài liệu môn học DTU (Telegram):</strong><br><br>" +
             "<a href='https://t.me/tai_lieu_DTU' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["chat", "kênh chat", "trò chuyện", "hỏi đáp", "giao lưu", "chém gió"],
+        keywords: ["chat", "kênh chat", "trò chuyện", "hỏi đáp", "giao lưu", "chém gió", "telegram"],
         answer: "<strong>💬 Giao lưu (Telegram):</strong><br><br>" +
             "<a href='https://t.me/trochuyencungdtu' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["hướng dẫn telegram", "hd telegram", "hướng dẫn sử dụng an toàn"],
+        keywords: ["hướng dẫn telegram", "hd telegram", "hướng dẫn sử dụng telegram an toàn", "telegram"],
         answer: "<strong>💡 Hướng dẫn sử dụng an toàn (Telegram):</strong><br><br>" +
             "<a href='https://t.me/huongdandungtelegram' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["tân", "admin", "liên hệ admin", "babyhaituoi", "ban quản trị", "bqt"],
+        keywords: ["tân", "admin", "liên hệ admin", "babyhaituoi", "ban quản trị", "bqt", "telegram"],
         answer: "<strong>Ban Quản Trị (Tân):</strong><br><br>" +
             "<a href='https://t.me/babyhaituoi' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
