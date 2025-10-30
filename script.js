@@ -1,7 +1,4 @@
-// script.js (ĐÃ CẬP NHẬT HOÀN CHỈNH VỚI BỘ ĐẾM)
-
 document.addEventListener("DOMContentLoaded", function () {
-    // --- MỚI: TỔNG HỢP DỮ LIỆU TỪ TẤT CẢ CÁC MẢNG ---
     const allQaData = [
         ...generalInfo,
         ...dtuWebsites,
@@ -11,12 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
         ...externalLinks
         // (Nếu bạn thêm mảng mới, chỉ cần thêm vào đây)
     ];
-    // --- KẾT THÚC PHẦN MỚI ---
 
-    // --- BỔ SUNG: BIẾN CHO BỘ ĐẾM ---
-    const totalCount = allQaData.length; // Tự động đếm tổng số lượng
-    const counterDisplay = document.getElementById("resultCounter"); // Lấy thẻ đếm
-    // --- KẾT THÚC BỔ SUNG ---
+    const totalCount = allQaData.length;
+    const counterDisplay = document.getElementById("resultCounter");
 
     let searchTimer;
     const noResultTimeout = 1;
@@ -30,24 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let suggestionActiveIndex = -1;
 
-    // --- BỔ SUNG: HÀM CẬP NHẬT BỘ ĐẾM ---
-    /**
-     * Cập nhật văn bản của bộ đếm.
-     * @param {number | null} count - Số lượng hiển thị. Nếu là null, sẽ dùng totalCount.
-     */
     function updateCounter(count) {
         if (count !== null) {
             counterDisplay.textContent = `${count} kết quả`;
         } else {
-            // Mặc định (hoặc khi xóa trống), hiển thị tổng
             counterDisplay.textContent = `Tổng: ${totalCount}`;
         }
     }
-    // Đặt giá trị ban đầu khi tải trang
     updateCounter(null);
-    // --- KẾT THÚC BỔ SUNG ---
 
-    // --- 1. CHỨC NĂNG NÚT X ---
     clearButton.addEventListener("click", function () {
         searchInput.value = "";
         clearButton.style.display = "none";
@@ -56,20 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
         suggestionsWrapper.style.display = "none";
         suggestionActiveIndex = -1;
         clearTimeout(searchTimer);
-
-        // --- BỔ SUNG ---
-        updateCounter(null); // Reset về tổng
-        // --- KẾT THÚC BỔ SUNG ---
+        updateCounter(null);
     });
 
-    // --- 2. TÌM KIẾM TỰ ĐỘNG VÀ GỢI Ý ---
     searchInput.addEventListener("input", function () {
         clearTimeout(searchTimer);
         const query = searchInput.value;
         const normalizedQuery = normalizeText(query);
         suggestionActiveIndex = -1;
 
-        // A. XỬ LÝ GỢI Ý
         if (normalizedQuery.length > 0) {
             const suggestions = findSuggestions(normalizedQuery);
             displaySuggestions(suggestions, query);
@@ -77,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
             suggestionsWrapper.style.display = "none";
         }
 
-        // B. XỬ LÝ TÌM KIẾM
         if (query.length > 0) {
             clearButton.style.display = "block";
             const bestMatches = performSearch();
@@ -100,32 +79,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }).join('');
                 resultDisplay.innerHTML = formattedAnswer;
-
-                // --- BỔ SUNG ---
-                updateCounter(bestMatches.length); // Cập nhật số lượng tìm thấy
-                // --- KẾT THÚC BỔ SUNG ---
+                updateCounter(bestMatches.length);
 
             } else {
                 resultDisplay.innerHTML = "Xin lỗi, tôi không tìm thấy thông tin cho từ khóa: '<strong>" + query + "</strong>'. Vui lòng thử lại.";
                 searchTimer = setTimeout(() => {
                     resultDisplay.innerHTML = noDataMessage;
                 }, noResultTimeout);
-
-                // --- BỔ SUNG ---
-                updateCounter(0); // Cập nhật là 0
-                // --- KẾT THÚC BỔ SUNG ---
+                updateCounter(0);
             }
         } else {
             clearButton.style.display = "none";
             resultDisplay.innerHTML = welcomeMessage;
-
-            // --- BỔ SUNG ---
-            updateCounter(null); // Reset về tổng
-            // --- KẾT THÚC BỔ SUNG ---
+            updateCounter(null);
         }
     });
 
-    // --- 3. HÀM TÌM KIẾM ĐÁP ÁN ---
     function performSearch() {
         const query = normalizeText(searchInput.value);
         if (query === "") return null;
@@ -156,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return bestMatches;
     }
 
-    // --- 4. HÀM GỢI Ý ---
     function findSuggestions(normalizedQuery) {
         const suggestions = new Set();
         if (normalizedQuery.length < 1) return [];
@@ -215,7 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // --- 5. HÀM CHUẨN HÓA ---
     function normalizeText(text) {
         return text.toLowerCase()
             .normalize("NFD")
@@ -223,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .trim();
     }
 
-    // --- 6. ẨN GỢI Ý KHI NHẤP RA NGOÀI ---
     document.addEventListener("click", function (event) {
         if (event.target !== searchInput && !suggestionsWrapper.contains(event.target)) {
             suggestionsWrapper.style.display = "none";
@@ -231,7 +197,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // --- 7. XỬ LÝ NHẤN PHÍM ---
     searchInput.addEventListener("keydown", function (event) {
         const items = suggestionsWrapper.querySelectorAll('.suggestion-item');
         if (suggestionsWrapper.style.display === 'none' || items.length === 0) return;
@@ -262,11 +227,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // --- 8. XỬ LÝ CLICK TỪ KHÓA LIÊN QUAN VÀ NÚT COPY ---
     resultDisplay.addEventListener('click', function (event) {
         const target = event.target;
 
-        // A. Xử lý click tag từ khóa
         if (target.classList.contains('related-keyword-tag')) {
             const keyword = target.textContent;
             searchInput.value = keyword;
@@ -275,15 +238,15 @@ document.addEventListener("DOMContentLoaded", function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // B. Xử lý click nút sao chép
         if (target.classList.contains('copy-card-btn')) {
             handleCopyCard(target);
         }
     });
 
-    // --- 9. HÀM MỚI: XỬ LÝ SAO CHÉP ẢNH THẺ (ĐÃ SỬA LỖI LẦN 3) ---
+    // --- HÀM XỬ LÝ SAO CHÉP ẢNH THẺ (ĐÃ CẬP NHẬT THEO YÊU CẦU MỚI) ---
     function handleCopyCard(button) {
         const card = button.closest('.result-item');
+        // Chỉ target phần nội dung câu trả lời (result-answer)
         const answerDivToCapture = card.querySelector('.result-answer');
 
         if (!answerDivToCapture) return;
@@ -296,21 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
             logging: false,
             scale: 2,
             backgroundColor: '#ffffff', // Đảm bảo ảnh có nền trắng
-
-            onclone: (clonedDocument) => {
-                const originalContentHTML = clonedDocument.body.innerHTML;
-                const contentWrapper = clonedDocument.createElement('div');
-                contentWrapper.innerHTML = originalContentHTML;
-                contentWrapper.style.position = 'relative';
-                contentWrapper.style.zIndex = '1';
-                const watermark = clonedDocument.createElement('div');
-                watermark.className = 'watermark-overlay'; // Dùng CSS đã định nghĩa
-                watermark.innerText = 'Bản quyền của Tân';
-                clonedDocument.body.innerHTML = ''; // Xóa sạch
-                clonedDocument.body.appendChild(contentWrapper); // Thêm gói nội dung
-                clonedDocument.body.appendChild(watermark); // Thêm watermark (đè lên trên)
-            }
-
+            // === KHỐI onclone ĐỂ THÊM WATERMARK ĐÃ BỊ LOẠI BỎ HOÀN TOÀN ===
         }).then(canvas => {
 
             // Chuyển canvas sang Blob (dạng file ảnh)
@@ -350,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
             button.innerHTML = '❌';
             setTimeout(() => {
                 button.innerHTML = originalButtonContent;
-            }, S000);
+            }, 2000);
         });
     }
 
