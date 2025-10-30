@@ -84,8 +84,10 @@ const qaData = [
             "- Sinh viên đăng ký hoặc được đăng ký trên 21 tín chỉ: Đóng học phí 16 tín chỉ (cho 21 tín chỉ đầu tiên) cộng với học phí cho số tín chỉ dôi trên 21 tín chỉ, theo đơn giá tín chỉ của từng chương trình."
     },
     {
-        keywords: ["nộp học phí sai", "ghi nhầm thông tin", "chuyển khoản sai", "hỗ trợ học phí", "sai nội dung", "điều chỉnh thông tin học phí", "tài chính"],
-        answer: "Trường hợp sinh viên nộp học phí nhưng ghi thông tin sai/nhầm thì liên hệ Phòng Kế hoạch tài chính theo số điện thoại: 0236.3816875 – 0236.3816874 hoặc trực tiếp đến địa chỉ 137 Nguyễn Văn Linh để được hỗ trợ điều chỉnh thông tin."
+        keywords: ["nộp học phí sai", "ghi nhầm thông tin", "chuyển khoản sai", "hỗ trợ học phí", "sai nội dung", "điều chỉnh thông tin học phí", "tài chính", "không ghi nội dung"],
+        answer: "Nếu bạn <strong>quên, sai hoặc thiếu nội dung</strong> khi chuyển khoản, bạn cần xử lý theo các bước sau:<br><br>" +
+            "<strong>Bước 1:</strong> Đến ngân hàng của bạn (nơi bạn đã dùng để chuyển tiền) và yêu cầu <strong>điều chỉnh lại nội dung</strong> chuyển khoản cho chính xác.<br><br>" +
+            "<strong>Bước 2:</strong> Sau khi ngân hàng xác nhận đã điều chỉnh, bạn hãy mang theo biên lai hoặc xác nhận đó đến <strong>Phòng Tài chính</strong> để được hỗ trợ."
     },
     {
         keywords: ["hồ sơ nhập học", "cần giấy tờ gì", "hồ sơ", "giấy tờ"],
@@ -296,7 +298,7 @@ const qaData = [
     },
     {
         keywords: ["gửi file", "transfer.it", "gửi file lớn"],
-        answer: "<strong>Gửi file (Transfer.it):</strong><br><br><a href='httpshttps://transfer.it/start' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+        answer: "<strong>Gửi file:</strong><br><br><a href='httpshttps://transfer.it/start' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
         keywords: ["code", "onecompiler", "lập trình online", "compiler"],
