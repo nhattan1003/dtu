@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     let searchTimer;
-    const noResultTimeout = 3000;
+    const noResultTimeout = 100;
     const noDataMessage = "Vui lòng liên hệ: <a href='https://t.me/babyhaituoi' target='_blank'>https://t.me/babyhaituoi</a>, <a href='https://t.me/Dai_Hoc_Duy_Tan' target='_blank'>https://t.me/Dai_Hoc_Duy_Tan</a>";
     const welcomeMessage = ""; // Trống
 
@@ -50,14 +50,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     const keywordsHtml = match.keywords
                         .map(kw => `<span class='related-keyword-tag'>${kw}</span>`)
                         .join('');
+
+                    // Thêm nút sao chép vào HTML của thẻ (Không thay đổi)
                     return `
                         <div class="result-item">
+                            <button class="copy-card-btn" title="Chụp ảnh thẻ này">📋</button>
                             <div class="result-answer">${match.answer}</div>
                             <div class="result-keywords">
                                 <strong>Từ khóa liên quan:</strong>
                                 ${keywordsHtml}
                             </div>
                         </div>`;
+
                 }).join('');
                 resultDisplay.innerHTML = formattedAnswer;
             } else {
@@ -204,46 +208,87 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // --- 8. XỬ LÝ CLICK TỪ KHÓA LIÊN QUAN ---
+    // --- 8. XỬ LÝ CLICK TỪ KHÓA LIÊN QUAN VÀ NÚT COPY (CẬP NHẬT) ---
     resultDisplay.addEventListener('click', function (event) {
-        if (event.target.classList.contains('related-keyword-tag')) {
-            const keyword = event.target.textContent;
+        const target = event.target;
+
+        // A. Xử lý click tag từ khóa
+        if (target.classList.contains('related-keyword-tag')) {
+            const keyword = target.textContent;
             searchInput.value = keyword;
             searchInput.dispatchEvent(new Event('input', { bubbles: true }));
             searchInput.focus();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // B. Xử lý click nút sao chép (MỚI)
+        if (target.classList.contains('copy-card-btn')) {
+            handleCopyCard(target);
+        }
     });
 
-    // --- 9. HÀM MỚI: ẨN/HIỆN HEADER KHI CUỘN (ĐÃ AN TOÀN HƠN) ---
-    const headerContainer = document.querySelector('.header-container');
+    // --- 9. HÀM MỚI: XỬ LÝ SAO CHÉP ẢNH THẺ (ĐÃ CẬP NHẬT) ---
+    function handleCopyCard(button) {
+        // === THAY ĐỔI: Tìm thẻ .result-answer, KHÔNG phải .result-item ===
+        const card = button.closest('.result-item');
+        const answerDivToCapture = card.querySelector('.result-answer');
 
-    // *** THAY ĐỔI: Thêm kiểm tra 'if' để tránh lỗi ***
-    if (headerContainer) {
-        let lastScrollTop = 0;
-        // Lấy chiều cao header sau khi DOM render xong
-        const headerHeight = headerContainer.offsetHeight;
+        if (!answerDivToCapture) return; // Không tìm thấy thẻ answer
+        // === KẾT THÚC THAY ĐỔI ===
 
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const originalButtonContent = button.innerHTML;
 
-            if (Math.abs(scrollTop - lastScrollTop) <= headerHeight / 4) {
-                return;
-            }
+        // Không cần ẩn nút vì nút nằm ngoài khu vực chụp
 
-            if (scrollTop > lastScrollTop && scrollTop > headerHeight * 2) {
-                // Cuộn xuống -> Ẩn Header
-                headerContainer.classList.add('header-hidden');
-            } else {
-                // Cuộn lên -> Hiện Header
-                headerContainer.classList.remove('header-hidden');
-            }
+        // Dùng html2canvas
+        html2canvas(answerDivToCapture, { // <-- THAY ĐỔI: Chụp thẻ answer
+            useCORS: true,
+            logging: false,
+            scale: 2,
+            backgroundColor: '#ffffff' // THÊM: Đảm bảo ảnh có nền trắng
+        }).then(canvas => {
 
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        }, false);
-    } else {
-        // Báo lỗi nếu không tìm thấy header (để bạn biết nếu HTML bị sai)
-        console.error("Lỗi: Không tìm thấy '.header-container' trong tệp HTML.");
+            // Không cần hiện lại nút
+
+            // Chuyển canvas sang Blob (dạng file ảnh)
+            canvas.toBlob(function (blob) {
+                if (blob) {
+                    try {
+                        // Dùng Clipboard API để copy ảnh
+                        navigator.clipboard.write([
+                            new ClipboardItem({
+                                'image/png': blob
+                            })
+                        ]);
+
+                        // Phản hồi thành công
+                        button.innerHTML = '✅'; // Đã copy!
+                        setTimeout(() => {
+                            button.innerHTML = originalButtonContent;
+                        }, 2000);
+
+                    } catch (error) {
+                        console.error('Lỗi khi sao chép vào clipboard:', error);
+                        alert('Không thể sao chép. Lỗi: ' + error.message);
+                        button.innerHTML = '❌'; // Lỗi
+                        setTimeout(() => {
+                            button.innerHTML = originalButtonContent;
+                        }, 2000);
+                    }
+                } else {
+                    alert('Không thể tạo ảnh.');
+                }
+            }, 'image/png');
+
+        }).catch(err => {
+            // Xử lý nếu html2canvas thất bại
+            console.error('html2canvas thất bại:', err);
+            alert('Không thể chụp ảnh thẻ. Lỗi: ' + err.message);
+            button.innerHTML = '❌';
+            setTimeout(() => {
+                button.innerHTML = originalButtonContent;
+            }, 2000);
+        });
     }
 
 }); // Hết DOMContentLoaded
