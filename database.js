@@ -68,6 +68,26 @@ const qaData = [
             "- Chiều: 13g00 - 17g00 (Thứ 2 - Chủ Nhật)"
     },
     {
+        keywords: ["học phí chương trình thông thường", "tín chỉ thông thường", "cách tính học phí thông thường", "cách tính học phí"],
+        answer: "<i>Ghi chú: Đơn giá 1 tín chỉ = Học phí học kì 1 (gốc chưa miễn giảm) chia cho 16.</i><br><br>" +
+            "<strong>Học phí theo Số/Khung Tín chỉ Đăng ký (Chương trình thông thường):</strong><br><br>" +
+            "- Sinh viên đăng ký hoặc được đăng ký từ 14 tín chỉ đến 19 tín chỉ: Đóng học phí 16 tín chỉ, theo đơn giá tín chỉ của từng chương trình.<br><br>" +
+            "- Sinh viên đăng ký hoặc được đăng ký dưới 14 tín chỉ: Đóng học phí theo đúng số tín chỉ đăng ký, theo đơn giá tín chỉ của từng chương trình.<br><br>" +
+            "- Sinh viên đăng ký hoặc được đăng ký trên 19 tín chỉ: Đóng học phí 16 tín chỉ (cho 19 tín chỉ đầu tiên) cộng với học phí cho số tín chỉ dôi trên 19 tín chỉ, theo đơn giá tín chỉ của từng chương trình."
+    },
+    {
+        keywords: ["học phí chương trình tiên tiến", "tín chỉ tiên tiến", "cách tính học phí quốc tế", "cách tính học phí"],
+        answer: "<i>Ghi chú: Đơn giá 1 tín chỉ = Học phí học kì 1 (gốc chưa miễn giảm) chia cho 16.</i><br><br>" +
+            "<strong>Học phí theo Số/Khung Tín chỉ Đăng ký (Chương trình Tiên tiến quốc tế):</strong><br><br>" +
+            "- Sinh viên đăng ký hoặc được đăng ký từ 14 tín chỉ đến 21 tín chỉ: Đóng học phí 16 tín chỉ, theo đơn giá tín chỉ của từng chương trình.<br><br>" +
+            "- Sinh viên đăng ký hoặc được đăng ký dưới 14 tín chỉ: Đóng học phí theo đúng số tín chỉ đăng ký, theo đơn giá tín chỉ của từng chương trình.<br><br>" +
+            "- Sinh viên đăng ký hoặc được đăng ký trên 21 tín chỉ: Đóng học phí 16 tín chỉ (cho 21 tín chỉ đầu tiên) cộng với học phí cho số tín chỉ dôi trên 21 tín chỉ, theo đơn giá tín chỉ của từng chương trình."
+    },
+    {
+        keywords: ["nộp học phí sai", "ghi nhầm thông tin", "chuyển khoản sai", "hỗ trợ học phí", "sai nội dung", "điều chỉnh thông tin học phí", "tài chính"],
+        answer: "Trường hợp sinh viên nộp học phí nhưng ghi thông tin sai/nhầm thì liên hệ Phòng Kế hoạch tài chính theo số điện thoại: 0236.3816875 – 0236.3816874 hoặc trực tiếp đến địa chỉ 137 Nguyễn Văn Linh để được hỗ trợ điều chỉnh thông tin."
+    },
+    {
         keywords: ["hồ sơ nhập học", "cần giấy tờ gì", "hồ sơ", "giấy tờ"],
         answer: "<strong>Hồ sơ nhập học cần chuẩn bị:</strong><br><br>" +
             "- Bản chính Giấy báo Trúng tuyển...<br><br>" +
@@ -179,6 +199,11 @@ const qaData = [
             "- Hướng dẫn khai báo ngoại trú sinh viên: <a href='https://t.me/Dai_Hoc_Duy_Tan/176' target='_blank'>Nhấp nhẹ thôi kẻo ra</a><br><br>" +
             "- Hướng dẫn đánh giá rèn luyện sinh viên: <a href='https://t.me/Dai_Hoc_Duy_Tan/181' target='_blank'>Nhấp nhẹ thôi kẻo ra</a><br><br>" +
             "- Quy định Đánh giá rèn luyện: <a href='https://t.me/Dai_Hoc_Duy_Tan/186' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["tra cứu hộ gia đình", "tra cứu mã số BHXH", "tra cứu BHXH", "tra cứu BHYT", "tra cứu thông tin hộ gia đình", "tra cứu bảo hiểm xã hội", "bhyt", "tra cứu bhyt"],
+        answer: "Trang tra cứu thông tin hộ gia đình (để tra cứu mã số Bảo hiểm xã hội) của Cổng thông tin điện tử Bảo hiểm xã hội Việt Nam.<br><br>" +
+            "Link truy cập: https://baohiemxahoi.gov.vn/tracuu/Pages/tra-cuu-ho-gia-dinh.aspx"
     },
     {
         keywords: ["số tài khoản", "stk", "tài khoản ngân hàng", "chuyển khoản", "học phí", "lệ phí", "bảo hiểm y tế", "bảo hiểm", "bhyt"],
