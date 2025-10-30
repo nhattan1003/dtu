@@ -108,7 +108,7 @@ const qaData = [
     {
         keywords: ["mydtu", "cổng thông tin", "trang sinh viên", "đăng nhập mydtu", "signin"],
         answer: "<strong>Hệ thống myDTU:</strong><br><br>" +
-            "- Trang myDTU: <a href='https://mydtu.duytan.edu.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+            "<a href='https://mydtu.duytan.edu.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
         keywords: ["hướng dẫn đăng nhập mydtu", "hd dang nhap mydtu", "hdsd"],
