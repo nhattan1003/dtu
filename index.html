@@ -12,26 +12,28 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background-color: mistyrose;
             margin: 0;
+            /* THAY ĐỔI: Khôi phục padding cũ */
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
             box-sizing: border-box;
-
-            /* Cấm 100% thanh cuộn ngang */
             overflow-x: hidden;
         }
 
         /* 2. Thẻ (card) màu trắng ở giữa */
         .container {
-            max-width: 1100px;
-            width: 100%;
+            max-width: 1600px;
+            width: 95%;
+            /* THAY ĐỔI: Khôi phục margin cũ để căn giữa (không dính) */
             margin: 20px auto;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-sizing: border-box;
         }
+
+        /* --- ĐÃ XÓA CSS .header-container --- */
 
         /* 3. Tiêu đề */
         h1 {
@@ -39,13 +41,6 @@
             text-align: center;
             margin-top: 0;
             font-size: 28px;
-        }
-
-        p {
-            text-align: center;
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 25px;
         }
 
         /* 4. Hộp tìm kiếm */
@@ -94,42 +89,132 @@
             background-color: #f0f0f0;
         }
 
-        /* 5. Khu vực kết quả */
+        /* CSS CHO GỢI Ý TÌM KIẾM (Không đổi) */
+        #suggestionsWrapper {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggestion-item {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover,
+        .suggestion-item.suggestion-active {
+            background-color: #f0f0f0;
+        }
+
+        .suggestion-item strong {
+            color: #c00;
+            font-weight: bold;
+        }
+
+        /* 5. Khu vực kết quả (Grid Container) */
         #resultDisplay {
-            margin-top: 20px;
-            padding: 20px;
+            margin-top: 10px;
             border-radius: 6px;
             min-height: 50px;
             line-height: 1.6;
             color: #333;
-            /* Ưu tiên 4 cột */
-            column-width: 220px;
-            column-gap: 20px;
+            display: grid;
+            gap: 20px;
+
+            /* THAY ĐỔI: Mặc định là 1 cột (Mobile-first) */
+            grid-template-columns: 1fr;
         }
 
-        /* 6. Kiểu cho mỗi mục kết quả */
-        /* 6. Kiểu cho mỗi mục kết quả */
+        /* 6. Kiểu cho mỗi mục kết quả (Grid Item) */
         .result-item {
-            break-inside: avoid-column;
-            /* Ngăn 1 item bị ngắt làm đôi */
-            padding-bottom: 10px;
-            display: block;
-            width: 100%;
+            padding: 0;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
 
-            /* --- THÊM MỚI: Cho phép bẻ gãy từ dài --- */
+        /* Cột Trái (Nội dung) */
+        .result-answer {
+            padding: 15px;
+            flex-grow: 1;
             overflow-wrap: break-word;
             hyphens: auto;
         }
 
-        strong {
-            color: #d9534f;
+        /* Cột Phải (Từ khóa) */
+        .result-keywords {
+            padding: 10px 15px;
+            background-color: #fdfdfd;
+            border-top: 1px solid #f0f0f0;
+            font-size: 0.9em;
+            color: #555;
+            flex-shrink: 0;
         }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background: #eee;
-            margin: 25px 0;
+        .result-keywords strong {
+            color: #c00;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .related-keyword-tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin: 2px;
+            font-family: monospace;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .related-keyword-tag:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Media Query (chia 2 cột trong card) */
+        @media (min-width: 600px) {
+            .result-item {
+                flex-direction: row;
+            }
+
+            .result-answer {
+                flex-basis: 70%;
+            }
+
+            .result-keywords {
+                flex-basis: 30%;
+                border-top: none;
+                border-left: 1px solid #f0f0f0;
+            }
+        }
+
+        /* THAY ĐỔI: Media Query MỚI (chia lưới card) */
+        /* Chỉ chia nhiều cột card khi màn hình đủ rộng */
+        @media (min-width: 768px) {
+            #resultDisplay {
+                /* Áp dụng lưới tự động chia cột khi màn hình lớn */
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            }
+        }
+
+        strong {
+            color: #d9534f;
         }
     </style>
 </head>
@@ -137,20 +222,18 @@
 <body>
 
     <div class="container">
+
         <h1>Tra Cứu Thông Tin Đại học Duy Tân</h1>
         <div class="search-box">
             <div class="input-wrapper">
                 <input type="text" id="searchInput" placeholder="Vui lòng nhập từ khóa bạn muốn tìm:..."
                     autocomplete="off" autofocus>
                 <button id="clearButton" title="Xóa">×</button>
+                <div id="suggestionsWrapper"></div>
             </div>
         </div>
 
-        <hr>
-
-        <h2>Kết quả:</h2>
         <div id="resultDisplay">
-            Chào bạn. Vui lòng nhập từ khóa để tra cứu thông tin.
         </div>
     </div>
 
@@ -158,6 +241,5 @@
     <script src="script.js"></script>
 
 </body>
-
 
 </html>
