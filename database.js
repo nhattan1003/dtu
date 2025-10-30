@@ -201,11 +201,6 @@ const qaData = [
             "- Quy định Đánh giá rèn luyện: <a href='https://t.me/Dai_Hoc_Duy_Tan/186' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["tra cứu hộ gia đình", "tra cứu mã số BHXH", "tra cứu BHXH", "tra cứu BHYT", "tra cứu thông tin hộ gia đình", "tra cứu bảo hiểm xã hội", "bhyt", "tra cứu bhyt"],
-        answer: "Trang tra cứu thông tin hộ gia đình (để tra cứu mã số Bảo hiểm xã hội) của Cổng thông tin điện tử Bảo hiểm xã hội Việt Nam.<br><br>" +
-            "Link truy cập: https://baohiemxahoi.gov.vn/tracuu/Pages/tra-cuu-ho-gia-dinh.aspx"
-    },
-    {
         keywords: ["số tài khoản", "stk", "tài khoản ngân hàng", "chuyển khoản", "học phí", "lệ phí", "bảo hiểm y tế", "bảo hiểm", "bhyt"],
         answer: "<strong>Danh sách tài khoản chính thức của Đại học Duy Tân:</strong><br><br>" +
 
@@ -362,6 +357,10 @@ const qaData = [
     {
         keywords: ["thời tiết", "windy", "bão"],
         answer: "<strong>Bản đồ thời tiết:</strong><br><br><a href='https://www.windy.com' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["tra cứu hộ gia đình", "tra cứu mã số BHXH", "tra cứu BHXH", "tra cứu BHYT", "tra cứu thông tin hộ gia đình", "tra cứu bảo hiểm xã hội", "bhyt", "tra cứu bhyt"],
+        answer: "<strong>Bảo hiểm:</strong><br><br><a href='https://baohiemxahoi.gov.vn/tracuu/Pages/tra-cuu-ho-gia-dinh.aspx' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
 
     // Danh sách các tiện ích
