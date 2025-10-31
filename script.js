@@ -67,10 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         .map(kw => `<span class='related-keyword-tag'>${kw}</span>`)
                         .join('');
 
+                    // === THAY ĐỔI Ở ĐÂY ===
+                    // Tự động xóa tất cả các thuộc tính target='_blank'
+                    const cleanAnswer = match.answer.replace(/target='_blank'/g, "");
+
                     return `
                         <div class="result-item">
-                            <button class="copy-card-btn" title="Chụp ảnh thẻ này">📋</button>
-                            <div class="result-answer">${match.answer}</div>
+                            <button class="copy-card-btn" title="Chụp ảnh thẻ này">📋</button>                           
+                            <div class="result-answer">${cleanAnswer}</div>
                             <div class="result-keywords">
                                 <strong>Từ khóa liên quan:</strong>
                                 ${keywordsHtml}
