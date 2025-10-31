@@ -1,5 +1,3 @@
-
-
 // 1. Thông tin & Quy định chung
 const generalInfo = [
     {
@@ -580,6 +578,34 @@ const externalLinks = [
     {
         keywords: ["chatperplexity", "chat perplexity", "perplexity", "AI"],
         answer: "<strong>Perplexity:</strong><br><br><a href='https://www.perplexity.ai/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["chatgrok", "chat grok", "grok", "AI"],
+        answer: "<strong>Grok:</strong><br><br><a href='https://grok.com/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["chatclaude", "chat claude", "claude", "AI"],
+        answer: "<strong>Claude:</strong><br><br><a href='https://claude.ai/new' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["copilot", "microsoft copilot", "copilot.microsoft.com", "AI"],
+        answer: "<strong>Copilot:</strong><br><br><a href='https://copilot.microsoft.com/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["iask", "iask.ai", "iask ai", "AI"],
+        answer: "<strong>iAsk.ai:</strong><br><br><a href='https://iask.ai/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["deepai", "deepai.org", "deep ai", "AI"],
+        answer: "<strong>DeepAI:</strong><br><br><a href='https://deepai.org/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["poe", "poe.com", "poe ai", "AI"],
+        answer: "<strong>Poe:</strong><br><br><a href='https://poe.com/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["meta", "meta ai", "www.meta.ai", "AI"],
+        answer: "<strong>Meta AI:</strong><br><br><a href='https://www.meta.ai/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
         keywords: ["dịch", "Google dịch", "gg dịch"],
