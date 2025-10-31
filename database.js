@@ -486,6 +486,11 @@ const telegramLinks = [
         keywords: ["tân", "admin", "liên hệ admin", "babyhaituoi", "ban quản trị", "bqt", "telegram"],
         answer: "<strong>Ban Quản Trị (Tân):</strong><br><br>" +
             "<a href='https://t.me/babyhaituoi' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["kênh", "dtu", "bản tin", "đại học duy tân"],
+        answer: "<strong>Bản Tin Đại học Duy Tân trong telegram</strong><br><br>" +
+            "<a href='https://t.me/s/Dai_Hoc_Duy_Tan' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     }
 ];
 
