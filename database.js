@@ -168,6 +168,27 @@ const generalInfo = [
             "<i>Lưu ý: Điều này không bắt buộc và không phải luôn đúng.</i>"
     },
     {
+        keywords: [
+            "ttgv", "giảng viên", "tìm gv", "thông tin gv", "cách tìm gv", "gv dtu", "gv duy tân", "gv mydtu", "gv google", "tìm giảng viên", "xem thông tin giảng viên", "thông tin giảng viên"],
+        answer: "<strong>Thông tin giảng viên </strong><br><br>" +
+            "<strong>Cách 1: Tìm trong MyDTU</strong><br>" +
+            "Bước 1: Vào website <strong>Mydtu</strong><br>" +
+            "Bước 2: <strong>Đăng nhập</strong> tài khoản Mydtu<br>" +
+            "Bước 3: Chọn <strong>Học tập</strong><br>" +
+            "Bước 4: Chọn '<strong>Đề cương Môn học</strong>' hoặc '<strong>Đề thi, Bài tập</strong>'<br>" +
+            "<i>Bước 5: Chọn <strong>năm học</strong> và <strong>học kì</strong> tương ứng</i>" +
+            "<br><br><hr><br>" +
+            "<strong>Cách 2: Tìm trên Google</strong><br>" +
+            "Bước 1: Mở trình duyệt web (vd: Google Chrome, Cốc Cốc).<br>" +
+            "Bước 2: Gõ vào thanh tìm kiếm theo cú pháp: <br>" +
+            "<strong>[Họ và tên giảng viên]</strong> + <strong>DTU</strong><br>" +
+            "<i>(Ví dụ: Nguyễn Minh Nhật DTU)</i><br>" +
+            "Bước 3: Hoặc gõ theo cú pháp:<br>" +
+            "<strong>[Họ và tên giảng viên]</strong> + <strong>Đại học Duy Tân</strong><br>" +
+            "<i>(Ví dụ: Nguyễn Minh Nhật Đại học Duy Tân)</i><br>" +
+            "Bước 4: Nhấn Enter và xem các kết quả tìm kiếm."
+    },
+    {
         keywords: ["mã hình thức lớp", "hình thức lớp", "clc là gì", "lec là gì", "lab là gì", "prj là gì", "ý nghĩa mã lớp học", "số giờ học", "số giờ ôn tập", "dis", "fld", "grp", "ind", "int", "rea", "rec", "sem", "ses", "slf", "std", "sup", "tut", "vol", "wor", "col", "con", "dem"],
         answer: "<strong>Giải thích các Mã Hình Thức Lớp (dựa trên Phụ lục B):</strong><br><br>" +
             "<strong>CLC - Lâm Sàng:</strong><br>- Mô tả: Thực tập/thực hành trực tiếp với bệnh nhân.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
