@@ -1,3 +1,4 @@
+
 // 1. Thông tin & Quy định chung
 const generalInfo = [
     {
@@ -245,6 +246,10 @@ const dtuWebsites = [
     {
         keywords: ["khoa cntt", "khoa công nghệ thông tin", "kcntt"],
         answer: "<strong>Khoa CNTT:</strong><br><br><a href='https://kcntt.duytan.edu.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["kthp", "lịch thi", "thi", "lịch thi kthp", "kết thúc học phần", "thi cuối kỳ", "thi học kỳ"],
+        answer: "<strong>Khoa CNTT:</strong><br><br><a href='https://nhattan2032810-hue.github.io/lichthidtu/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     }
 ];
 
