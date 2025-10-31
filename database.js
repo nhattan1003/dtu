@@ -149,12 +149,11 @@ const generalInfo = [
     {
         keywords: ["nợ môn", "điểm f", "khi nào rớt môn", "điểm thi kết thúc", "điểm tổng kết", "học lại", "cách tính điểm học phần", "điểm qua môn"],
         answer: "<strong>Quy định về Điểm và Học lại:</strong><br><br>" +
-            "- Trường hợp Điểm thi kết thúc học phần <strong>dưới 1.0</strong> sẽ bị tính là <strong>nợ môn</strong>.<br><br>" +
-            "- Tổng điểm kết thúc học phần phải <strong>trên 40% (tức 4.0 điểm 10)</strong> thì mới được tính qua môn.<br><br>" +
-            "- Sinh viên nhận <strong>điểm F</strong> nếu:<br>" +
-            "  1. Không tham gia thi kết thúc học phần.<br>" +
+            "     Sinh viên nhận <strong>điểm F</strong> nếu:<br>" +
+            "  1.  <strong> Không tham gia thi</strong> kết thúc học phần.<br>" +
             "  2. Bị kỷ luật đình chỉ thi.<br>" +
-            "  3. Điểm học phần dưới 4.0 (Thang điểm 10).<br><br>" +
+            "  3. Trường hợp Điểm thi kết thúc học phần <strong>dưới 1.0</strong> sẽ bị tính là <strong>nợ môn</strong>.<br>" +
+            "  4. Tổng điểm kết thúc học phần phải <strong>trên 40% (tức 4.0 điểm 10)</strong> thì mới được tính qua môn.<br><br>" +
             "- Sinh viên có điểm F (không đạt) <strong>phải đăng ký học lại</strong> học phần đó (hoặc môn tương đương/thay thế) ở các học kỳ sau.<br><br>" +
             "- Cách tính điểm cho học phần Thực hành, Đồ án, Thực tập không thay đổi."
     },
