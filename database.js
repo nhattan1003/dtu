@@ -1,4 +1,5 @@
 
+
 // 1. Thông tin & Quy định chung
 const generalInfo = [
     {
@@ -229,7 +230,7 @@ const dtuWebsites = [
             "<a href='https://mydtu.duytan.edu.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["tra danh sách thi", "xem lịch thi", "phòng thi", "danh sách thi", "ds thi"],
+        keywords: ["tra danh sách thi", "phòng thi", "danh sách thi", "ds thi"],
         answer: "<strong>Tra cứu danh sách thi:</strong><br><br>" +
             "- Tra danh sách thi 1: <a href='https://pdaotao.duytan.edu.vn/Search/Default.aspx?lang=VN' target='_blank'>Nhấp nhẹ thôi kẻo ra</a><br><br>" +
             "- Tra danh sách thi 2: <a href='https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
@@ -248,7 +249,7 @@ const dtuWebsites = [
         answer: "<strong>Khoa CNTT:</strong><br><br><a href='https://kcntt.duytan.edu.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["kthp", "lịch thi", "thi", "lịch thi kthp", "kết thúc học phần", "thi cuối kỳ", "thi học kỳ"],
+        keywords: ["kthp", "lịch thi", "thi", "lịch thi kthp", "kết thúc học phần", "thi cuối kỳ", "thi học kỳ", "xem lịch thi"],
         answer: "<strong>Lịch Thi KTHP:</strong><br><br><a href='https://nhattan2032810-hue.github.io/lichthidtu/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     }
 ];
