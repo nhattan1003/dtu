@@ -498,6 +498,11 @@ const externalLinks = [
             "- Tài liệu Docx: <a href='https://docx.com.vn/dai-hoc-duy-tan' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
+        keywords: ["tnt"],
+        answer: "<strong>Nhật Tân:</strong><br><br>" +
+            "<a href='https://nhattan28.github.io/nhattan' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
         keywords: ["việc làm", "thực tập", "job", "intern", "realjobs"],
         answer: "<strong>Trang Việc làm - Thực tập (RealJobs):</strong><br><br>" +
             "<a href='https://realjobs.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
