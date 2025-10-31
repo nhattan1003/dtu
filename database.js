@@ -249,7 +249,7 @@ const dtuWebsites = [
     },
     {
         keywords: ["kthp", "lịch thi", "thi", "lịch thi kthp", "kết thúc học phần", "thi cuối kỳ", "thi học kỳ"],
-        answer: "<strong>Khoa CNTT:</strong><br><br><a href='https://nhattan2032810-hue.github.io/lichthidtu/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+        answer: "<strong>Lịch Thi KTHP:</strong><br><br><a href='https://nhattan2032810-hue.github.io/lichthidtu/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     }
 ];
 
