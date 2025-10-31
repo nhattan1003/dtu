@@ -251,6 +251,10 @@ const dtuWebsites = [
     {
         keywords: ["kthp", "lịch thi", "thi", "lịch thi kthp", "kết thúc học phần", "thi cuối kỳ", "thi học kỳ", "xem lịch thi"],
         answer: "<strong>Lịch Thi KTHP:</strong><br><br><a href='https://nhattan2032810-hue.github.io/lichthidtu/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["ảnh", "ảnh thẻ", "ảnh thẻ sinh viên", "chụp ảnh thẻ", "ảnh sv"],
+        answer: "<strong>Ảnh thẻ:</strong><br><br><a href='https://babymottuoi.github.io/anhthesvdtu/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     }
 ];
 
