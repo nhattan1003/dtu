@@ -1,3 +1,4 @@
+
 // 1. Thông tin & Quy định chung
 const generalInfo = [
     {
@@ -514,7 +515,7 @@ const telegramLinks = [
     },
     {
         keywords: ["chongluadao", "cld"],
-        answer: "<strong>Chongluadao.vn - Report Status</strong><br><br>" +
+        answer: "<strong>Telegram Chongluadao.vn - Report Status</strong><br><br>" +
             "<a href='https://t.me/s/cld_report' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     }
 ];
@@ -559,8 +560,8 @@ const externalLinks = [
         answer: "<strong>Nhận xét giảng viên (Google Sheet):</strong><br><br><a href='https://docs.google.com/spreadsheets/d/1XSEGx49YiOg-8oi2QFZux6e5RyULRtkB9yuRPCQZKr4/edit?usp=sharing' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["chống lừa đảo", "chong luu dao"],
-        answer: "<strong>Chống lừa đảo:</strong><br><br><a href='https://chongluadao.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+        keywords: ["chống lừa đảo", "chong luu dao", "chongluadao"],
+        answer: "<strong>Chống lừa đảo website:</strong><br><br><a href='https://chongluadao.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
         keywords: ["camera", "camera đà nẵng", "camera da nang"],
@@ -661,5 +662,13 @@ const externalLinks = [
     {
         keywords: ["AdGuard AdBlocker", "chặn quảng cáo", "quảng cáo", "chặn qc"],
         answer: "<strong>Chặn quảng cáo:</strong><br><br><a href='https://chromewebstore.google.com/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg?hl=vi' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["cắt file PDF", "pdf"],
+        answer: "<strong>Cắt file PDF:</strong><br><br><a href='https://smallpdf.com/vi/cat-pdf' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        keywords: ["pdf"],
+        answer: "<strong>Smallpdf:</strong><br><br><a href='https://smallpdf.com/vi' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     }
 ];
