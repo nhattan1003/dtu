@@ -1,4 +1,3 @@
-
 // 1. Thông tin & Quy định chung
 const generalInfo = [
     {
@@ -189,6 +188,24 @@ const generalInfo = [
             "Bước 4: Nhấn Enter và xem các kết quả tìm kiếm."
     },
     {
+        "keywords": ["kiểm tra", "kiểm tra giữa kỳ", "kiểm tra cuối kỳ", "ktck", "ktgk", "thi kết thúc học phần", "quy định thi", "thi tập trung", "thi tại lớp", "cấm khi thi", "giấy tờ thi"],
+        "answer": "<strong>Quy định về Thi cử và Kiểm tra:</strong><br><br>" +
+            "<strong>1. Kiểm tra Giữa kỳ (KTGK):</strong><br>" +
+            " - Hình thức và lịch thi do <span style='color: #0056b3;'>Giảng viên giảng dạy</span> toàn quyền quyết định và thông báo trực tiếp tại lớp.<br><br>" +
+            "<strong>2. Thi Cuối kỳ (CK) / Kết thúc Học phần (KTHP):</strong><br>" +
+            " - <strong>Thi tại lớp:</strong> Một số môn học sẽ thi tại lớp, do Giảng viên tổ chức.<br>" +
+            " - <strong>Thi tập trung:</strong> Đa số các môn sẽ thi tập trung theo lịch của Phòng Đào tạo. Sinh viên cần <span style='color: #0056b3;'>tra cứu danh sách thi</span> để biết phòng thi. <br>" +
+            " &nbsp; &nbsp; - <i>Quy mô:</i> Thường gồm 24-25 sinh viên/phòng, 2 giám thị, cùng thanh tra ngoài hành lang và giám sát camera.<br><br>" +
+            "<strong>3. Quy định BẮT BUỘC khi đi thi:</strong><br>" +
+            " - <strong>Giấy tờ tùy thân:</strong><br>" +
+            " &nbsp; &nbsp; - <span style='color: #D9534F;'>BẮT BUỘC</span> mang <span style='color: #0056b3;'>Thẻ sinh viên</span>. Sinh viên phải tháo khẩu trang khi vào phòng thi để giám thị đối chiếu.<br>" +
+            " &nbsp; &nbsp; - <i>Trường hợp mất/quên Thẻ SV:</i> Có thể dùng thay thế tạm thời: <span style='color: #0056b3;'>Căn cước Công dân (CCCD)</span> hoặc <span style='color: #0056b3;'>Bằng lái xe</span>.<br>" +
+            " &nbsp; &nbsp; - <i>Trường hợp không có giấy tờ:</i> Phải lập tức đến <span style='color: #D9534F;'>Phòng Hội đồng thi</span> để làm thủ tục xác minh danh tính trước giờ thi.<br>" +
+            " - <strong>Vật dụng CẤM:</strong><br>" +
+            " &nbsp; &nbsp; - <span style='color: #D9534F;'>NGHIÊM CẤM</span> mang vào phòng thi: <span style='color: #D9534F;'>Điện thoại di động, Đồng hồ thông minh (Smartwatch)</span>, và bất kỳ thiết bị, tài liệu gian lận nào khác.<br>" +
+            " &nbsp; &nbsp; - <strong>Xử lý vi phạm:</strong> Mọi trường hợp vi phạm sẽ bị <span style='color: #D9534F;'>lập biên bản và nhận điểm 0 (RỚT MÔN)</span> ngay lập tức."
+    },
+    {
         keywords: ["mã hình thức lớp", "hình thức lớp", "clc là gì", "lec là gì", "lab là gì", "prj là gì", "ý nghĩa mã lớp học", "số giờ học", "số giờ ôn tập", "dis", "fld", "grp", "ind", "int", "rea", "rec", "sem", "ses", "slf", "std", "sup", "tut", "vol", "wor", "col", "con", "dem"],
         answer: "<strong>Giải thích các Mã Hình Thức Lớp (dựa trên Phụ lục B):</strong><br><br>" +
             "<strong>CLC - Lâm Sàng:</strong><br>- Mô tả: Thực tập/thực hành trực tiếp với bệnh nhân.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
@@ -249,10 +266,74 @@ const dtuWebsites = [
             "<a href='https://mydtu.duytan.edu.vn/' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
     },
     {
-        keywords: ["tra danh sách thi", "phòng thi", "danh sách thi", "ds thi"],
-        answer: "<strong>Tra cứu danh sách thi:</strong><br><br>" +
-            "- Tra danh sách thi 1: <a href='https://pdaotao.duytan.edu.vn/Search/Default.aspx?lang=VN' target='_blank'>Nhấp nhẹ thôi kẻo ra</a><br><br>" +
-            "- Tra danh sách thi 2: <a href='https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+        "keywords": ["tra danh sách thi", "phòng thi", "danh sách thi", "ds thi", "xem phòng thi", "lịch thi"],
+        "answer": "<strong>Hướng dẫn Tra cứu Danh sách thi và Phòng thi:</strong><br><br>" +
+            "<strong>Link tra cứu:</strong><br>" +
+            " - <strong>Link chính:</strong> <a href='https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN' target='_blank'>Trang tra cứu Danh sách thi (Phòng Đào tạo)</a><br>" +
+            " - Link dự phòng: <a href='https://pdaotao.duytan.edu.vn/Search/Default.aspx?lang=VN' target='_blank'>Trang tra cứu (Dự phòng)</a><br><br>" +
+            "<strong>Các bước thực hiện:</strong><br>" +
+            "<strong>Bước 1:</strong> Sinh viên truy cập vào link <a href='https://pdaotao.duytan.edu.vn/EXAM_LIST/Default.aspx?lang=VN' target='_blank'>Phòng Đào tạo</a>.<br>" +
+            "<strong>Bước 2:</strong> Tìm <span style='color: #0056b3;'>Mã môn học</span> và <span style='color: #0056b3;'>Tên môn học</span> tương ứng với lịch thi của bạn.<br>" +
+            "<strong>Bước 3:</strong> Nhấn vào tên môn học và <span style='color: #D9534F;'>tải file danh sách đính kèm</span> (thường là file Excel hoặc PDF) về để xem phòng thi.<br><br>" +
+            "<strong>Giải thích dòng thông tin:</strong><br>" +
+            "<i>Ví dụ: LAW 362 - Thuế Nhà Nước (08:23 17/10/2025)</i><br>" +
+            " - <span style='color: #0056b3;'>LAW 362</span>: Mã môn học.<br>" +
+            " - <span style='color: #0056b3;'>Thuế Nhà Nước</span>: Tên môn học.<br>" +
+            " - <span style='color: #0056b3;'>(08:23 17/10/2025)</span>: Ngày và giờ file danh sách thi được tải lên hệ thống."
+    },
+    {
+        "keywords": ["lịch học", "cách đọc lịch học", "đọc phòng học", "giải thích lịch học"],
+        "answer": "<strong>Cách đọc Thông tin trên Lịch học:</strong><br><br>" +
+            "<strong>Ví dụ:</strong> <span style='color: #0056b3;'>ENG 129 M | Speaking - Level 1 (International School) | P. 503, K7/25 Quang Trung</span><br><br>" +
+            "<strong>Giải thích:</strong><br>" +
+            " - <span style='color: #0056b3;'>ENG 129</span>: Mã môn học.<br>" +
+            " - <span style='color: #0056b3;'>M</span>: Mã lớp học (Lớp M).<br>" +
+            " - <span style='color: #0056b3;'>Speaking - Level 1 (International School)</span>: Tên môn học.<br>" +
+            " - <span style='color: #0056b3;'>P. 503</span>: Phòng học. Chữ số đầu tiên là Tầng, các chữ số sau là số phòng. (Ví dụ: P. 503 = <span style='color: #D9534F;'>Tầng 5, Phòng 03</span>).<br>" +
+            " - <span style='color: #0056b3;'>K7/25 Quang Trung</span>: Địa điểm/Tên cơ sở học."
+    },
+    {
+        "keywords": ["xem lịch học", "giải thích lịch học", "lịch học mydtu", "lịch học online", "lịch học trực tiếp", "lịch học zoom", "mydtu", "màu lịch học", "màu vàng", "màu xanh lá", "màu xanh dương"],
+        "answer": "<strong>Hướng dẫn Xem Lịch học trên MyDTU:</strong><br><br>" +
+            "<strong>Bước 1:</strong> Đăng nhập vào tài khoản sinh viên tại website <a href='https://mydtu.duytan.edu.vn/' target='_blank'>mydtu.duytan.edu.vn</a>.<br>" +
+            "<strong>Bước 2:</strong> Trên giao diện chính, chọn mục <span style='color: #0056b3;'>'Lịch'</span> (Schedule) và chọn thẻ <span style='color: #0056b3;'>'Lịch học'</span> (Course Schedule).<br>" +
+            "<strong>Bước 3:</strong> Phân biệt hình thức học theo màu sắc:<br>" +
+            " &nbsp; &nbsp; - <span style='color: #DAA520;'>Màu vàng (Yellow):</span> Lớp học trực tiếp (Offline) tại giảng đường.<br>" +
+            " &nbsp; &nbsp; - <span style='color: #90EE90;'>Màu xanh lá (Light Green):</span> Lớp Học Trực Tuyến (Giảng viên và Sinh viên cùng Dạy/Học Online ở Nhà). Sinh viên cần <span style='color: #D9534F;'>có mặt trước 5-10 phút</span>.<br>" +
+            " &nbsp; &nbsp; - <span style='color: #ADD8E6;'>Màu xanh dương (Light Blue):</span> Lớp Học Tập Trung & Trực Tuyến (Giảng viên dạy tại Trường, Sinh viên học Online ở Nhà). Sinh viên cần <span style='color: #D9534F;'>có mặt trước 5-10 phút</span>.<br><br>" +
+            "<strong>Lưu ý quan trọng:</strong><br>" +
+            " - Lịch học có thể <span style='color: #D9534F;'>thay đổi đột xuất không báo trước</span>. Thay đổi (nếu có) sẽ cập nhật sau khoảng 1 giờ.<br>" +
+            " - Sinh viên có trách nhiệm <span style='color: #D9534F;'>tự kiểm tra lịch học hàng ngày</span> để đảm bảo thông tin chính xác. Nhà trường không chịu trách nhiệm cho các trường hợp sinh viên nhầm/quên lịch do không kiểm tra."
+    },
+    {
+        "keywords": ["cách vào thư viện", "nội quy thư viện", "sử dụng thư viện", "tủ đồ thư viện", "vào thư viện"],
+        "answer": "<strong>Quy trình Sử dụng Thư viện:</strong><br><br>" +
+            "<strong>Bước 1:</strong> Xuất trình <span style='color: #0056b3;'>Thẻ sinh viên</span> cho cán bộ thư viện tại quầy lễ tân và nhận chìa khóa tủ đồ.<br>" +
+            "<strong>Bước 2:</strong> Cất đồ dùng cá nhân (ba lô, túi xách) vào tủ đồ theo đúng nơi quy định.<br>" +
+            "<strong>Bước 3:</strong> Tuân thủ nội quy: <span style='color: #D9534F;'>Không mang đồ ăn, thức uống (trừ nước lọc chai có nắp)</span> vào khu vực thư viện.<br><br>" +
+            "<strong>Lưu ý khi ra về:</strong><br>" +
+            " - Dọn dẹp sạch sẽ chỗ ngồi.<br>" +
+            " - Lấy lại đầy đủ đồ dùng cá nhân và trả chìa khóa tủ đồ.<br>" +
+            " - Nhận lại Thẻ sinh viên tại quầy lễ tân.<br>" +
+            " - <span style='color: #D9534F;'>Không tự ý mang tài liệu của thư viện ra khỏi cửa</span> khi chưa được sự cho phép của cán bộ."
+    },
+    {
+        "keywords": ["mã môn học", "mã số môn", "học kỳ fall", "học kỳ spring", "ý nghĩa mã môn", "mã đăng ký lớp"],
+        "answer": "<strong>Ý nghĩa Mã số (Môn) học:</strong><br><br>" +
+            "Thông thường, hai chữ số cuối của Mã số (Môn) thể hiện học kỳ khuyến nghị:<br>" +
+            "- Từ <span style='color: #0056b3;'>00 đến 49</span>: Khuyến nghị học trong Học kỳ I (Fall).<br>" +
+            "- Từ <span style='color: #0056b3;'>50 đến 99</span>: Khuyến nghị học trong Học kỳ II (Spring).<br><br>" +
+            "<strong>Ví dụ:</strong> MKT 251 nghĩa là môn học khuyến nghị cho <span style='color: #0056b3;'>Học kỳ II năm thứ 2</span>.<br>" +
+            "<i>Lưu ý: <span style='color: #D9534F;'>Điều này không bắt buộc</span> và chỉ mang tính chất tham khảo.</i>"
+    },
+    {
+        "keywords": ["thuê sách", "mua sách", "mượn sách", "thư viện mượn sách", "thủ tục mượn sách"],
+        "answer": "<strong>Hướng dẫn Thuê/Mua sách tại Thư viện:</strong><br><br>" +
+            "<strong>Bước 1:</strong> Đến quầy thủ thư tại Thư viện.<br>" +
+            "<strong>Bước 2:</strong> Xuất trình <span style='color: #0056b3;'>Thẻ sinh viên</span> còn hiệu lực.<br>" +
+            "<strong>Bước 3:</strong> Cung cấp thông tin sách cần thuê hoặc mua (tên sách, mã sách, ...).<br>" +
+            "<strong>Bước 4:</strong> Thanh toán và ký giấy tờ liên quan. <br> &nbsp; &nbsp; - <i>Đối với thuê sách:</i> Sinh viên thanh toán <span style='color: #0056b3;'>tiền thuê + tiền cọc (bằng giá sách)</span>. Tiền cọc sẽ được hoàn lại khi sinh viên trả sách đúng hạn và sách không bị hư hỏng.<br><br>" +
+            "<strong>Lưu ý:</strong> Sinh viên cần <span style='color: #D9534F;'>đọc kỹ thời hạn thuê/trả sách</span> trên phiếu và <span style='color: #D9534F;'>giữ gìn phiếu cẩn thận</span> để làm thủ tục trả sách."
     },
     {
         keywords: ["tra môn học", "tìm môn học", "môn học", "đăng ký tín chỉ", "tìm kiếm môn học"],
