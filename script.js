@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultDisplay = document.getElementById("resultDisplay");
     const clearButton = document.getElementById("clearButton");
     const suggestionsWrapper = document.getElementById("suggestionsWrapper");
+    const donateModal = document.getElementById("donateModal");
+    const closeModalBtn = document.querySelector(".modal-close-btn");
 
     let suggestionActiveIndex = -1;
 
@@ -48,6 +50,12 @@ document.addEventListener("DOMContentLoaded", function () {
         clearTimeout(searchTimer);
         const query = searchInput.value;
         const normalizedQuery = normalizeText(query);
+        // === KIỂM TRA TỪ KHÓA ĐẶC BIỆT "ỦNG HỘ" ===
+        if (normalizedQuery === 'ung ho' || normalizedQuery === 'donate' || normalizedQuery === 'quyen gop') {
+            showDonateModal(); // Gọi hàm hiển thị popup
+            return; // Dừng, không chạy code tìm kiếm bên dưới nữa
+        }
+        // ============================================
         suggestionActiveIndex = -1;
 
         if (normalizedQuery.length > 0) {
@@ -306,5 +314,32 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 2000);
         });
     }
+    // --- CÁC HÀM ĐIỀU KHIỂN POPUP ỦNG HỘ ---
 
+    function showDonateModal() {
+        donateModal.style.display = "flex";
+    }
+
+    function hideDonateModal() {
+        donateModal.style.display = "none";
+    }
+
+    // Nút X (nút thoát)
+    closeModalBtn.addEventListener("click", hideDonateModal);
+
+    // Đóng khi click ra ngoài vùng ảnh
+    donateModal.addEventListener("click", function (event) {
+        // Chỉ đóng khi click vào lớp nền mờ (modal-overlay)
+        // chứ không phải click vào nội dung (modal-content)
+        if (event.target === donateModal) {
+            hideDonateModal();
+        }
+    });
+
+    // Đóng khi nhấn phím "Escape" (Esc)
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && donateModal.style.display === "flex") {
+            hideDonateModal();
+        }
+    });
 }); // Hết DOMContentLoaded
