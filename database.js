@@ -230,6 +230,34 @@ const generalInfo = [
             "<strong>TUT - Phụ Đạo:</strong><br>- Mô tả: Một người phụ đạo cho một hoặc một số người khác.<br>- Chi tiết: 15 giờ học, 1 giờ ôn tập, 1-2 giờ thi.<br><br>" +
             "<strong>VOL - Tình Nguyện:</strong><br>- Mô tả: Tự nguyện tham gia.<br>- Chi tiết: 45 giờ học, 3 giờ ôn tập, 1-2 giờ thi.<br><br>" +
             "<strong>WOR - Workshop:</strong><br>- Mô tả: Thực hành qua việc trực tiếp làm một việc gì đó, với sự góp mặt của nhiều người khác.<br>- Chi tiết: 30 giờ học, 2 giờ ôn tập, 1-2 giờ thi."
+    },
+    {
+        "keywords": ["đầu ra", "chuẩn đầu ra", "tốt nghiệp", "điều kiện tốt nghiệp", "chuẩn tiếng anh", "chuẩn tin học"],
+        "answer": "<strong>Thông tin Chuẩn Đầu ra Tốt nghiệp:</strong><br><br>" +
+            "Sinh viên tham khảo thông tin chi tiết về các chuẩn đầu ra (Tiếng Anh, Tin học,...) để đủ điều kiện xét tốt nghiệp tại đây:<br><br>" +
+            "<a href='https://t.me/Dai_Hoc_Duy_Tan/140' target='_blank'>Nhấp nhẹ thôi kẻo ra</a>"
+    },
+    {
+        "keywords": ["gửi xe", "phí gửi xe", "giá gửi xe", "tiền gửi xe", "giữ xe", "thanh toán gửi xe", "bãi xe"],
+        "answer": "<strong>Phí Gửi xe tại các cơ sở:</strong><br><br>" +
+            " - Thanh toán bằng <span style='color: #0056b3;'>Thẻ (quẹt thẻ)</span>: <span style='color: #0056b3;'>2.000 VNĐ/lượt</span><br>" +
+            " - Thanh toán bằng <span style='color: #D9534F;'>Tiền mặt</span>: <span style='color: #D9534F;'>4.000 VNĐ/lượt</span>"
+    },
+    {
+        "keywords": ["mất thẻ sinh viên", "làm lại thẻ", "thẻ sinh viên", "mất thẻ", "phòng công tác sinh viên", "ctsv", "quy định thẻ", "hỏng thẻ", "nghiêm cấm thẻ"],
+        "answer": "<strong>Quy định về Thẻ Sinh viên (Mất/Làm lại):</strong><br><br>" +
+            "Khi bị mất hoặc hỏng thẻ, sinh viên cần <span style='color: #D9534F;'>báo ngay</span> cho <span style='color: #0056b3;'>Phòng Công tác Sinh viên (CTSV)</span> để được cấp lại.<br><br>" +
+            "<strong>Địa điểm làm lại:</strong><br>" +
+            " - <strong>Văn phòng:</strong> <span style='color: #0056b3;'>Phòng 214</span>, cơ sở K7/25 Quang Trung.<br>" +
+            " - <strong>Thủ tục:</strong> <span style='color: #0056b3;'>Không cần chụp ảnh lại</span> (đã có ảnh trên hệ thống).<br>" +
+            " - <strong>Thời gian:</strong> Chờ lấy ngay, khoảng <span style='color: #0056b3;'>5 phút</span>.<br>" +
+            " - <strong>Lệ phí:</strong> <span style='color: #D9534F;'>100.000 VNĐ</span>.<br>" +
+            " - <strong>SĐT (CTSV):</strong> +84-236-3-650 403 (223).<br><br>" +
+            "<strong style='color: #D9534F;'>NGHIÊM CẤM CÁC HÀNH VI SAU:</strong><br>" +
+            " - Cố tình làm hỏng thẻ.<br>" +
+            " - Cho người khác mượn hoặc sử dụng thẻ của mình.<br>" +
+            " - Sử dụng thẻ vào các mục đích sai trái (cá cược, đặt cọc,...).<br>" +
+            " - Làm giả thẻ sinh viên."
     }
 ];
 
