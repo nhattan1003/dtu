@@ -321,6 +321,52 @@
             white-space: nowrap;
             /* Đảm bảo không bị xuống dòng */
         }
+
+        /* === CSS CHO POPUP (MODAL) === */
+        .modal-overlay {
+            position: fixed;
+            /* Nằm cố định trên màn hình */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            /* Lớp nền mờ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            /* Nằm trên tất cả */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            /* Giới hạn độ rộng của ảnh */
+            width: 100%;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            font-size: 30px;
+            /* Đây chính là "nút thoát ra" */
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close-btn:hover {
+            color: #000;
+        }
     </style>
 </head>
 
@@ -345,8 +391,14 @@
 
     <script src="database.js"></script>
     <script src="script.js"></script>
-
+    <div id="donateModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+            <img src="maqrtan.png" alt="Mã QR ủng hộ" style="width: 100%; border-radius: 8px;">
+            <p style="text-align: center; margin-top: 10px; font-weight: 500;">Cảm ơn bạn vì đã giúp tôi và tôi tặng bạn
+                ly trà sữa</p>
+        </div>
+    </div>
 </body>
 
 </html>
-
