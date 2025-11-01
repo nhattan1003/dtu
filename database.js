@@ -34,6 +34,14 @@ const generalInfo = [
         answer: "<strong>Phòng Kế hoạch Tài chính:</strong><br><br>Địa chỉ: 137 Nguyễn Văn Linh"
     },
     {
+        "keywords": ["phòng tài chính", "kế hoạch tài chính", "tài chính", "ví điện tử", "hoàn tiền", "nhận tiền", "chuyển nhầm tiền vào ví điện tử"],
+        "answer": "<strong>Hướng dẫn Nhận tiền nhầm</strong><br><br>" +
+            "Để đăng ký nhận tiền, sinh viên vui lòng thực hiện theo các bước sau:<br><br>" +
+            "<strong>Bước 1:</strong> Đến trực tiếp <span style=\"color: #D32F2F;\"><strong>Phòng Kế hoạch Tài chính</strong></span> tại địa chỉ 137 Nguyễn Văn Linh, Thạc Gián, Q. Thanh Khê, Đà Nẵng.<br><br>" +
+            "<strong>Bước 2:</strong> Liên hệ bộ phận Kế toán để cung cấp thông tin và hoàn tất thủ tục đăng ký nhận tiền<br><br>" +
+            "<strong>Bước 3:</strong> Sau khi thủ tục hoàn tất, tiền sẽ được chuyển về ví của bạn trong thời gian dự kiến từ <span style=\"color: #D32F2F;\"><strong>2 đến 4 tuần</strong></span> làm việc."
+    },
+    {
         keywords: ["nhập học", "làm thủ tục nhập học", "nhập học ở đâu", "giờ nhập học"],
         answer: "Thí sinh đến nhập học trực tiếp tại 254 Đ. Nguyễn Văn Linh, Đà Nẵng.<br><br>" +
             "<strong>Thời gian làm việc:</strong><br><br>" +
